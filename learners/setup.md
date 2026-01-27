@@ -1,9 +1,8 @@
 ---
-layout: page
 title: Setup
 ---
 
-Please try to complete the following setup tasks ahead of the lesson. 
+Please try to complete the following setup tasks ahead of the lesson.
 
 ## Create appropriate SAFE and ARCHER2 machine accounts
 
@@ -15,4 +14,5 @@ You will firstly create a SAFE account. The [SAFE](https://safe.epcc.ed.ac.uk/) 
 Any problems encountered will be addressed as the first part of the course.
 
 
-{% include links.md %}
+
+

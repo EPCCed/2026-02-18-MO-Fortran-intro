@@ -1,7 +1,8 @@
 ---
-layout: break
-title: "Lunch"
+title: Lunch
 break: 60
 ---
 
 Break for lunch.
+
+

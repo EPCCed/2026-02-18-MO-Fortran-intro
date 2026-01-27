@@ -1,7 +1,8 @@
 ---
-layout: break
-title: "Break"
+title: Break
 break: 30
 ---
 
 Comfort break.
+
+

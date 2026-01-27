@@ -1,63 +1,69 @@
 ---
-title: "Logical and conditionals, character variables"
+title: Logical and conditionals, character variables
 teaching: 10
 exercises: 10
-questions:
-- "What other types of variable does Fortran provide?"
-- "How can I direct a program's flow down different paths?"
-- "Is it possible to store characters in a variable?"
-objectives:
-- "Understand how to use `logical` variables."
-- "Be able to control the flow of a program with `if` statements."
-- "Write conditional expressions using logical and relational operators."
-- "Be able to use a `case` construct."
-- "Learn how to declare `character` variables."
-keypoints:
-- "Fortran provides two non-numeric intrinsic data types: `logical` and `character`."
-- "A program's flow can be directed using the results of logical operations used in conjunction with `if` and `case` constructs."
-
 ---
+
+::::::::::::::::::::::::::::::::::::::: objectives
+
+- Understand how to use `logical` variables.
+- Be able to control the flow of a program with `if` statements.
+- Write conditional expressions using logical and relational operators.
+- Be able to use a `case` construct.
+- Learn how to declare `character` variables.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::: questions
+
+- What other types of variable does Fortran provide?
+- How can I direct a program's flow down different paths?
+- Is it possible to store characters in a variable?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Logical variables
 
 Fortran has a `logical` type (cf. Boolean type in C); there are two relevant
 literal values, illustrated here:
+
 ```
   logical :: switch0 = .false.
   logical :: switch1 = .true.
 ```
+
 It is possible to specify a kind type parameter for logical kinds, but you
 don't see it very often. The default `logical` kind has kind type parameter
 `kind(.false.)`.
-
 
 ### Logical operators and expressions
 
 Standard logical operators `.or.`, `.and.` and `.not.` are available. The
 precedence is illustrated by, e.g.,
+
 ```
   q = i .or. j .and. .not. k    ! evaluated as i .or. (j .and. (.not. k))
 ```
+
 Again, use parentheses to avoid ambiguity, or to add clarity.
 
 Remember that `.or.` evaluates to `.true.` if either or both its operands are
 `.true.`, while `.and.` requires both to be `.true.` in order to evaluate to
 `.true.`. The `.not.` operator inverts the value of its operand.
 
-
 ### Relational operators
 
 To form logical expressions from numeric or other expressions, we require
 relational operators. The are two forms in Fortran:
 
-| Relation                 | Operator | Older form | For              |
-|--------------------------|----------|------------|------------------|
-| Less than                | `< `     | `.lt.`     | `integer` `real` |
-| Less than or equal to    | `<=`     | `.le.`     | `integer` `real` |
-| Greater than             | `> `     | `.gt.`     | `integer` `real` |
-| Greater than or equal to | `>=`     | `.ge.`     | `integer` `real` |
-| Equal to                 | `==`     | `.eq.`     | `integer` `real` `complex`|
-| Not equal to             | `/=`     | `.neq.`    | `integer` `real` `complex`|
+| Relation                 | Operator | Older form | For | 
+| ------------------------ | -------- | ---------- | --- |
+| Less than                | `< `         | `.lt.`           | `integer` `real`   | 
+| Less than or equal to    | `<=`         | `.le.`           | `integer` `real`   | 
+| Greater than             | `> `         | `.gt.`           | `integer` `real`   | 
+| Greater than or equal to | `>=`         | `.ge.`           | `integer` `real`   | 
+| Equal to                 | `==`         | `.eq.`           | `integer` `real` `complex`   | 
+| Not equal to             | `/=`         | `.neq.`           | `integer` `real` `complex`   | 
 
 If you are coming from C/C++ don't be tempted by `!=` for inequality.
 
@@ -73,6 +79,7 @@ away with it.
 ### `if` construct
 
 Conditional statements are provided by the `if` construct, formally:
+
 ```
 [if-name:]  if (logical-expression) then
               block
@@ -82,8 +89,10 @@ Conditional statements are provided by the `if` construct, formally:
               block ]
             end if [if-name]
 ```
+
 There may be zero or more `else if` blocks, but at most one `else` block.
 At most one block is executed. For example:
+
 ```
   if (i < j) then
     print *, "The smaller is: i ", i
@@ -93,37 +102,44 @@ At most one block is executed. For example:
     print *, "i,j are the same: ", i
   end if
 ```
+
 A single clause `if` statement is also available, for example:
+
 ```
   if (a >= 0.0) b = sqrt(a)
 ```
 
 ### Example 1 (3 minutes)
 
-> ## Using relational operators
->
-> The file [example1.f90](../exercises/03-if-statements/example1.f90) contains a
-> version of the code above. Check it works as expected. Can you replace the
-> relational operators to use the older form given in the table above?
-> 
-> > ## Solution
-> > 
-> > You should be able to compile the code and run it to obtain the output:
-> > ```
-> >  The smaller is: i  1
-> > ```
-> > {: .output}
-> > To use the older forms of the operators `>` and `<`, change them respectively
-> > to `.gt.` and `.lt.`:
-> > ```
-> >   condition1 = (i .lt. j)
-> >   condition2 = (i .gt. j)
-> > ```
-> > {: .source}
-> > 
-> {: .solution}
-{: .challenge}
+:::::::::::::::::::::::::::::::::::::::  challenge
 
+## Using relational operators
+
+The file [example1.f90](exercises/03-if-statements/example1.f90) contains a
+version of the code above. Check it works as expected. Can you replace the
+relational operators to use the older form given in the table above?
+
+:::::::::::::::  solution
+
+## Solution
+
+You should be able to compile the code and run it to obtain the output:
+
+```output
+ The smaller is: i  1
+```
+
+To use the older forms of the operators `>` and `<`, change them respectively
+to `.gt.` and `.lt.`:
+
+```source
+  condition1 = (i .lt. j)
+  condition2 = (i .gt. j)
+```
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Construct names
 
@@ -136,19 +152,23 @@ A `if` construct with a name must have the matching name with the
 `end if`.
 
 For example
+
 ```
 highly_nested_if_construct: if (a < b) then
                               ! ... structured block ...
                             end if highly_nested_if_construct
 ```
+
 As a matter of style, a leading name can be obtrusive, so one can put
 it on a separate line using the continuation character `&`, e.g.,
+
 ```
 outer_if: &
   if (a < b) then
      ! ... structured block ...
   endif outer_if
 ```
+
 The standard maximum line length in Fortran is 132 characters. Longer lines can
 be broken with the continuation character `&` to a maximum of 255 continuation
 lines (F2003).
@@ -162,6 +182,7 @@ consistent).
 
 This is an analogue of the C switch facility, and can be useful
 for actions conditional on a range or set of distinct values. Formally,
+
 ```
 [case-name:]  select case (case-expression)
                 [ case (case-value-range-list)
@@ -171,11 +192,13 @@ for actions conditional on a range or set of distinct values. Formally,
               end select [case-name]
 
 ```
-The _case-expression_ must be a scalar integer, logical, or character
-expression. The _case-value-range-list_ is a comma-separated list of
+
+The *case-expression* must be a scalar integer, logical, or character
+expression. The *case-value-range-list* is a comma-separated list of
 either individual values, or ranges.
 
 For example:
+
 ```
    integer :: mycard = 1         ! Playing cards 1--13
 
@@ -190,13 +213,14 @@ For example:
        ! error...?
    end select
 ```
+
 A range may be open-ended (e.g., `2:` or `:10`). Note there is no break-like
 statement as in the C switch; only the relevant case block is executed.
-
 
 ## Character variables
 
 Character variables hold zero or more characters. Some examples are:
+
 ```
 program example2
 
@@ -207,6 +231,7 @@ program example2
 
 end program example2
 ```
+
 The implementation must provide at least one type of character storage,
 with the default kind being `kind('A')`. In practice, kind type
 parameters are not often specified. However, there should be a `len`
@@ -224,67 +249,88 @@ strings in a later section.
 
 ## Exercise (1 minute)
 
-> ## Character `len`
->
-> Compile and check the output of
-> [example2.f90](../exercises/03-if-statements/example2.f90) to see the result
-> of the examples above. What happens if you change one of the `len`
-> specifications to be too short?
-> 
-> > ## Solution
-> > 
-> > Without modifications, the code should produce the following output:
-> > ```
-> >  string1: don't
-> >  string2: Don"t
-> >  string3: don't
-> >  Catenated:       don't Don"tdon't
-> >  Substring:       Do
-> >  kind('A'):        1
-> > ```
-> > {: .output}
-> > If we make `string3` too short, e.g.:
-> > ```
-> >   character (len = 2)            :: string3 = 'don''t'
-> > ```
-> > {: .source}
-> > then the variable will truncate at that length:
-> > ```
-> >  string1: don't
-> >  string2: Don"t
-> >  string3: do
-> >  Catenated:       doDon"tdon't
-> >  Substring:       Do
-> >  kind('A'):        1
-> > ```
-> > {: .output}
-> > 
-> {: .solution}
-{: .challenge}
+:::::::::::::::::::::::::::::::::::::::  challenge
 
+## Character `len`
+
+Compile and check the output of
+[example2.f90](exercises/03-if-statements/example2.f90) to see the result
+of the examples above. What happens if you change one of the `len`
+specifications to be too short?
+
+:::::::::::::::  solution
+
+## Solution
+
+Without modifications, the code should produce the following output:
+
+```output
+ string1: don't
+ string2: Don"t
+ string3: don't
+ Catenated:       don't Don"tdon't
+ Substring:       Do
+ kind('A'):        1
+```
+
+If we make `string3` too short, e.g.:
+
+```source
+  character (len = 2)            :: string3 = 'don''t'
+```
+
+then the variable will truncate at that length:
+
+```output
+ string1: don't
+ string2: Don"t
+ string3: do
+ Catenated:       doDon"tdon't
+ Substring:       Do
+ kind('A'):        1
+```
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Exercise (5 minutes)
 
-> ## Solving a quadratic equation
->
-> Write a program which uses real data types to compute the two solutions
-> to the quadratic equation:
-> ```
->    a*x**2 + b*x + c = 0
-> ```
-> for given values of `a`, `b`, and `c`. See [Wikipedia's
-> page](https://en.wikipedia.org/wiki/Quadratic_formula) for some background. A
-> template [exercise1.f90](../exercises/03-if-statements/exercise1.f90) provides
-> some instructions.
-> 
-> > ## Solution
-> > 
-> > A solution to this exercise appears as a template for the [first
-> > exercise](../exercises/06-array-expressions/exercise1.f90) in the [episode on
-> > array expressions]({{ page.root }}{% link _episodes/06-array-expressions.md %})
-> > 
-> {: .solution}
-{: .challenge}
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Solving a quadratic equation
+
+Write a program which uses real data types to compute the two solutions
+to the quadratic equation:
+
+```
+   a*x**2 + b*x + c = 0
+```
+
+for given values of `a`, `b`, and `c`. See [Wikipedia's
+page](https://en.wikipedia.org/wiki/Quadratic_formula) for some background. A
+template [exercise1.f90](exercises/03-if-statements/exercise1.f90) provides
+some instructions.
+
+:::::::::::::::  solution
+
+## Solution
+
+A solution to this exercise appears as a template for the [first
+exercise](exercises/06-array-expressions/exercise1.f90) in the [episode on
+array expressions](06-array-expressions.md)
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
-{% include links.md %}
+
+:::::::::::::::::::::::::::::::::::::::: keypoints
+
+- Fortran provides two non-numeric intrinsic data types: `logical` and `character`.
+- A program's flow can be directed using the results of logical operations used in conjunction with `if` and `case` constructs.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+

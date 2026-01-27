@@ -1,54 +1,61 @@
 ---
-title: "Functions and subroutines"
+title: Functions and subroutines
 teaching: 10
 exercises: 10
-questions:
-- "How can I factor code out into different program procedures?"
-- "How do I control the flow of information into and out of procedures?"
-objectives:
-- "See how to create and call both functions and subroutines."
-- "Use the `intent` attribute with dummy arguments to change their read and write permissions within the procedure."
-- "Understand the meanings of `pure` and `recursive` procedures."
-keypoints:
-- "Functions and subroutines are referred to collectively as `_procedures_`."
-- "Using `intent` for dummy variables allows control over whether updates to their values are permitted."
-- "Procedures can be modified with prefixes such as `pure` and `recursive` which ensure respectively that the procedure has no side-effects and that it is able to directly or indirectly call itself."
-- "Procedures may be defined as module sub-programs for which the compiler will automatically generate the contract block as part of the module file."
 ---
+
+::::::::::::::::::::::::::::::::::::::: objectives
+
+- See how to create and call both functions and subroutines.
+- Use the `intent` attribute with dummy arguments to change their read and write permissions within the procedure.
+- Understand the meanings of `pure` and `recursive` procedures.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::: questions
+
+- How can I factor code out into different program procedures?
+- How do I control the flow of information into and out of procedures?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## What's the difference?
 
 The difference between functions and subroutines is to a degree one of
 context. A function returns a result and is generally used where it
 is best invoked as part of an expression or assignment, schematically:
+
 ```
   value = my_function(arg1, arg2, ...)
 ```
+
 Unlike C, it is not possible simply to discard a function result.
 A subroutine, by contrast, does not return a result (it may be thought of as a
 `void` function in C terms), but it is also invoked differently:
+
 ```
   call my_subroutine(arg1, arg2, ...)
 ```
+
 Subroutines are generally used to express more lengthy algorithms.
 
 Note that in the calling context, the arguments `arg1`, `arg2`, etc
-are referred to as the _actual arguments_.
-
+are referred to as the *actual arguments*.
 
 ## Dummy arguments and `intent` attribute
 
-Procedures may have zero or more arguments (referred to as the _dummy
-arguments_ at the point at which the procedure is defined). Three
+Procedures may have zero or more arguments (referred to as the *dummy
+arguments* at the point at which the procedure is defined). Three
 different cases can be identified:
 
 1. read-only arguments whose values are not updated by the procedure;
 2. read-write arguments whose values are expected to be defined on
-   entry, and may also be updated by the procedure;
+  entry, and may also be updated by the procedure;
 3. write-only arguments whose values are only defined on exit.
 
 These three cases may be encoded in the declarations of the dummy
 arguments of a procedure via the `intent` attribute . For example:
+
 ```
   subroutine print_x(x)
 
@@ -58,24 +65,30 @@ arguments of a procedure via the `intent` attribute . For example:
 
   end subroutine print_x
 ```
+
 Here, dummy argument `x` has `intent(in)` which tells the compiler that
 any attempt to modify the value is erroneous (a compiler error will result).
 This is different from C, where a change to an argument passed by value is
 merely not reflected in the caller.
 
-> ## Passing by reference
->
-> If you are used to C/C++, you should remain aware here that the Fortran
-> standard requires actual arguments to be passed to functions and subroutines
-> in such a way that they 'appear' to have been passed by reference. How to do
-> so is left to the compiler (which may use copies or actually pass by
-> reference) but any changes made to a dummy argument inside a procedure _will_
-> be reflected in the actual arguments passed to it, unless prevented by having
-> `intent(in)`.
-{: .callout}
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## Passing by reference
+
+If you are used to C/C++, you should remain aware here that the Fortran
+standard requires actual arguments to be passed to functions and subroutines
+in such a way that they 'appear' to have been passed by reference. How to do
+so is left to the compiler (which may use copies or actually pass by
+reference) but any changes made to a dummy argument inside a procedure *will*
+be reflected in the actual arguments passed to it, unless prevented by having
+`intent(in)`.
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 If one wants to alter the existing value of the argument, `intent(inout)`
 is appropriate:
+
 ```
   subroutine increment_x(x)
 
@@ -85,8 +98,10 @@ is appropriate:
 
   end subroutine increment_x
 ```
+
 If the dummy argument is undefined on entry, or has a value which is
 simply to be overwritten, use `intent(out)`, e.g.:
+
 ```
   subroutine assign_x(x)
 
@@ -96,6 +111,7 @@ simply to be overwritten, use `intent(out)`, e.g.:
 
   end subroutine assign_x
 ```
+
 The `intent` attribute, as well as allowing the compiler to detect
 inadvertent errors, provides some useful documentation for the
 reader.
@@ -103,41 +119,46 @@ reader.
 Local variables do not have intent and are declared as
 usual.
 
-
 ### Exercise (2 minutes)
 
-> ## Exercise name
->
-> Attempt to compile the accompanying
-> [module1.f90](../exercises/09-functions-subroutines/module1.f90) and associated
-> main program [program1.f90](../exercises/09-functions-subroutines/program1.f90).
-> Check the error message emitted, and sort out the intent of the dummy arguments
-> in [module1.f90](../exercises/09-functions-subroutines/module1.f90).
-> 
-> > ## Solution
-> > 
-> > `assign_x()` should use `intent(out)` for `x` as it doesn't matter what it
-> > was previously; we want to set it to 1 and return it.
-> >
-> > `print_x()` is correct to use `intent(in)` for `x` as it needs to know its
-> > value in order to print it, and it shouldn't change it.
-> >
-> > `increment_x()` should have `intent(inout)` for `x`: the subroutine needs to
-> > know its previous value in order to add to it (hence `in`) and it needs to
-> > be able to pass the new value back out (hence `out`).
-> > 
-> {: .solution}
-{: .challenge}
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Exercise name
 
 Attempt to compile the accompanying
-[module1.f90](../exercises/09-functions-subroutines/module1.f90) and associated
-main program [program1.f90](../exercises/09-functions-subroutines/program1.f90).
+[module1.f90](exercises/09-functions-subroutines/module1.f90) and associated
+main program [program1.f90](exercises/09-functions-subroutines/program1.f90).
 Check the error message emitted, and sort out the intent of the dummy arguments
-in [module1.f90](../exercises/09-functions-subroutines/module1.f90).
+in [module1.f90](exercises/09-functions-subroutines/module1.f90).
 
+:::::::::::::::  solution
+
+## Solution
+
+`assign_x()` should use `intent(out)` for `x` as it doesn't matter what it
+was previously; we want to set it to 1 and return it.
+
+`print_x()` is correct to use `intent(in)` for `x` as it needs to know its
+value in order to print it, and it shouldn't change it.
+
+`increment_x()` should have `intent(inout)` for `x`: the subroutine needs to
+know its previous value in order to add to it (hence `in`) and it needs to
+be able to pass the new value back out (hence `out`).
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+Attempt to compile the accompanying
+[module1.f90](exercises/09-functions-subroutines/module1.f90) and associated
+main program [program1.f90](exercises/09-functions-subroutines/program1.f90).
+Check the error message emitted, and sort out the intent of the dummy arguments
+in [module1.f90](exercises/09-functions-subroutines/module1.f90).
 
 ## Functions
+
 A function may be defined as:
+
 ```
 function my_mapping(value) result(a)
 
@@ -150,22 +171,26 @@ end function my_mapping
 ```
 
 Formally,
+
 ```
 [prefix] function function-name (dummy-arg-list) [suffix]
   [ specification-part ]
   [ executable-part ]
 end [ function [function-name] ]
 ```
+
 As ever, there is some elasticity in the exact form of the declarations
 you may see. In particular, older versions did not have the `result()`
-suffix, and the _function-name_ was used as the variable to which the
+suffix, and the *function-name* was used as the variable to which the
 return value was assigned. E.g.,
+
 ```
 real function length(area)
   real area
   length = sqrt(area)
 end function length
 ```
+
 The modern form should be preferred; the `result()` part allows the two
 names to be decoupled.
 
@@ -174,30 +199,34 @@ names to be decoupled.
 Procedures which have no side effects may be declared with the
 `pure` prefix; this may provide useful information to the compiler
 in some circumstances. E.g.,
+
 ```
 pure function special_function(x) result(y)
   real, intent(in) :: x
   ! ...
 end function special_function
 ```
+
 There are a number of conditions which must be met to qualify for
 `pure` status:
+
 1. For a function, any dummy arguments must be intent(in);
 2. No variables accessed by host association can be updated (and no variables with `save` attribute);
 3. there must be no operations on external files;
 4. there must be no `stop` statement.
 
-
 ### `recursive` procedures
 
 If recursion is required, a procedure must be declared with the
 `recursive` prefix. E.g.,
+
 ```
 recursive function fibonacci(n) result(nf)
   ! ... implementation...
   nf = fibonacci(n-1) + fibonacci(n-2)
 end function fibonacci
 ```
+
 Such a declaration must be included for both types of recursion: direct (a
 procedure calling itself) and indirect (a procedure calling another which in
 turn calls the first).
@@ -233,30 +262,45 @@ passing the procedure as an argument).
 
 ## Exercise (5 minutes)
 
-> ## Gauss and Legendre met Fibonacci
->
-> 1. Can your function for the evaluation of pi from the previous episodes safely
->    be declared `pure`? You can also use the accompanying template
->    [exercise_module1.f90](../exercises/09-functions-subroutines/exercise_module1.f90)
->    and
->    [exercise_program1.f90](../exercises/09-functions-subroutines/exercise_program1.f90)
->    to check.
-> 2. Add a new version of this calculation: a subroutine which takes the number of
->    terms as an argument, and also returns the computed value in the argument
->    list.
-> 3. Add to the module a recursive function to compute the nth Fibonacci number,
->    and test it in the main code. See, for example the page at
->    [Wikipedia](https://en.wikipedia.org/wiki/Fibonacci_number).
-> 
-> > ## Solution
-> > 
-> > Solutions are available in
-> > [solution_program1.f90](../exercises/09-functions-subroutines/solutions/solution_program1.f90)
-> > and
-> > [solution_module1.f90](../exercises/09-functions-subroutines/solutions/solution_module1.f90).
-> > 
-> {: .solution}
-{: .challenge}
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Gauss and Legendre met Fibonacci
+
+1. Can your function for the evaluation of pi from the previous episodes safely
+  be declared `pure`? You can also use the accompanying template
+  [exercise\_module1.f90](exercises/09-functions-subroutines/exercise_module1.f90)
+  and
+  [exercise\_program1.f90](exercises/09-functions-subroutines/exercise_program1.f90)
+  to check.
+2. Add a new version of this calculation: a subroutine which takes the number of
+  terms as an argument, and also returns the computed value in the argument
+  list.
+3. Add to the module a recursive function to compute the nth Fibonacci number,
+  and test it in the main code. See, for example the page at
+  [Wikipedia](https://en.wikipedia.org/wiki/Fibonacci_number).
+
+:::::::::::::::  solution
+
+## Solution
+
+Solutions are available in
+[solution\_program1.f90](exercises/09-functions-subroutines/solutions/solution_program1.f90)
+and
+[solution\_module1.f90](exercises/09-functions-subroutines/solutions/solution_module1.f90).
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
-{% include links.md %}
+
+:::::::::::::::::::::::::::::::::::::::: keypoints
+
+- Functions and subroutines are referred to collectively as `_procedures_`.
+- Using `intent` for dummy variables allows control over whether updates to their values are permitted.
+- Procedures can be modified with prefixes such as `pure` and `recursive` which ensure respectively that the procedure has no side-effects and that it is able to directly or indirectly call itself.
+- Procedures may be defined as module sub-programs for which the compiler will automatically generate the contract block as part of the module file.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+

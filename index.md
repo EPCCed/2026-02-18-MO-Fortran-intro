@@ -1,21 +1,22 @@
 ---
-layout: lesson
-carpentry: "swc"
-venue: "online"
-address: 
-country: "UK"
-language: "English"
-latlng: 
-humandate: "19 to 21 May 2025"
-humantime: 
-startdate: 2025-05-19
-enddate: 2025-05-21
-instructor: ["Paul Bartholomew", "William Lucas"]
+carpentry: swc
+venue: online
+address: ~
+country: UK
+language: English
+latlng: ~
+humandate: 19 to 21 May 2025
+humantime: ~
+startdate: '2025-05-19'
+enddate: '2025-05-21'
+instructor:
+- Paul Bartholomew
+- William Lucas
 helper: []
-email: ["w.lucas@epcc.ed.ac.uk"]
-collaborative_notes: 
-eventbrite: 
-root: .
+email: w.lucas@epcc.ed.ac.uk
+collaborative_notes: ~
+eventbrite: ~
+site: sandpaper::sandpaper_site
 ---
 
 <h2>Description</h2>
@@ -30,21 +31,22 @@ At the end of the course you should be able to understand many Fortran programs 
 
 The course requires a Fortran compiler. We will provide accounts on ARCHER2 for you to use; this guarantees that everyone is working in the same environment with the same software. That said, if you wish to work on a local machine or laptop which has a Fortran compiler [1], you of course may do so. Use of a text editor will be required will be required.
 
-[1] This may typically be `gfortran`, freely available as part of GNU Compiler Collection (GCC). See e.g., [https://gcc.gnu.org/wiki/GFortranBinaries](https://gcc.gnu.org/wiki/GFortranBinaries).
+[1] This may typically be `gfortran`, freely available as part of GNU Compiler Collection (GCC). See e.g., <https://gcc.gnu.org/wiki/GFortranBinaries>.
 
 <hr/>
 
 <h2 id="general">General Information</h2>
 
 {% comment %}
-  LOCATION
+LOCATION
 
-  This block displays the address and links to maps showing directions
-  if the latitude and longitude of the workshop have been set.  You
-  can use https://itouchmap.com/latlong.html to find the lat/long of an
-  address.
+This block displays the address and links to maps showing directions
+if the latitude and longitude of the workshop have been set.  You
+can use <https://itouchmap.com/latlong.html> to find the lat/long of an
+address.
 {% endcomment %}
 {% if page.latlng %}
+
 <p id="where">
   <strong>Where:</strong>
   {{page.address}}.
@@ -56,11 +58,12 @@ The course requires a Fortran compiler. We will provide accounts on ARCHER2 for 
 {% endif %}
 
 {% comment %}
-  DATE
+DATE
 
-  This block displays the date and links to Google Calendar.
+This block displays the date and links to Google Calendar.
 {% endcomment %}
 {% if page.humandate %}
+
 <p id="when">
   <strong>When:</strong>
   {{page.humandate}}.
@@ -69,10 +72,11 @@ The course requires a Fortran compiler. We will provide accounts on ARCHER2 for 
 {% endif %}
 
 {% comment %}
-  SPECIAL REQUIREMENTS
+SPECIAL REQUIREMENTS
 
-  Modify the block below if there are any special requirements.
+Modify the block below if there are any special requirements.
 {% endcomment %}
+
 <p id="requirements">
   <strong>Requirements:</strong> Participants must have a working laptop or 
   desktop computer with a Mac, Linux, or Windows operating system (not a 
@@ -85,29 +89,31 @@ The course requires a Fortran compiler. We will provide accounts on ARCHER2 for 
 </p>
 
 {% comment %}
-  ACCESSIBILITY
+ACCESSIBILITY
 
-  Modify the block below if there are any barriers to accessibility or
-  special instructions.
+Modify the block below if there are any barriers to accessibility or
+special instructions.
 
 <p id="accessibility">
   <strong>Accessibility:</strong> We are committed to making this workshop
   accessible to everybody.
-  
-  Materials will be provided in advance of the lesson and
-  large-print handouts are available if needed by notifying the
-  organizers in advance.  If we can help making learning easier for
-  you (e.g. sign-language interpreters, lactation facilities) please
-  get in touch (using contact details below) and we will
-  attempt to provide them.
+
+Materials will be provided in advance of the lesson and
+large-print handouts are available if needed by notifying the
+organizers in advance.  If we can help making learning easier for
+you (e.g. sign-language interpreters, lactation facilities) please
+get in touch (using contact details below) and we will
+attempt to provide them.
+
 </p>
 {% endcomment %}
 
 {% comment %}
-  CONTACT EMAIL ADDRESS
+CONTACT EMAIL ADDRESS
 
-  Display the contact email address set in the configuration file.
+Display the contact email address set in the configuration file.
 {% endcomment %}
+
 <p id="contact">
   <strong>Contact</strong>:
   Please email
@@ -130,14 +136,20 @@ The course requires a Fortran compiler. We will provide accounts on ARCHER2 for 
 
 <hr/>
 
-> ## Prerequisites
-> You should have used remote HPC facilities before. In particular, you should be happy with connecting
-> using SSH, know what a batch scheduling system is and be familiar with using the Linux command line.
-> You should also be happy editing plain text files in a remote terminal (or, alternatively, editing them
-> on your local system and copying them to the remote HPC system using `scp`).
-{: .prereq}
+::::::::::::::::::::::::::::::::::::::::::  prereq
+
+## Prerequisites
+
+You should have used remote HPC facilities before. In particular, you should be happy with connecting
+using SSH, know what a batch scheduling system is and be familiar with using the Linux command line.
+You should also be happy editing plain text files in a remote terminal (or, alternatively, editing them
+on your local system and copying them to the remote HPC system using `scp`).
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 <hr/>
 
-{% include links.md %}
+
+
 

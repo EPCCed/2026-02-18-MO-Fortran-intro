@@ -20,7 +20,7 @@ carpentry: 'cp'
 title: 'Introduction to Modern Fortran'
 
 # Date the lesson was created (YYYY-MM-DD, this is empty by default)
-created: 
+created: 2025-05-05
 
 # Comma-separated list of keywords for the lesson
 keywords: 'software, data, lesson, The Carpentries'
@@ -33,7 +33,7 @@ life_cycle: 'stable'
 license: 'CC-BY 4.0'
 
 # Link to the source repository for this lesson
-source: 'https://github.com/fishtree-attempt/2026-02-18-MO-Fortran-intro/'
+source: 'https://github.com/welucas2/2026-02-18-MO-Fortran-intro'
 
 # Default branch of your lesson
 branch: 'main'
@@ -114,7 +114,3 @@ profiles:
 
 
 carpentry_description: Lesson Description
-url: https://preview.carpentries.org/2026-02-18-MO-Fortran-intro
-analytics: carpentries
-lang: en
-workbench-beta: yes

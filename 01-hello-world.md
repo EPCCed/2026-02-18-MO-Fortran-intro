@@ -23,7 +23,7 @@ exercises: 10
 
 A very simple program might be:
 
-```
+```fortran
 program example1
 
   ! An example program prints "Hello World" to the screen
@@ -59,7 +59,7 @@ output do you get when you run it?
 
 Compile and run the program on ARCHER2 as follows:
 
-```source
+```bash
 ftn example1.f90
 ./a.out
 ```
@@ -76,7 +76,7 @@ which will give the following output:
 
 ### Formal description
 
-```
+```fortran
   [ program [program-name] ]
      [ specification-part ]
      [ executable-part ]
@@ -89,7 +89,7 @@ Optional components are represented with square brackets `[...]`. It
 follows that the shortest standard-conforming program will be (see
 [example2.f90](files/exercises/01-hello-world/example2.f90)):
 
-```
+```fortran
 end
 ```
 
@@ -102,7 +102,7 @@ We will return to the `contains` statement in the context of modules.
 
 In general
 
-```
+```fortran
   print format [ , output-item-list ]
 ```
 
@@ -117,7 +117,7 @@ is allowed to apply a default format for a given type of item.
 
 Consider the following program (available as [example3.f90](files/exercises/01-hello-world/example3.f90)):
 
-```
+```fortran
 program example3
 
   use iso_fortran_env, only : output_unit
@@ -136,7 +136,7 @@ identifies the default standard output (cf. `stdout`).
 
 Formally,
 
-```
+```fortran
   use [[ , module-nature] ::] module-name [ , only : [only-list]]
 ```
 
@@ -154,7 +154,7 @@ from `module-name` will be visible.
 
 Formally,
 
-```
+```fortran
   write (io-control-spec-list) [output-item-list]
 ```
 
@@ -163,7 +163,7 @@ be output. The `io-control-spec-list` has a large number of potential
 arguments (again comma separated). For formatted output, these must
 include at least a unit number and a format:
 
-```
+```fortran
   write ([unit = ] io-unit, [fmt = ] format) [output-item-list]
 ```
 
@@ -172,7 +172,7 @@ is a format-specifier (as for `print`).
 
 Examples are
 
-```
+```fortran
   write (unit = output_unit, fmt = *)
   write (output_unit, *)
   write (*, *)
@@ -192,7 +192,7 @@ Modern Fortran is not case sensitive. Older versions required capitals,
 a style which has persisted to the present day in some places. So you
 may see things such as
 
-```
+```fortran
 PROGRAM example1
 
   PRINT *, "Hello World"
@@ -228,8 +228,6 @@ ARCHER2 both are invoked with the `ftn` compiler wrapper. Which
 compiler is actually used depends on the `PrgEnv-` module loaded.
 
 :::::::::::::::  solution
-
-## Solution
 
 Make sure to `use` the module, then use `print *` statements to write the
 values of the three symbols to the screen. Sample solution code is available

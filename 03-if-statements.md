@@ -27,7 +27,7 @@ exercises: 10
 Fortran has a `logical` type (cf. Boolean type in C); there are two relevant
 literal values, illustrated here:
 
-```
+```fortran
   logical :: switch0 = .false.
   logical :: switch1 = .true.
 ```
@@ -41,7 +41,7 @@ don't see it very often. The default `logical` kind has kind type parameter
 Standard logical operators `.or.`, `.and.` and `.not.` are available. The
 precedence is illustrated by, e.g.,
 
-```
+```fortran
   q = i .or. j .and. .not. k    ! evaluated as i .or. (j .and. (.not. k))
 ```
 
@@ -80,7 +80,7 @@ away with it.
 
 Conditional statements are provided by the `if` construct, formally:
 
-```
+```fortran
 [if-name:]  if (logical-expression) then
               block
             [ else if (logical-expression) then
@@ -93,7 +93,7 @@ Conditional statements are provided by the `if` construct, formally:
 There may be zero or more `else if` blocks, but at most one `else` block.
 At most one block is executed. For example:
 
-```
+```fortran
   if (i < j) then
     print *, "The smaller is: i ", i
   else if (i > j) then
@@ -105,7 +105,7 @@ At most one block is executed. For example:
 
 A single clause `if` statement is also available, for example:
 
-```
+```fortran
   if (a >= 0.0) b = sqrt(a)
 ```
 
@@ -132,7 +132,7 @@ You should be able to compile the code and run it to obtain the output:
 To use the older forms of the operators `>` and `<`, change them respectively
 to `.gt.` and `.lt.`:
 
-```source
+```fortran
   condition1 = (i .lt. j)
   condition2 = (i .gt. j)
 ```
@@ -153,7 +153,7 @@ A `if` construct with a name must have the matching name with the
 
 For example
 
-```
+```fortran
 highly_nested_if_construct: if (a < b) then
                               ! ... structured block ...
                             end if highly_nested_if_construct
@@ -162,7 +162,7 @@ highly_nested_if_construct: if (a < b) then
 As a matter of style, a leading name can be obtrusive, so one can put
 it on a separate line using the continuation character `&`, e.g.,
 
-```
+```fortran
 outer_if: &
   if (a < b) then
      ! ... structured block ...
@@ -183,7 +183,7 @@ consistent).
 This is an analogue of the C switch facility, and can be useful
 for actions conditional on a range or set of distinct values. Formally,
 
-```
+```fortran
 [case-name:]  select case (case-expression)
                 [ case (case-value-range-list)
 		    block ] ...
@@ -199,7 +199,7 @@ either individual values, or ranges.
 
 For example:
 
-```
+```fortran
    integer :: mycard = 1         ! Playing cards 1--13
 
    select case (mycard)
@@ -221,7 +221,7 @@ statement as in the C switch; only the relevant case block is executed.
 
 Character variables hold zero or more characters. Some examples are:
 
-```
+```fortran
 program example2
 
   implicit none
@@ -260,8 +260,6 @@ specifications to be too short?
 
 :::::::::::::::  solution
 
-## Solution
-
 Without modifications, the code should produce the following output:
 
 ```output
@@ -275,7 +273,7 @@ Without modifications, the code should produce the following output:
 
 If we make `string3` too short, e.g.:
 
-```source
+```fortran
   character (len = 2)            :: string3 = 'don''t'
 ```
 
@@ -303,9 +301,7 @@ then the variable will truncate at that length:
 Write a program which uses real data types to compute the two solutions
 to the quadratic equation:
 
-```
-   a*x**2 + b*x + c = 0
-```
+$ax^2 + bx + c = 0$
 
 for given values of `a`, `b`, and `c`. See [Wikipedia's
 page](https://en.wikipedia.org/wiki/Quadratic_formula) for some background. A
@@ -313,8 +309,6 @@ template [exercise1.f90](files/exercises/03-if-statements/exercise1.f90) provide
 some instructions.
 
 :::::::::::::::  solution
-
-## Solution
 
 A solution to this exercise appears as a template for the [first
 exercise](files/exercises/06-array-expressions/exercise1.f90) in the [episode on

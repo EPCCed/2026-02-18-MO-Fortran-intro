@@ -233,7 +233,7 @@ compiler is actually used depends on the `PrgEnv-` module loaded.
 
 Make sure to `use` the module, then use `print *` statements to write the
 values of the three symbols to the screen. Sample solution code is available
-in [exercise1.f90](exercises/01-hello-world/exercise1.f90).
+in [exercise1.f90](files/exercises/01-hello-world/exercise1.f90).
 
 Running with the default Cray compiler gives the output:
 

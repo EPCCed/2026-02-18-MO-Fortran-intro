@@ -109,9 +109,9 @@ values.
 
 ## Reading a namelist from file
 
-Using [namelist-read.f90](exercises/14-namelists/namelist-read.f90), confirm
+Using [namelist-read.f90](files/exercises/14-namelists/namelist-read.f90), confirm
 that the runtime values can be specified by changing the contents of the
-namelist in [config.nml](exercises/14-namelists/config.nml). Modify the
+namelist in [config.nml](files/exercises/14-namelists/config.nml). Modify the
 program to specify a default value for `dt` and confirm that `dt` retains its
 value unless otherwise set in the `namelist`.
 
@@ -170,9 +170,9 @@ reading is independent of order.
 ## Reading multiple namelists
 
 Extend the example program
-[namelist-read.f90](exercises/14-namelists/namelist-read.f90) to read the
+[namelist-read.f90](files/exercises/14-namelists/namelist-read.f90) to read the
 numerical `schemes` namelist from
-[config-full.nml](exercises/14-namelists/config-full.nml).
+[config-full.nml](files/exercises/14-namelists/config-full.nml).
 
 (Optional) Ensure that your program can read the `run` configuration and the
 numerical `schemes` regardless of the order in which they appear.
@@ -241,7 +241,7 @@ confirm that this works with your new program when writing in any order.
 ## Solution
 
 A solution writing the `run` namelist can be found in
-[namelist-write.f90](exercises/14-namelists/solutions/namelist-write.f90).
+[namelist-write.f90](files/exercises/14-namelists/solutions/namelist-write.f90).
 
 :::::::::::::::::::::::::
 
@@ -260,7 +260,7 @@ types. These are handled similarly to the code we have seen so far.
 ## Writing complex data to namelists
 
 An example program
-[namelist-complex.f90](exercises/14-namelists/namelist-complex.f90) is
+[namelist-complex.f90](files/exercises/14-namelists/namelist-complex.f90) is
 provided to write more complex data structures to a namelist. Try running this
 program and inspecting the output to see how these data structures are
 represented.

@@ -126,10 +126,10 @@ usual.
 ## Exercise name
 
 Attempt to compile the accompanying
-[module1.f90](exercises/09-functions-subroutines/module1.f90) and associated
-main program [program1.f90](exercises/09-functions-subroutines/program1.f90).
+[module1.f90](files/exercises/09-functions-subroutines/module1.f90) and associated
+main program [program1.f90](files/exercises/09-functions-subroutines/program1.f90).
 Check the error message emitted, and sort out the intent of the dummy arguments
-in [module1.f90](exercises/09-functions-subroutines/module1.f90).
+in [module1.f90](files/exercises/09-functions-subroutines/module1.f90).
 
 :::::::::::::::  solution
 
@@ -150,10 +150,10 @@ be able to pass the new value back out (hence `out`).
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 Attempt to compile the accompanying
-[module1.f90](exercises/09-functions-subroutines/module1.f90) and associated
-main program [program1.f90](exercises/09-functions-subroutines/program1.f90).
+[module1.f90](files/exercises/09-functions-subroutines/module1.f90) and associated
+main program [program1.f90](files/exercises/09-functions-subroutines/program1.f90).
 Check the error message emitted, and sort out the intent of the dummy arguments
-in [module1.f90](exercises/09-functions-subroutines/module1.f90).
+in [module1.f90](files/exercises/09-functions-subroutines/module1.f90).
 
 ## Functions
 
@@ -268,9 +268,9 @@ passing the procedure as an argument).
 
 1. Can your function for the evaluation of pi from the previous episodes safely
   be declared `pure`? You can also use the accompanying template
-  [exercise\_module1.f90](exercises/09-functions-subroutines/exercise_module1.f90)
+  [exercise\_module1.f90](files/exercises/09-functions-subroutines/exercise_module1.f90)
   and
-  [exercise\_program1.f90](exercises/09-functions-subroutines/exercise_program1.f90)
+  [exercise\_program1.f90](files/exercises/09-functions-subroutines/exercise_program1.f90)
   to check.
 2. Add a new version of this calculation: a subroutine which takes the number of
   terms as an argument, and also returns the computed value in the argument
@@ -284,9 +284,9 @@ passing the procedure as an argument).
 ## Solution
 
 Solutions are available in
-[solution\_program1.f90](exercises/09-functions-subroutines/solutions/solution_program1.f90)
+[solution\_program1.f90](files/exercises/09-functions-subroutines/solutions/solution_program1.f90)
 and
-[solution\_module1.f90](exercises/09-functions-subroutines/solutions/solution_module1.f90).
+[solution\_module1.f90](files/exercises/09-functions-subroutines/solutions/solution_module1.f90).
 
 :::::::::::::::::::::::::
 

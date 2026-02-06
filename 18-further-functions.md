@@ -95,9 +95,9 @@ Interface blocks are necessary in other contexts.
 ## Externals and interfaces
 
 To illustrate the points made above, a very simple external function is defined
-in the file [external.f90](exercises/18-further-functions/external.f90), and
+in the file [external.f90](files/exercises/18-further-functions/external.f90), and
 an accompanying program
-[example1.f90](exercises/18-further-functions/example1.f90) calls the
+[example1.f90](files/exercises/18-further-functions/example1.f90) calls the
 function therein.
 
 Try to compile the two files, e.g.:
@@ -255,13 +255,13 @@ that is, at least one non-optional dummy argument must be different.
 
 In the earlier [episode on I/O](13-IO.md),
 we wrote a module to produce a `.pbm` image file. The accompanying module
-[pbm\_image.f90](exercises/18-further-functions/pbm_image.f90) provides two
+[pbm\_image.f90](files/exercises/18-further-functions/pbm_image.f90) provides two
 implementations of such a routine: one for a logical array, and another for an
 integer array.
 
 Check you can add the appropriate `interface` block with the generic name
 `write_pbm` to allow the program
-[example3.f90](exercises/18-further-functions/example3.f90) to be compiled
+[example3.f90](files/exercises/18-further-functions/example3.f90) to be compiled
 correctly.
 
 :::::::::::::::  solution
@@ -369,7 +369,7 @@ usually must also be `pure`.
 
 ## Elemental conversion from logical to PBM
 
-In the [pbm\_image.f90](exercises/18-further-functions/pbm_image.f90) module
+In the [pbm\_image.f90](files/exercises/18-further-functions/pbm_image.f90) module
 there is a utility function `logical_to_pbm()` which is used in
 `write_logical_pbm()` to translate the logical array to an integer array.
 Refactor this part of the code to use an elemental function.
@@ -464,8 +464,8 @@ for value of `n = 10, 100, 1000`.
 
 ## Solution
 
-A sample solution is provided in [integral\_program.f90](exercises/18-further-functions/solutions/integral_program.f90) and
-[integral\_module.f90](exercises/18-further-functions/solutions/integral_module.f90).
+A sample solution is provided in [integral\_program.f90](files/exercises/18-further-functions/solutions/integral_program.f90) and
+[integral\_module.f90](files/exercises/18-further-functions/solutions/integral_module.f90).
 
 :::::::::::::::::::::::::
 

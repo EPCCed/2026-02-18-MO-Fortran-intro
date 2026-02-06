@@ -148,8 +148,8 @@ changed with compiler flags.
 ## Compiling modules
 
 If you haven't already done so, compile the accompanying
-[module1.f90](exercises/08-modules/module1.f90) and
-[program1.f90](exercises/08-modules/program1.f90). Check the errors which
+[module1.f90](files/exercises/08-modules/module1.f90) and
+[program1.f90](files/exercises/08-modules/program1.f90). Check the errors which
 occur if you: (1) try to compile the program without the module file via,
 e.g.,
 
@@ -355,7 +355,7 @@ In this way, it acts like `{ .. }` in C.
 ## Return to Gauss-Legendre
 
 Return to your code for the approximation to pi via the Gauss-Legendre iteration
-(or use the template [exercise1.f90](exercises/05-arrays/exercise1.f90) from
+(or use the template [exercise1.f90](files/exercises/05-arrays/exercise1.f90) from
 the earlier episode on arrays). Using the examples above as a template, write a
 module to contain a function which returns the value so computed. Check you can
 use the new function from a main program.
@@ -365,9 +365,9 @@ use the new function from a main program.
 ## Solution
 
 An example solution is provided in
-[solution\_program.f90](exercises/08-modules/solutions/solution_program.f90)
+[solution\_program.f90](files/exercises/08-modules/solutions/solution_program.f90)
 and
-[solution\_module.f90](exercises/08-modules/solutions/solution_module.f90).
+[solution\_module.f90](files/exercises/08-modules/solutions/solution_module.f90).
 
 :::::::::::::::::::::::::
 

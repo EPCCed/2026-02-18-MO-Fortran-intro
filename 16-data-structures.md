@@ -171,8 +171,8 @@ components. The appropriate expression in the constructor is `null()`.
 ## A type to store a random number generator
 
 The accompanying example
-([module1.f90](exercises/16-data-structures/module1.f90) and
-[program1.f90](exercises/16-data-structures/program1.f90)) provides an
+([module1.f90](files/exercises/16-data-structures/module1.f90) and
+[program1.f90](files/exercises/16-data-structures/program1.f90)) provides an
 implementation of a very simple pseudo-random number generator. This is a
 so-called [linear congruential
 generator](https://en.wikipedia.org/wiki/Linear_congruential_generator).
@@ -332,8 +332,8 @@ elements the same, and all off-diagonal elements the same. Write an additional
 function to initialise such a matrix from two scalar values.
 
 A template for the exercise can be found in
-[exercise\_program.f90](exercises/16-data-structures/exercise_program.f90) and
-[exercise\_module.f90](exercises/16-data-structures/exercise_module.f90); or
+[exercise\_program.f90](files/exercises/16-data-structures/exercise_program.f90) and
+[exercise\_module.f90](files/exercises/16-data-structures/exercise_module.f90); or
 you can use your own version that you have been developing to this point.
 
 :::::::::::::::  solution
@@ -352,9 +352,9 @@ Your new tri-diagonal matrix type should look something like this:
 ```
 
 Implementations of the solution are available in
-[solution\_program.f90](exercises/16-data-structures/solutions-1/solution_program.f90)
+[solution\_program.f90](files/exercises/16-data-structures/solutions-1/solution_program.f90)
 and
-[solution\_module.f90](exercises/16-data-structures/solutions-1/solution_module.f90).
+[solution\_module.f90](files/exercises/16-data-structures/solutions-1/solution_module.f90).
 
 :::::::::::::::::::::::::
 
@@ -386,9 +386,9 @@ flexibility.
 ## Solution
 
 A suggested implementation of the solution is available in
-[date\_program.f90](exercises/16-data-structures/solutions-2/date_program.f90)
+[date\_program.f90](files/exercises/16-data-structures/solutions-2/date_program.f90)
 and
-[date\_module.f90](exercises/16-data-structures/solutions-2/date_module.f90).
+[date\_module.f90](files/exercises/16-data-structures/solutions-2/date_module.f90).
 
 :::::::::::::::::::::::::
 

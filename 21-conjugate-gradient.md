@@ -54,7 +54,7 @@ done with:
 All the operations in the algorithm can be composed of these,
 as well as vector additions and multiplications by a scalar.
 
-A template program [cg\_test.f90](exercises/21-conjugate-gradient/cg_test.f90)
+A template program [cg\_test.f90](files/exercises/21-conjugate-gradient/cg_test.f90)
 is provided with a small matrix to use as a test. You need to implement a module
 `cgradient` which supplies a function `cg_test()` taking the arguments set out
 in the template.
@@ -67,9 +67,9 @@ Remember that you can always check your answer by multiplying out
 ## Solution
 
 You can check a suggested solution with
-[cg\_test.f90](exercises/21-conjugate-gradient/solutions-1/cg_test.f90)
+[cg\_test.f90](files/exercises/21-conjugate-gradient/solutions-1/cg_test.f90)
 and
-[cgradient\_solution.f90](exercises/21-conjugate-gradient/solutions-1/cgradient.f90).
+[cgradient\_solution.f90](files/exercises/21-conjugate-gradient/solutions-1/cgradient.f90).
 
 :::::::::::::::::::::::::
 
@@ -138,8 +138,8 @@ If you look at the first few line of this example, you should see
 ## Solution
 
 A suggested solution in provided in
-[mmtest.f90](exercises/21-conjugate-gradient/solutions-2/mm_test.f90) and
-[mmarket.f90](exercises/21-conjugate-gradient/solutions-2/mmarket.f90).
+[mmtest.f90](files/exercises/21-conjugate-gradient/solutions-2/mm_test.f90) and
+[mmarket.f90](files/exercises/21-conjugate-gradient/solutions-2/mmarket.f90).
 
 :::::::::::::::::::::::::
 

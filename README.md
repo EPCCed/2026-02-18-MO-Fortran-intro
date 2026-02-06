@@ -1,5 +1,5 @@
-# Met Office Introduction to Fortran 19 - 21 May 2025
+# Met Office Introduction to Fortran 18 - 20 February 2026
 
-This repository contains the material for use in the Introduction to Fortran course to be delivered at the Met Office 19 - 21 May 2025. Pushes to the `gh-pages` branch will be reflected in the pages available at <https://epcced.github.io/2025-05-19-MO-Fortran-intro/>.
+This repository contains the material for use in the Introduction to Fortran course to be delivered at the Met Office 18 - 20 February 2025. Pushes to the `main` branch will be reflected in the pages available at <https://epcced.github.io/2026-02-18-MO-Fortran-intro>.
 
 

@@ -146,9 +146,9 @@ $ ./a.out
 ## Solution
 
 Two reference answers are given in the `solutions` directory. The
-[first](exercises/07-exercise/solutions-1/life-step2.f90) only computes
+[first](exercises/07-exercise/solutions/life-step2.f90) only computes
 the first update, while the
-[second](exercises/07-exercise/solutions-1/life-step3.f90) includes the
+[second](exercises/07-exercise/solutions/life-step3.f90) includes the
 time stepping loop.
 
 :::::::::::::::::::::::::

@@ -156,7 +156,9 @@ offer.
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- We should all understand and follow the [ARCHER2 Code of Conduct](archer2-tcoc) to ensure this course is conducted in the best teaching environment.
+- We should all understand and follow the [ARCHER2 Code of
+  Conduct](https://www.archer2.ac.uk/about/policies/code-of-conduct.html) to
+  ensure this course is conducted in the best teaching environment.
 - ARCHER2's login address is `login.archer2.ac.uk`.
 - You have to change the default text password the first time you log in
 - MFA is mandatory in ARCHER2

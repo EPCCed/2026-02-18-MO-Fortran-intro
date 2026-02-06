@@ -50,7 +50,7 @@ in C/C++. However, note there is not (and must not be) a return statement.
 ## Compile your first program
 
 Check now you can compile and run the first example program
-[example1.f90](exercises/01-hello-world/example1.f90). What
+[example1.f90](files/exercises/01-hello-world/example1.f90). What
 output do you get when you run it?
 
 :::::::::::::::  solution
@@ -87,7 +87,7 @@ which will give the following output:
 
 Optional components are represented with square brackets `[...]`. It
 follows that the shortest standard-conforming program will be (see
-[example2.f90](exercises/01-hello-world/example2.f90)):
+[example2.f90](files/exercises/01-hello-world/example2.f90)):
 
 ```
 end
@@ -115,7 +115,7 @@ is allowed to apply a default format for a given type of item.
 
 ## Alternative
 
-Consider the following program (available as [example3.f90](exercises/01-hello-world/example3.f90)):
+Consider the following program (available as [example3.f90](files/exercises/01-hello-world/example3.f90)):
 
 ```
 program example3

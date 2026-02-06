@@ -674,14 +674,14 @@ form:</p>
 <pre><code>  character (len = *), dimension(7), parameter :: days = [ ... ]</code></pre>
 <div class="section level3">
 <h3 id="exercise-2-minutes">Exercise (2 minutes)<a class="anchor" aria-label="anchor" href="#exercise-2-minutes"></a></h3>
-<p>Check the result of the compilation of <a href="../exercises/11-characters-strings/example3.f90">example3.f90</a>.</p>
+<p>Check the result of the compilation of <a href="../files/exercises/11-characters-strings/example3.f90">example3.f90</a>.</p>
 <p>The are a number of solutions to this issue. One could try to pad the
 lengths of each array element to be the same length. A better way is to
 use a constructor with a type specification:</p>
 <pre><code>[character (len = 9) :: "Sunday", "Monday", "Tuesday", "Wednesday", ...]</code></pre>
 <p>Here the type specification is used to avoid ambiguity in how the
 list is to be interpreted.</p>
-<p>Check you can make this adjustment to <a href="../exercises/11-characters-strings/example3.f90">example3.f90</a>.</p>
+<p>Check you can make this adjustment to <a href="../files/exercises/11-characters-strings/example3.f90">example3.f90</a>.</p>
 </div>
 </section><section><h2 class="section-heading" id="strings-as-dummy-arguments-or-results">Strings as dummy arguments, or results<a class="anchor" aria-label="anchor" href="#strings-as-dummy-arguments-or-results"></a></h2>
 <hr class="half-width"><p>If a character variable has intent <code>in</code> in the context of
@@ -715,8 +715,8 @@ make sure it is all lower case. That is, any character between “A” and
 “Z” is replaced by the corresponding character between “a” and “z”.</p>
 <p>Write an additional function to return a new string which is all
 lower case, leaving the original unchanged.</p>
-<p>You can use the accompanying templates <a href="../exercises/11-characters-strings/exercise_module1.f90">exercise_module1.f90</a>
-and <a href="../exercises/11-characters-strings/exercise_program1.f90">exercise_program1.f90</a>.</p>
+<p>You can use the accompanying templates <a href="../files/exercises/11-characters-strings/exercise_module1.f90">exercise_module1.f90</a>
+and <a href="../files/exercises/11-characters-strings/exercise_program1.f90">exercise_program1.f90</a>.</p>
 </div>
 </div>
 </div>
@@ -725,10 +725,10 @@ and <a href="../exercises/11-characters-strings/exercise_program1.f90">exercise_
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
-<p>A solution to the exercise can be found in <a href="../exercises/11-characters-strings/solutions/solution_program1.f90">solution_program1.f90</a>
-and <a href="../exercises/11-characters-strings/solutions/solution_module1.f90">solution_module1.f90</a>.</p>
+<p>A solution to the exercise can be found in <a href="../files/exercises/11-characters-strings/solutions/solution_program1.f90">solution_program1.f90</a>
+and <a href="../files/exercises/11-characters-strings/solutions/solution_module1.f90">solution_module1.f90</a>.</p>
 </div>
 </div>
 </div>

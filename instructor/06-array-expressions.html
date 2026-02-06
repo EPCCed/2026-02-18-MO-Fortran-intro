@@ -637,7 +637,7 @@ conforms with an array of any shape.</p>
 <p>A caution. How should we interpret the following assignments?</p>
 <pre><code>  d = 1.0
   e(:) = 1.0</code></pre>
-<p>Compile the accompanying program <a href="../exercises/06-array-expressions/example1.f90">example1.f90</a>,
+<p>Compile the accompanying program <a href="../files/exercises/06-array-expressions/example1.f90">example1.f90</a>,
 check the compilation errors and improve the program.</p>
 </div>
 </div>
@@ -647,13 +647,13 @@ check the compilation errors and improve the program.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The first assignment given above is ambiguous. Is <code>d</code> a
 scalar variable, or an entire array? The second assignment is clearly on
 every element of the rank-1 array <code>e</code>.</p>
-<p>The compiler errors you get when compiling <a href="../exercises/06-array-expressions/example1.f90">example1.f90</a> may
-spell out exactly what is going wrong. At line 13,</p>
+<p>The compiler errors you get when compiling <a href="../files/exercises/06-array-expressions/example1.f90">example1.f90</a>
+may spell out exactly what is going wrong. At line 13,</p>
 <pre class="source"><code><span><span class="va">b1</span> <span class="op">=</span> <span class="va">a1</span></span></code></pre>
 <p><code>b1</code> is a rank-1 array; the rank-2 array <code>a1</code>
 cannot be used to assign values to it. Change it to</p>
@@ -754,7 +754,7 @@ work in parallel: explicit loops may provide better opportunities.</li>
 <div id="quadratic-equation" class="callout-inner">
 <h3 class="callout-title">Quadratic equation</h3>
 <div class="callout-content">
-<p>The template <a href="../exercises/06-array-expressions/exercise1.f90">exercise1.f90</a>
+<p>The template <a href="../files/exercises/06-array-expressions/exercise1.f90">exercise1.f90</a>
 re-visits the quadratic equation exercise. Check you can replace the
 scalars where appropriate. See the template for further
 instructions.</p>
@@ -771,7 +771,7 @@ instructions.</p>
 <div class="callout-content">
 <p>Here’s an additional exercise: write a program to implement the <a href="https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes" class="external-link">Sieve of
 Eratosthenes</a> algorithm which performs a search for prime numbers.
-See <a href="../exercises/06-array-expressions/exercise2.f90">exercise2.f90</a>
+See <a href="../files/exercises/06-array-expressions/exercise2.f90">exercise2.f90</a>
 for a template with some further instructions. How much array syntax can
 you reasonably introduce?</p>
 </div>
@@ -782,9 +782,9 @@ you reasonably introduce?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
-<p>A sample solution is provided in <a href="../exercises/06-array-expressions/solutions/solution.f90">solution.f90</a>.</p>
+<p>A sample solution is provided in <a href="../files/exercises/06-array-expressions/solutions/solution.f90">solution.f90</a>.</p>
 </div>
 </div>
 </div>

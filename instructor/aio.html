@@ -951,7 +951,7 @@ output do you get when you run it?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Compile and run the program on ARCHER2 as follows:</p>
 <pre class="source"><code>ftn example1.f90
@@ -1104,11 +1104,11 @@ module loaded.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Make sure to <code>use</code> the module, then use
 <code>print *</code> statements to write the values of the three symbols
-to the screen. Sample solution code is available in <a href="../exercises/01-hello-world/exercise1.f90">exercise1.f90</a>.</p>
+to the screen. Sample solution code is available in <a href="../files/exercises/01-hello-world/exercise1.f90">exercise1.f90</a>.</p>
 <p>Running with the default Cray compiler gives the output:</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1385,9 +1385,9 @@ to bugs and hence time spent debugging!</p>
 <div id="the-importance-of-being-explicit" class="callout-inner">
 <h3 class="callout-title">The importance of being explicit</h3>
 <div class="callout-content">
-<p>Compile and run the accompanying program <a href="../exercises/02-variables/exercise1.f90">exercise1.f90</a>. What’s
-the problem and how should we avoid it? Check the compiler can trap the
-problem.</p>
+<p>Compile and run the accompanying program <a href="../files/exercises/02-variables/exercise1.f90">exercise1.f90</a>.
+What’s the problem and how should we avoid it? Check the compiler can
+trap the problem.</p>
 </div>
 </div>
 </div>
@@ -1477,7 +1477,7 @@ of concise declaration with an explicit kind type parameter is:</p>
 <div class="section level3">
 <h3 id="example-2-minutes">Example (2 minutes)<a class="anchor" aria-label="anchor" href="#example-2-minutes"></a>
 </h3>
-<p>Take a moment to compare the output of the programs <a href="../exercises/02-variables/example1.f90">example1.f90</a> and <a href="../exercises/02-variables/example2.f90">example2.f90</a>, which
+<p>Take a moment to compare the output of the programs <a href="../files/exercises/02-variables/example1.f90">example1.f90</a> and <a href="../files/exercises/02-variables/example2.f90">example2.f90</a>, which
 declare and initialise a variable of each type and print out their
 values to the screen.</p>
 </div>
@@ -1547,12 +1547,13 @@ tangent (as a value in radians) of the argument.</p>
 <div class="section level3">
 <h3 id="exercise-2-minutes">Exercise (2 minutes)<a class="anchor" aria-label="anchor" href="#exercise-2-minutes"></a>
 </h3>
-<p>Consider further the accompanying <a href="../exercises/02-variables/example3.f90">example3.f90</a>, where we
-have introduced another intrinsic function <code>storage_size()</code>
-(roughly equivalent to C’s <code>sizeof()</code> although it returns a
-size in bits rather than bytes). Run the program and check the actual
-values of the kind type parameters and associated storage sizes.
-Speculate on the portability of a program declaring, e.g.:</p>
+<p>Consider further the accompanying <a href="../files/exercises/02-variables/example3.f90">example3.f90</a>, where
+we have introduced another intrinsic function
+<code>storage_size()</code> (roughly equivalent to C’s
+<code>sizeof()</code> although it returns a size in bits rather than
+bytes). Run the program and check the actual values of the kind type
+parameters and associated storage sizes. Speculate on the portability of
+a program declaring, e.g.:</p>
 <pre><code>  integer (4) :: i32
   integer (8) :: i64</code></pre>
 </div>
@@ -1567,8 +1568,8 @@ Speculate on the portability of a program declaring, e.g.:</p>
 <div id="parameters-1" class="callout-inner">
 <h3 class="callout-title">Parameters</h3>
 <div class="callout-content">
-<p>Consider the accompanying <a href="../exercises/02-variables/exercise2.f90">exercise2.f90</a>. Check the
-compiler error emitted and remove the offending line.</p>
+<p>Consider the accompanying <a href="../files/exercises/02-variables/exercise2.f90">exercise2.f90</a>.
+Check the compiler error emitted and remove the offending line.</p>
 </div>
 </div>
 </div>
@@ -1693,10 +1694,10 @@ is not valid.</p>
 <div id="calculating-pi" class="callout-inner">
 <h3 class="callout-title">Calculating pi</h3>
 <div class="callout-content">
-<p>The accompanying template <a href="../exercises/02-variables/exercise3.f90">exercise3.f90</a> provides
-instructions for an exercise which involves the approximation to the
-constant pi computed via a Gauss-Legendre algorithm. Some background can
-be found at <a href="https://en.wikipedia.org/wiki/Gauss-Legendre_algorithm" class="external-link uri">https://en.wikipedia.org/wiki/Gauss-Legendre_algorithm</a>.</p>
+<p>The accompanying template <a href="../files/exercises/02-variables/exercise3.f90">exercise3.f90</a>
+provides instructions for an exercise which involves the approximation
+to the constant pi computed via a Gauss-Legendre algorithm. Some
+background can be found at <a href="https://en.wikipedia.org/wiki/Gauss-Legendre_algorithm" class="external-link uri">https://en.wikipedia.org/wiki/Gauss-Legendre_algorithm</a>.</p>
 <p>Use the instructions in the template to calculate an estimate of pi
 by creating an appropriate parameter to store a <code>kind</code>,
 declaring the appropriate variables, then performing the calculation and
@@ -1711,8 +1712,8 @@ printing the values of pi.</p>
 </button>
 <div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
-<p>A solution to this problem appears as the template for the <a href="../exercises/04-do-statements/exercise1.f90">first exercise</a> in
-the <a href="04-do-statements.html">episode on loops</a>.</p>
+<p>A solution to this problem appears as the template for the <a href="../files/exercises/04-do-statements/exercise1.f90">first exercise</a>
+in the <a href="04-do-statements.html">episode on loops</a>.</p>
 </div>
 </div>
 </div>
@@ -1732,7 +1733,7 @@ channel</h3>
 <div class="callout-content">
 <p>A second exercise in a similar vein looks at an approximation to the
 conductance of a rectangular channel subject to a constant flow.
-Instructions are in <a href="../exercises/02-variables/exercise4.f90">exercise4.f90</a>.</p>
+Instructions are in <a href="../files/exercises/02-variables/exercise4.f90">exercise4.f90</a>.</p>
 <p>As with the previous exercise, create a <code>kind</code>, the
 variables, then perform the necessary arithmetic to calculate
 <code>C_1</code>.</p>
@@ -1746,8 +1747,9 @@ variables, then perform the necessary arithmetic to calculate
 </button>
 <div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
-<p>A solution to this problem appears as the template for the <a href="../exercises/04-do-statements/exercise2.f90">second exercise</a> in
-the <a href="04-do-statements.html">episode on loops</a>.</p>
+<p>A solution to this problem appears as the template for the <a href="../files/exercises/04-do-statements/exercise2.f90">second
+exercise</a> in the <a href="04-do-statements.html">episode on
+loops</a>.</p>
 </div>
 </div>
 </div>
@@ -1963,10 +1965,10 @@ example:</p>
 <div id="using-relational-operators" class="callout-inner">
 <h3 class="callout-title">Using relational operators</h3>
 <div class="callout-content">
-<p>The file <a href="../exercises/03-if-statements/example1.f90">example1.f90</a> contains
-a version of the code above. Check it works as expected. Can you replace
-the relational operators to use the older form given in the table
-above?</p>
+<p>The file <a href="../files/exercises/03-if-statements/example1.f90">example1.f90</a>
+contains a version of the code above. Check it works as expected. Can
+you replace the relational operators to use the older form given in the
+table above?</p>
 </div>
 </div>
 </div>
@@ -1975,7 +1977,7 @@ above?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>You should be able to compile the code and run it to obtain the
 output:</p>
@@ -2092,9 +2094,9 @@ strings in a later section.</p>
 <h3 class="callout-title">Character <code>len</code>
 </h3>
 <div class="callout-content">
-<p>Compile and check the output of <a href="../exercises/03-if-statements/example2.f90">example2.f90</a> to see
-the result of the examples above. What happens if you change one of the
-<code>len</code> specifications to be too short?</p>
+<p>Compile and check the output of <a href="../files/exercises/03-if-statements/example2.f90">example2.f90</a> to
+see the result of the examples above. What happens if you change one of
+the <code>len</code> specifications to be too short?</p>
 </div>
 </div>
 </div>
@@ -2103,7 +2105,7 @@ the result of the examples above. What happens if you change one of the
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Without modifications, the code should produce the following
 output:</p>
@@ -2150,7 +2152,7 @@ solutions to the quadratic equation:</p>
 <pre><code><span>   <span class="va">a</span><span class="op">*</span><span class="va">x</span><span class="op">**</span><span class="fl">2</span> <span class="op">+</span> <span class="va">b</span><span class="op">*</span><span class="va">x</span> <span class="op">+</span> <span class="va">c</span> <span class="op">=</span> <span class="fl">0</span></span></code></pre>
 <p>for given values of <code>a</code>, <code>b</code>, and
 <code>c</code>. See <a href="https://en.wikipedia.org/wiki/Quadratic_formula" class="external-link">Wikipedia’s
-page</a> for some background. A template <a href="../exercises/03-if-statements/exercise1.f90">exercise1.f90</a>
+page</a> for some background. A template <a href="../files/exercises/03-if-statements/exercise1.f90">exercise1.f90</a>
 provides some instructions.</p>
 </div>
 </div>
@@ -2160,10 +2162,10 @@ provides some instructions.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
-<p>A solution to this exercise appears as a template for the <a href="../exercises/06-array-expressions/exercise1.f90">first exercise</a>
-in the <a href="06-array-expressions.html">episode on array
+<p>A solution to this exercise appears as a template for the <a href="../files/exercises/06-array-expressions/exercise1.f90">first
+exercise</a> in the <a href="06-array-expressions.html">episode on array
 expressions</a></p>
 </div>
 </div>
@@ -2242,7 +2244,7 @@ example, …</p>
 <pre><code>  do
     ! ... go around for ever ...
   end do</code></pre>
-<p>A slightly more useful version requires some control (see <a href="../exercises/04-do-statements/example1.f90">example1.f90</a>):</p>
+<p>A slightly more useful version requires some control (see <a href="../files/exercises/04-do-statements/example1.f90">example1.f90</a>):</p>
 <pre><code>   integer :: i = 0
    do
      i = i + 1
@@ -2252,7 +2254,7 @@ example, …</p>
    end do
 
    ! ... control continues here after exit ...</code></pre>
-<p>Loop constructs may be nested, and may also be named (see <a href="../exercises/04-do-statements/example2.f90">example2.f90</a>):</p>
+<p>Loop constructs may be nested, and may also be named (see <a href="../files/exercises/04-do-statements/example2.f90">example2.f90</a>):</p>
 <pre><code>  some_outer_loop: &amp;
   do
     some_inner_loop: &amp;
@@ -2308,10 +2310,10 @@ be zero.</p>
    do i = 10, 1, -2
      print *, "i is ", i
    end do</code></pre>
-<p>You can confirm your answers by running <a href="../exercises/04-do-statements/example3.f90">example3.f90</a>. Note
-there is no way (cf. C <code>for</code>) to limit the scope of the loop
-variable to the loop construct itself; the variable will then have a
-final value after exit from the loop.</p>
+<p>You can confirm your answers by running <a href="../files/exercises/04-do-statements/example3.f90">example3.f90</a>.
+Note there is no way (cf. C <code>for</code>) to limit the scope of the
+loop variable to the loop construct itself; the variable will then have
+a final value after exit from the loop.</p>
 </div>
 </div>
 </div>
@@ -2320,7 +2322,7 @@ final value after exit from the loop.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The following output is produced:</p>
 <div class="codewrapper">
@@ -2370,12 +2372,12 @@ finishes at 2.</p>
 <div class="callout-content">
 <p>We return the exercises discussed in the earlier <a href="02-variables.html">episode on variables</a>. You can use your own
 solutions, or the new template here.</p>
-<p>For <a href="../exercises/04-do-statements/exercise1.f90">exercise1.f90</a> which
-computes an approximation to the constant pi using the Gauss-Legendre
-algorithm, introduce an iteration to compute a fixed number of
-successive improvements. How many iterations are required to converge
-when using <code>kind(1.d0)</code>? Would you be able to adjust the
-program to halt the iteration if the approximation is within a given
+<p>For <a href="../files/exercises/04-do-statements/exercise1.f90">exercise1.f90</a>
+which computes an approximation to the constant pi using the
+Gauss-Legendre algorithm, introduce an iteration to compute a fixed
+number of successive improvements. How many iterations are required to
+converge when using <code>kind(1.d0)</code>? Would you be able to adjust
+the program to halt the iteration if the approximation is within a given
 tolerance of the true answer?</p>
 </div>
 </div>
@@ -2385,11 +2387,10 @@ tolerance of the true answer?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Sample code implementing loops with this problem is used as a
-template to the <a href="../exercises/05-arrays/exercise1.f90">exercise</a>
-in the <a href="05-arrays.html">episode on arrays</a>.</p>
+template to the <a href="../files/exercises/05-arrays/exercise1.f90">exercise</a> in the <a href="05-arrays.html">episode on arrays</a>.</p>
 <p>You should be able to observe that with <code>kind(1.d0)</code> the
 value of pi converges after only three iterations. You also can have the
 code exit the loop and halt iteration by storing the previous estimate
@@ -2411,7 +2412,7 @@ less than the desired tolerance.</p>
 <div id="conductance-of-a-channel-with-loops" class="callout-inner">
 <h3 class="callout-title">Conductance of a channel with loops</h3>
 <div class="callout-content">
-<p><a href="../exercises/04-do-statements/exercise2.f90">exercise2.f90</a>
+<p><a href="../files/exercises/04-do-statements/exercise2.f90">exercise2.f90</a>
 returns to the calculation of the conductance in the narrow channel and
 will need similar work. Use a loop to compute a fixed number of terms in
 the sum over index k (use real type <code>real64</code> for the sum).
@@ -2428,7 +2429,7 @@ reverse order in this case? Can you think why this happens?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>Answer to the expert question: floating point numbers of a given
 format (such as <code>real64</code>) all have the same <em>relative
@@ -2627,9 +2628,9 @@ an array’s shape.</p>
 <div id="array-sizes-and-shapes" class="callout-inner">
 <h3 class="callout-title">Array sizes and shapes</h3>
 <div class="callout-content">
-<p>Check the accompanying <a href="../exercises/05-arrays/example1.f90">example1.f90</a> to see examples
-of intrinsic functions available to interrogate array size and shape at
-run time.</p>
+<p>Check the accompanying <a href="../files/exercises/05-arrays/example1.f90">example1.f90</a> to see
+examples of intrinsic functions available to interrogate array size and
+shape at run time.</p>
 </div>
 </div>
 </div>
@@ -2688,7 +2689,7 @@ allocated is an error.</p>
 <p>Return again to the program to compute the approximation of pi via
 the Gauss-Legendre expansion (last seen in the <a href="04-do-statements.html">previous episode on do loops</a>). You may
 use your own version or the new template provided in this directory (see
-<a href="../exercises/05-arrays/exercise1.f90">exercise1.f90</a>).</p>
+<a href="../files/exercises/05-arrays/exercise1.f90">exercise1.f90</a>).</p>
 <p>Introduce array storage for the quantites <code>a</code>,
 <code>b</code> and <code>t</code>. Use a fixed number of terms. Assign
 appropriate values in a first loop. In a second loop, compute the
@@ -2830,7 +2831,7 @@ conforms with an array of any shape.</p>
 <p>A caution. How should we interpret the following assignments?</p>
 <pre><code>  d = 1.0
   e(:) = 1.0</code></pre>
-<p>Compile the accompanying program <a href="../exercises/06-array-expressions/example1.f90">example1.f90</a>,
+<p>Compile the accompanying program <a href="../files/exercises/06-array-expressions/example1.f90">example1.f90</a>,
 check the compilation errors and improve the program.</p>
 </div>
 </div>
@@ -2840,13 +2841,13 @@ check the compilation errors and improve the program.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The first assignment given above is ambiguous. Is <code>d</code> a
 scalar variable, or an entire array? The second assignment is clearly on
 every element of the rank-1 array <code>e</code>.</p>
-<p>The compiler errors you get when compiling <a href="../exercises/06-array-expressions/example1.f90">example1.f90</a> may
-spell out exactly what is going wrong. At line 13,</p>
+<p>The compiler errors you get when compiling <a href="../files/exercises/06-array-expressions/example1.f90">example1.f90</a>
+may spell out exactly what is going wrong. At line 13,</p>
 <pre class="source"><code><span><span class="va">b1</span> <span class="op">=</span> <span class="va">a1</span></span></code></pre>
 <p><code>b1</code> is a rank-1 array; the rank-2 array <code>a1</code>
 cannot be used to assign values to it. Change it to</p>
@@ -2957,7 +2958,7 @@ work in parallel: explicit loops may provide better opportunities.</li>
 <div id="quadratic-equation" class="callout-inner">
 <h3 class="callout-title">Quadratic equation</h3>
 <div class="callout-content">
-<p>The template <a href="../exercises/06-array-expressions/exercise1.f90">exercise1.f90</a>
+<p>The template <a href="../files/exercises/06-array-expressions/exercise1.f90">exercise1.f90</a>
 re-visits the quadratic equation exercise. Check you can replace the
 scalars where appropriate. See the template for further
 instructions.</p>
@@ -2974,7 +2975,7 @@ instructions.</p>
 <div class="callout-content">
 <p>Here’s an additional exercise: write a program to implement the <a href="https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes" class="external-link">Sieve of
 Eratosthenes</a> algorithm which performs a search for prime numbers.
-See <a href="../exercises/06-array-expressions/exercise2.f90">exercise2.f90</a>
+See <a href="../files/exercises/06-array-expressions/exercise2.f90">exercise2.f90</a>
 for a template with some further instructions. How much array syntax can
 you reasonably introduce?</p>
 </div>
@@ -2985,9 +2986,9 @@ you reasonably introduce?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
-<p>A sample solution is provided in <a href="../exercises/06-array-expressions/solutions/solution.f90">solution.f90</a>.</p>
+<p>A sample solution is provided in <a href="../files/exercises/06-array-expressions/solutions/solution.f90">solution.f90</a>.</p>
 </div>
 </div>
 </div>
@@ -3085,8 +3086,8 @@ tri-diagonal matrix using three rank-1 arrays, one of size
 operations across the arrays, the first moving forwards and the second
 backwards, as described at <a href="https://en.wikipedia.org/wiki/Tridiagonal_matrix_algorithm" class="external-link">Wikipedia</a>,
 the solution <code>x</code> can be determined.</p>
-<p>The accompanying template <a href="../exercises/07-exercise/tri-diagonal.f90">tri-diagonal.f90</a> has
-some further instructions, and some suggestions on how to test the
+<p>The accompanying template <a href="../files/exercises/07-exercise/tri-diagonal.f90">tri-diagonal.f90</a>
+has some further instructions, and some suggestions on how to test the
 result.</p>
 </div>
 </div>
@@ -3096,10 +3097,10 @@ result.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
-<p>A solution to the problem appears as a <a href="../exercises/10-dummy-array-arguments/exercise.f90">template</a> to
-the exercise in the <a href="10-dummy-array-arguments.html">later
+<p>A solution to the problem appears as a <a href="../files/exercises/10-dummy-array-arguments/exercise.f90">template</a>
+to the exercise in the <a href="10-dummy-array-arguments.html">later
 episode on dummy arguments</a>.</p>
 </div>
 </div>
@@ -3157,8 +3158,8 @@ summarised in the following table:</p>
 </tr>
 </tbody>
 </table>
-<p>A template <a href="../exercises/07-exercise/life.f90">life.f90</a> is
-provided with some hints to get you started.</p>
+<p>A template <a href="../files/exercises/07-exercise/life.f90">life.f90</a> is provided
+with some hints to get you started.</p>
 <div class="section level3">
 <h3 id="reference">Reference<a class="anchor" aria-label="anchor" href="#reference"></a>
 </h3>
@@ -3219,11 +3220,11 @@ board and the first update:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Two reference answers are given in the <code>solutions</code>
-directory. The <a href="../exercises/07-exercise/solutions/life-step2.f90">first</a> only
-computes the first update, while the <a href="../exercises/07-exercise/solutions/life-step3.f90">second</a>
+directory. The <a href="../files/exercises/07-exercise/solutions/life-step2.f90">first</a>
+only computes the first update, while the <a href="../files/exercises/07-exercise/solutions/life-step3.f90">second</a>
 includes the time stepping loop.</p>
 </div>
 </div>
@@ -3396,9 +3397,9 @@ can usually be changed with compiler flags.</p>
 <div id="compiling-modules" class="callout-inner">
 <h3 class="callout-title">Compiling modules</h3>
 <div class="callout-content">
-<p>If you haven’t already done so, compile the accompanying <a href="../exercises/08-modules/module1.f90">module1.f90</a> and <a href="../exercises/08-modules/program1.f90">program1.f90</a>. Check the
-errors which occur if you: (1) try to compile the program without the
-module file via, e.g.,</p>
+<p>If you haven’t already done so, compile the accompanying <a href="../files/exercises/08-modules/module1.f90">module1.f90</a> and <a href="../files/exercises/08-modules/program1.f90">program1.f90</a>. Check
+the errors which occur if you: (1) try to compile the program without
+the module file via, e.g.,</p>
 <pre><code>$ ftn program1.f90</code></pre>
 <p>and (2), if you try to compile and link the module file alone:</p>
 <pre><code>$ ftn module1.f90</code></pre>
@@ -3410,7 +3411,7 @@ module file via, e.g.,</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Compiling the program alone produces (with the Cray compiler) the
 following error:</p>
@@ -3531,7 +3532,7 @@ the whole module, including sub-programs.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Making the module <code>private</code> hides the <code>mykind</code>
 parameter it provide from the program. On compilation,
@@ -3606,8 +3607,8 @@ way, it acts like <code>{ .. }</code> in C.</p>
 <h3 class="callout-title">Return to Gauss-Legendre</h3>
 <div class="callout-content">
 <p>Return to your code for the approximation to pi via the
-Gauss-Legendre iteration (or use the template <a href="../exercises/05-arrays/exercise1.f90">exercise1.f90</a> from the
-earlier episode on arrays). Using the examples above as a template,
+Gauss-Legendre iteration (or use the template <a href="../files/exercises/05-arrays/exercise1.f90">exercise1.f90</a> from
+the earlier episode on arrays). Using the examples above as a template,
 write a module to contain a function which returns the value so
 computed. Check you can use the new function from a main program.</p>
 </div>
@@ -3618,10 +3619,10 @@ computed. Check you can use the new function from a main program.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
-<p>An example solution is provided in <a href="../exercises/08-modules/solutions/solution_program.f90">solution_program.f90</a>
-and <a href="../exercises/08-modules/solutions/solution_module.f90">solution_module.f90</a>.</p>
+<p>An example solution is provided in <a href="../files/exercises/08-modules/solutions/solution_program.f90">solution_program.f90</a>
+and <a href="../files/exercises/08-modules/solutions/solution_module.f90">solution_module.f90</a>.</p>
 </div>
 </div>
 </div>
@@ -3657,7 +3658,7 @@ end module b</code></pre>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <p>This is a circular dependency: <code>a</code> depends on
 <code>b</code> depends on <code>a</code>. There is no solvable
@@ -3818,10 +3819,10 @@ reader.</p>
 <div id="exercise-name" class="callout-inner">
 <h3 class="callout-title">Exercise name</h3>
 <div class="callout-content">
-<p>Attempt to compile the accompanying <a href="../exercises/09-functions-subroutines/module1.f90">module1.f90</a>
-and associated main program <a href="../exercises/09-functions-subroutines/program1.f90">program1.f90</a>.
+<p>Attempt to compile the accompanying <a href="../files/exercises/09-functions-subroutines/module1.f90">module1.f90</a>
+and associated main program <a href="../files/exercises/09-functions-subroutines/program1.f90">program1.f90</a>.
 Check the error message emitted, and sort out the intent of the dummy
-arguments in <a href="../exercises/09-functions-subroutines/module1.f90">module1.f90</a>.</p>
+arguments in <a href="../files/exercises/09-functions-subroutines/module1.f90">module1.f90</a>.</p>
 </div>
 </div>
 </div>
@@ -3830,7 +3831,7 @@ arguments in <a href="../exercises/09-functions-subroutines/module1.f90">module1
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p><code>assign_x()</code> should use <code>intent(out)</code> for
 <code>x</code> as it doesn’t matter what it was previously; we want to
@@ -3846,10 +3847,10 @@ new value back out (hence <code>out</code>).</p>
 </div>
 </div>
 </div>
-<p>Attempt to compile the accompanying <a href="../exercises/09-functions-subroutines/module1.f90">module1.f90</a>
-and associated main program <a href="../exercises/09-functions-subroutines/program1.f90">program1.f90</a>.
+<p>Attempt to compile the accompanying <a href="../files/exercises/09-functions-subroutines/module1.f90">module1.f90</a>
+and associated main program <a href="../files/exercises/09-functions-subroutines/program1.f90">program1.f90</a>.
 Check the error message emitted, and sort out the intent of the dummy
-arguments in <a href="../exercises/09-functions-subroutines/module1.f90">module1.f90</a>.</p>
+arguments in <a href="../files/exercises/09-functions-subroutines/module1.f90">module1.f90</a>.</p>
 </div>
 </section><section><h2 class="section-heading" id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a>
 </h2>
@@ -3956,8 +3957,8 @@ with <code>allocatable</code> dummy arguments) or in certain contexts
 <ol style="list-style-type: decimal">
 <li>Can your function for the evaluation of pi from the previous
 episodes safely be declared <code>pure</code>? You can also use the
-accompanying template <a href="../exercises/09-functions-subroutines/exercise_module1.f90">exercise_module1.f90</a>
-and <a href="../exercises/09-functions-subroutines/exercise_program1.f90">exercise_program1.f90</a>
+accompanying template <a href="../files/exercises/09-functions-subroutines/exercise_module1.f90">exercise_module1.f90</a>
+and <a href="../files/exercises/09-functions-subroutines/exercise_program1.f90">exercise_program1.f90</a>
 to check.</li>
 <li>Add a new version of this calculation: a subroutine which takes the
 number of terms as an argument, and also returns the computed value in
@@ -3973,10 +3974,10 @@ number, and test it in the main code. See, for example the page at <a href="http
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
-<p>Solutions are available in <a href="../exercises/09-functions-subroutines/solutions/solution_program1.f90">solution_program1.f90</a>
-and <a href="../exercises/09-functions-subroutines/solutions/solution_module1.f90">solution_module1.f90</a>.</p>
+<p>Solutions are available in <a href="../files/exercises/09-functions-subroutines/solutions/solution_program1.f90">solution_program1.f90</a>
+and <a href="../files/exercises/09-functions-subroutines/solutions/solution_module1.f90">solution_module1.f90</a>.</p>
 </div>
 </div>
 </div>
@@ -4104,7 +4105,8 @@ each dimension.</p>
 <code>lbound()</code> and <code>ubound()</code> again<a class="anchor" aria-label="anchor" href="#lbound-and-ubound-again"></a>
 </h3>
 <p>You will have seen the <code>lbound()</code> and
-<code>ubound()</code> functions being used during the <a href="../exercises/05-arrays/example1.f90">example</a> in the earlier <a href="05-arrays.html">episode on arrays</a>. These functions return a
+<code>ubound()</code> functions being used during the <a href="../files/exercises/05-arrays/example1.f90">example</a> in the earlier
+<a href="05-arrays.html">episode on arrays</a>. These functions return a
 rank one array which is the relevant bound in each dimension. The
 optional argument <code>dim</code> can be used to obtain the bound in
 the corresponding rank or dimension e.g.,</p>
@@ -4125,8 +4127,8 @@ the corresponding rank or dimension e.g.,</p>
 <div id="checking-array-bounds" class="callout-inner">
 <h3 class="callout-title">Checking array bounds</h3>
 <div class="callout-content">
-<p>Consider the accompanying example in <a href="../exercises/10-dummy-array-arguments/program1.f90">program1.f90</a>
-and <a href="../exercises/10-dummy-array-arguments/module1.f90">module1.f90</a>.
+<p>Consider the accompanying example in <a href="../files/exercises/10-dummy-array-arguments/program1.f90">program1.f90</a>
+and <a href="../files/exercises/10-dummy-array-arguments/module1.f90">module1.f90</a>.
 Is the code correct? Add calls to <code>lbound()</code> and
 <code>ubound()</code> in the subroutine to check.</p>
 <p>What do you think was the intention of the programmer? What remedies
@@ -4232,7 +4234,7 @@ most once.</li>
 <h3 class="callout-title">Tri-diagonal modules</h3>
 <div class="callout-content">
 <p>Consider again the problem of the tri-diagonal matrix.</p>
-<p>Refactor your existing stand-alone program (or use the template <a href="../exercises/10-dummy-array-arguments/exercise.f90">exercise.f90</a>)
+<p>Refactor your existing stand-alone program (or use the template <a href="../files/exercises/10-dummy-array-arguments/exercise.f90">exercise.f90</a>)
 to provide a module subroutine such as</p>
 <pre><code>  subroutine tridiagonal_solve(b, a, c, rhs, x)</code></pre>
 <p>where <code>b</code>, <code>a</code>, and <code>c</code> are arrays
@@ -4270,8 +4272,8 @@ copies in local automatic arrays and using those instead.</p>
 <p>A robust implementation would need to include checks on the bounds of
 the dummy arrays to make sure that they correctly conform to one
 another.</p>
-<p>Sample solutions are available in the later <a href="16-data-structures.html">episode on derived types</a> in <a href="../exercises/16-data-structures/exercise_program.f90">exercise_program.f90</a>
-and <a href="../exercises/16-data-structures/exercise_module.f90">exercise_module.f90</a>.</p>
+<p>Sample solutions are available in the later <a href="16-data-structures.html">episode on derived types</a> in <a href="../files/exercises/16-data-structures/exercise_program.f90">exercise_program.f90</a>
+and <a href="../files/exercises/16-data-structures/exercise_module.f90">exercise_module.f90</a>.</p>
 </div>
 </div>
 </div>
@@ -4433,14 +4435,14 @@ form:</p>
 <div class="section level3">
 <h3 id="exercise-2-minutes">Exercise (2 minutes)<a class="anchor" aria-label="anchor" href="#exercise-2-minutes"></a>
 </h3>
-<p>Check the result of the compilation of <a href="../exercises/11-characters-strings/example3.f90">example3.f90</a>.</p>
+<p>Check the result of the compilation of <a href="../files/exercises/11-characters-strings/example3.f90">example3.f90</a>.</p>
 <p>The are a number of solutions to this issue. One could try to pad the
 lengths of each array element to be the same length. A better way is to
 use a constructor with a type specification:</p>
 <pre><code>[character (len = 9) :: "Sunday", "Monday", "Tuesday", "Wednesday", ...]</code></pre>
 <p>Here the type specification is used to avoid ambiguity in how the
 list is to be interpreted.</p>
-<p>Check you can make this adjustment to <a href="../exercises/11-characters-strings/example3.f90">example3.f90</a>.</p>
+<p>Check you can make this adjustment to <a href="../files/exercises/11-characters-strings/example3.f90">example3.f90</a>.</p>
 </div>
 </section><section><h2 class="section-heading" id="strings-as-dummy-arguments-or-results">Strings as dummy arguments, or results<a class="anchor" aria-label="anchor" href="#strings-as-dummy-arguments-or-results"></a>
 </h2>
@@ -4478,8 +4480,8 @@ make sure it is all lower case. That is, any character between “A” and
 “Z” is replaced by the corresponding character between “a” and “z”.</p>
 <p>Write an additional function to return a new string which is all
 lower case, leaving the original unchanged.</p>
-<p>You can use the accompanying templates <a href="../exercises/11-characters-strings/exercise_module1.f90">exercise_module1.f90</a>
-and <a href="../exercises/11-characters-strings/exercise_program1.f90">exercise_program1.f90</a>.</p>
+<p>You can use the accompanying templates <a href="../files/exercises/11-characters-strings/exercise_module1.f90">exercise_module1.f90</a>
+and <a href="../files/exercises/11-characters-strings/exercise_program1.f90">exercise_program1.f90</a>.</p>
 </div>
 </div>
 </div>
@@ -4488,10 +4490,10 @@ and <a href="../exercises/11-characters-strings/exercise_program1.f90">exercise_
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
-<p>A solution to the exercise can be found in <a href="../exercises/11-characters-strings/solutions/solution_program1.f90">solution_program1.f90</a>
-and <a href="../exercises/11-characters-strings/solutions/solution_module1.f90">solution_module1.f90</a>.</p>
+<p>A solution to the exercise can be found in <a href="../files/exercises/11-characters-strings/solutions/solution_program1.f90">solution_program1.f90</a>
+and <a href="../files/exercises/11-characters-strings/solutions/solution_module1.f90">solution_module1.f90</a>.</p>
 </div>
 </div>
 </div>
@@ -4674,10 +4676,10 @@ e.g.:</p>
 <div id="exercise-name" class="callout-inner">
 <h3 class="callout-title">Exercise name</h3>
 <div class="callout-content">
-<p>Compile and run the accompanying <a href="../exercises/12-read-write/example1.f90">example1.f90</a> program,
-which provides some specimen formats. Some of the format specifiers have
-not been allowed a large enough width. What’s the result? What’s the
-solution?</p>
+<p>Compile and run the accompanying <a href="../files/exercises/12-read-write/example1.f90">example1.f90</a>
+program, which provides some specimen formats. Some of the format
+specifiers have not been allowed a large enough width. What’s the
+result? What’s the solution?</p>
 </div>
 </div>
 </div>
@@ -4686,7 +4688,7 @@ solution?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Using gfortran produces the following output:</p>
 <div class="codewrapper">
@@ -4786,10 +4788,10 @@ we will see when we come to error handling.</p>
 <div id="experimenting-with-formats" class="callout-inner">
 <h3 class="callout-title">Experimenting with formats</h3>
 <div class="callout-content">
-<p>Using the <a href="../exercises/12-read-write/example1.f90">example1.f90</a> program,
-check what happens if there is a mismatch between the format specifier
-and the data type in the I/O list. Choose an example, and run the
-program.</p>
+<p>Using the <a href="../files/exercises/12-read-write/example1.f90">example1.f90</a>
+program, check what happens if there is a mismatch between the format
+specifier and the data type in the I/O list. Choose an example, and run
+the program.</p>
 <p>What happens if the number of items in the io-list is larger than the
 number of edit descriptors?</p>
 <p>Additional exercise. The <code>b</code> edit descriptor can be used
@@ -4804,7 +4806,7 @@ ensure the leading zeros are visible. You may wish to try this out.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Using the wrong type variable with a format specifier should still
 allow the code to compile, but you will receive a runtime error when it
@@ -5109,9 +5111,9 @@ with the relevant connected unit number using <code>rewind()</code>.</p>
 <div class="callout-content">
 <p>Portable bit map (PBM, PGM, PPM) is a very simple image format which
 can be expressed as an ASCII file. See the description at <a href="https://en.wikipedia.org/wiki/Netpbm" class="external-link">Wikipedia</a>.</p>
-<p>In the template <a href="../exercises/13-IO/program1.f90">program1.f90</a>, we establish a
-two-dimensional logical array of a fixed size, and we want to write out
-a file that can be viewed in “P1” format (file extension
+<p>In the template <a href="../files/exercises/13-IO/program1.f90">program1.f90</a>, we establish
+a two-dimensional logical array of a fixed size, and we want to write
+out a file that can be viewed in “P1” format (file extension
 <code>.pbm</code> ) by an image viewer.</p>
 <p>The data is initialised with a suitable pattern to check that the
 image is correct (it is the right way up and is not a mirror). A little
@@ -5136,9 +5138,9 @@ directly on ARCHER2 by logging in with X11 forwarding enabled, running
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
-<p>A <a href="../exercises/18-further-functions/pbm_image.f90">solution</a>
+<p>A <a href="../files/exercises/18-further-functions/pbm_image.f90">solution</a>
 to this problem appears in the later <a href="18-further-functions.html">episode on interfaces</a>.</p>
 <p>You should be able to produce an output PBM that looks like the
 example shown below.</p>
@@ -5280,11 +5282,11 @@ will retain their initial values.</p>
 <div id="reading-a-namelist-from-file" class="callout-inner">
 <h3 class="callout-title">Reading a namelist from file</h3>
 <div class="callout-content">
-<p>Using <a href="../exercises/14-namelists/namelist-read.f90">namelist-read.f90</a>,
+<p>Using <a href="../files/exercises/14-namelists/namelist-read.f90">namelist-read.f90</a>,
 confirm that the runtime values can be specified by changing the
-contents of the namelist in <a href="../exercises/14-namelists/config.nml">config.nml</a>. Modify the
-program to specify a default value for <code>dt</code> and confirm that
-<code>dt</code> retains its value unless otherwise set in the
+contents of the namelist in <a href="../files/exercises/14-namelists/config.nml">config.nml</a>. Modify
+the program to specify a default value for <code>dt</code> and confirm
+that <code>dt</code> retains its value unless otherwise set in the
 <code>namelist</code>.</p>
 <p>What happens if the value set is not of the same type as the variable
 specification in the program?</p>
@@ -5297,7 +5299,7 @@ specification in the program?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>If the value in the namelist is not of the same type as the program’s
 variable, you will receive an error stating that it is mismatched.</p>
@@ -5346,8 +5348,8 @@ reading is independent of order.</p>
 <div id="reading-multiple-namelists-1" class="callout-inner">
 <h3 class="callout-title">Reading multiple namelists</h3>
 <div class="callout-content">
-<p>Extend the example program <a href="../exercises/14-namelists/namelist-read.f90">namelist-read.f90</a> to
-read the numerical <code>schemes</code> namelist from <a href="../exercises/14-namelists/config-full.nml">config-full.nml</a>.</p>
+<p>Extend the example program <a href="../files/exercises/14-namelists/namelist-read.f90">namelist-read.f90</a>
+to read the numerical <code>schemes</code> namelist from <a href="../files/exercises/14-namelists/config-full.nml">config-full.nml</a>.</p>
 <p>(Optional) Ensure that your program can read the <code>run</code>
 configuration and the numerical <code>schemes</code> regardless of the
 order in which they appear.</p>
@@ -5359,7 +5361,7 @@ order in which they appear.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Add some <code>character</code> variables to store the items from the
 <code>schemes</code> namelist, declare the namelist itself with those
@@ -5423,9 +5425,9 @@ any order.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
-<p>A solution writing the <code>run</code> namelist can be found in <a href="../exercises/14-namelists/solutions/namelist-write.f90">namelist-write.f90</a>.</p>
+<p>A solution writing the <code>run</code> namelist can be found in <a href="../files/exercises/14-namelists/solutions/namelist-write.f90">namelist-write.f90</a>.</p>
 </div>
 </div>
 </div>
@@ -5449,7 +5451,7 @@ have seen so far.</p>
 <div id="writing-complex-data-to-namelists" class="callout-inner">
 <h3 class="callout-title">Writing complex data to namelists</h3>
 <div class="callout-content">
-<p>An example program <a href="../exercises/14-namelists/namelist-complex.f90">namelist-complex.f90</a>
+<p>An example program <a href="../files/exercises/14-namelists/namelist-complex.f90">namelist-complex.f90</a>
 is provided to write more complex data structures to a namelist. Try
 running this program and inspecting the output to see how these data
 structures are represented.</p>
@@ -5703,7 +5705,8 @@ allocatable components. The appropriate expression in the constructor is
 <div id="a-type-to-store-a-random-number-generator" class="callout-inner">
 <h3 class="callout-title">A type to store a random number generator</h3>
 <div class="callout-content">
-<p>The accompanying example (<a href="../exercises/16-data-structures/module1.f90">module1.f90</a> and <a href="../exercises/16-data-structures/program1.f90">program1.f90</a>)
+<p>The accompanying example (<a href="../files/exercises/16-data-structures/module1.f90">module1.f90</a>
+and <a href="../files/exercises/16-data-structures/program1.f90">program1.f90</a>)
 provides an implementation of a very simple pseudo-random number
 generator. This is a so-called <a href="https://en.wikipedia.org/wiki/Linear_congruential_generator" class="external-link">linear
 congruential generator</a>.</p>
@@ -5850,8 +5853,8 @@ use the new matrix type.</p>
 diagonal elements the same, and all off-diagonal elements the same.
 Write an additional function to initialise such a matrix from two scalar
 values.</p>
-<p>A template for the exercise can be found in <a href="../exercises/16-data-structures/exercise_program.f90">exercise_program.f90</a>
-and <a href="../exercises/16-data-structures/exercise_module.f90">exercise_module.f90</a>;
+<p>A template for the exercise can be found in <a href="../files/exercises/16-data-structures/exercise_program.f90">exercise_program.f90</a>
+and <a href="../files/exercises/16-data-structures/exercise_module.f90">exercise_module.f90</a>;
 or you can use your own version that you have been developing to this
 point.</p>
 </div>
@@ -5872,8 +5875,8 @@ this:</p>
     real (mykind), dimension(:), allocatable :: b     ! diag (1:nmax)
     real (mykind), dimension(:), allocatable :: c     ! upper (1:nmax-1)
   end type tri_matrix</code></pre>
-<p>Implementations of the solution are available in <a href="../exercises/16-data-structures/solutions-1/solution_program.f90">solution_program.f90</a>
-and <a href="../exercises/16-data-structures/solutions-1/solution_module.f90">solution_module.f90</a>.</p>
+<p>Implementations of the solution are available in <a href="../files/exercises/16-data-structures/solutions-1/solution_program.f90">solution_program.f90</a>
+and <a href="../files/exercises/16-data-structures/solutions-1/solution_module.f90">solution_module.f90</a>.</p>
 </div>
 </div>
 </div>
@@ -5911,8 +5914,8 @@ flexibility.</p>
 </button>
 <div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
-<p>A suggested implementation of the solution is available in <a href="../exercises/16-data-structures/solutions-2/date_program.f90">date_program.f90</a>
-and <a href="../exercises/16-data-structures/solutions-2/date_module.f90">date_module.f90</a>.</p>
+<p>A suggested implementation of the solution is available in <a href="../files/exercises/16-data-structures/solutions-2/date_program.f90">date_program.f90</a>
+and <a href="../files/exercises/16-data-structures/solutions-2/date_module.f90">date_module.f90</a>.</p>
 </div>
 </div>
 </div>
@@ -6048,9 +6051,9 @@ e.g.,</p>
 <div id="associating-a-pointer" class="callout-inner">
 <h3 class="callout-title">Associating a pointer</h3>
 <div class="callout-content">
-<p>Try to compile the accompanying <a href="../exercises/17-pointers/example1.f90">example1.f90</a>, which is an
-erroneous version of the code above. See what compiler message you get
-(if any). Fix the problem.</p>
+<p>Try to compile the accompanying <a href="../files/exercises/17-pointers/example1.f90">example1.f90</a>, which
+is an erroneous version of the code above. See what compiler message you
+get (if any). Fix the problem.</p>
 <p>Check you can use the <code>associated()</code> function to print out
 the status of <code>p</code> before and after the pointer
 assignment.</p>
@@ -6062,7 +6065,7 @@ assignment.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The <code>p</code> pointer can’t be associated with
 <code>datum</code> as the latter doesn’t have the <code>target</code>
@@ -6108,7 +6111,7 @@ either a variable or an expression.</p>
 <div id="using-an-associate-construct" class="callout-inner">
 <h3 class="callout-title">Using an <code>associate</code> construct</h3>
 <div class="callout-content">
-<p>Compile, and check the output of the accompanying code in <a href="../exercises/17-pointers/example2.f90">example2.f90</a>.</p>
+<p>Compile, and check the output of the accompanying code in <a href="../files/exercises/17-pointers/example2.f90">example2.f90</a>.</p>
 </div>
 </div>
 </div>
@@ -6117,7 +6120,7 @@ either a variable or an expression.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>You should see that the association is made to a strided section of
 the array <code>r1</code>:</p>
@@ -6214,7 +6217,7 @@ an existing allocatable array?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>If <code>move_alloc()</code> were not available, we would need to
 make two copies rather than one. Analogously to the above example, we
@@ -6388,8 +6391,8 @@ a module).</p>
 <h3 class="callout-title">Externals and interfaces</h3>
 <div class="callout-content">
 <p>To illustrate the points made above, a very simple external function
-is defined in the file <a href="../exercises/18-further-functions/external.f90">external.f90</a>, and
-an accompanying program <a href="../exercises/18-further-functions/example1.f90">example1.f90</a>
+is defined in the file <a href="../files/exercises/18-further-functions/external.f90">external.f90</a>,
+and an accompanying program <a href="../files/exercises/18-further-functions/example1.f90">example1.f90</a>
 calls the function therein.</p>
 <p>Try to compile the two files, e.g.:</p>
 <pre><code>$ ftn external.f90 example1.f90</code></pre>
@@ -6536,12 +6539,12 @@ different.</p>
 <div class="callout-content">
 <p>In the earlier <a href="13-IO.html">episode on I/O</a>, we wrote a
 module to produce a <code>.pbm</code> image file. The accompanying
-module <a href="../exercises/18-further-functions/pbm_image.f90">pbm_image.f90</a>
+module <a href="../files/exercises/18-further-functions/pbm_image.f90">pbm_image.f90</a>
 provides two implementations of such a routine: one for a logical array,
 and another for an integer array.</p>
 <p>Check you can add the appropriate <code>interface</code> block with
-the generic name <code>write_pbm</code> to allow the program <a href="../exercises/18-further-functions/example3.f90">example3.f90</a> to
-be compiled correctly.</p>
+the generic name <code>write_pbm</code> to allow the program <a href="../files/exercises/18-further-functions/example3.f90">example3.f90</a>
+to be compiled correctly.</p>
 </div>
 </div>
 </div>
@@ -6634,7 +6637,7 @@ routine usually must also be <code>pure</code>.</p>
 <div id="elemental-conversion-from-logical-to-pbm" class="callout-inner">
 <h3 class="callout-title">Elemental conversion from logical to PBM</h3>
 <div class="callout-content">
-<p>In the <a href="../exercises/18-further-functions/pbm_image.f90">pbm_image.f90</a>
+<p>In the <a href="../files/exercises/18-further-functions/pbm_image.f90">pbm_image.f90</a>
 module there is a utility function <code>logical_to_pbm()</code> which
 is used in <code>write_logical_pbm()</code> to translate the logical
 array to an integer array. Refactor this part of the code to use an
@@ -6727,8 +6730,8 @@ be 1/2). Check your answer gets better for value of
 </button>
 <div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
-<p>A sample solution is provided in <a href="../exercises/18-further-functions/solutions/integral_program.f90">integral_program.f90</a>
-and <a href="../exercises/18-further-functions/solutions/integral_module.f90">integral_module.f90</a>.</p>
+<p>A sample solution is provided in <a href="../files/exercises/18-further-functions/solutions/integral_program.f90">integral_program.f90</a>
+and <a href="../files/exercises/18-further-functions/solutions/integral_module.f90">integral_module.f90</a>.</p>
 </div>
 </div>
 </div>
@@ -7211,9 +7214,9 @@ done with:</p>
 <pre><code>  residual = sum(r(:)*r(:))</code></pre>
 <p>All the operations in the algorithm can be composed of these, as well
 as vector additions and multiplications by a scalar.</p>
-<p>A template program <a href="../exercises/21-conjugate-gradient/cg_test.f90">cg_test.f90</a> is
-provided with a small matrix to use as a test. You need to implement a
-module <code>cgradient</code> which supplies a function
+<p>A template program <a href="../files/exercises/21-conjugate-gradient/cg_test.f90">cg_test.f90</a>
+is provided with a small matrix to use as a test. You need to implement
+a module <code>cgradient</code> which supplies a function
 <code>cg_test()</code> taking the arguments set out in the template.</p>
 <p>Remember that you can always check your answer by multiplying out
 <em>Ax</em> to recover the original right-hand side <em>b</em>.</p>
@@ -7227,8 +7230,8 @@ module <code>cgradient</code> which supplies a function
 </button>
 <div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
-<p>You can check a suggested solution with <a href="../exercises/21-conjugate-gradient/solutions-1/cg_test.f90">cg_test.f90</a>
-and <a href="../exercises/21-conjugate-gradient/solutions-1/cgradient.f90">cgradient_solution.f90</a>.</p>
+<p>You can check a suggested solution with <a href="../files/exercises/21-conjugate-gradient/solutions-1/cg_test.f90">cg_test.f90</a>
+and <a href="../files/exercises/21-conjugate-gradient/solutions-1/cgradient.f90">cgradient_solution.f90</a>.</p>
 </div>
 </div>
 </div>
@@ -7289,8 +7292,8 @@ correctly.</p></li>
 </button>
 <div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
-<p>A suggested solution in provided in <a href="../exercises/21-conjugate-gradient/solutions-2/mm_test.f90">mmtest.f90</a>
-and <a href="../exercises/21-conjugate-gradient/solutions-2/mmarket.f90">mmarket.f90</a>.</p>
+<p>A suggested solution in provided in <a href="../files/exercises/21-conjugate-gradient/solutions-2/mm_test.f90">mmtest.f90</a>
+and <a href="../files/exercises/21-conjugate-gradient/solutions-2/mmarket.f90">mmarket.f90</a>.</p>
 </div>
 </div>
 </div>

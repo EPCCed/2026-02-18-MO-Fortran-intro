@@ -647,7 +647,8 @@ each dimension.</p>
 <h3 id="lbound-and-ubound-again">
 <code>lbound()</code> and <code>ubound()</code> again<a class="anchor" aria-label="anchor" href="#lbound-and-ubound-again"></a></h3>
 <p>You will have seen the <code>lbound()</code> and
-<code>ubound()</code> functions being used during the <a href="exercises/05-arrays/example1.f90">example</a> in the earlier <a href="05-arrays.html">episode on arrays</a>. These functions return a
+<code>ubound()</code> functions being used during the <a href="files/exercises/05-arrays/example1.f90">example</a> in the earlier
+<a href="05-arrays.html">episode on arrays</a>. These functions return a
 rank one array which is the relevant bound in each dimension. The
 optional argument <code>dim</code> can be used to obtain the bound in
 the corresponding rank or dimension e.g.,</p>
@@ -667,8 +668,8 @@ the corresponding rank or dimension e.g.,</p>
 <div id="checking-array-bounds" class="callout-inner">
 <h3 class="callout-title">Checking array bounds</h3>
 <div class="callout-content">
-<p>Consider the accompanying example in <a href="exercises/10-dummy-array-arguments/program1.f90">program1.f90</a>
-and <a href="exercises/10-dummy-array-arguments/module1.f90">module1.f90</a>.
+<p>Consider the accompanying example in <a href="files/exercises/10-dummy-array-arguments/program1.f90">program1.f90</a>
+and <a href="files/exercises/10-dummy-array-arguments/module1.f90">module1.f90</a>.
 Is the code correct? Add calls to <code>lbound()</code> and
 <code>ubound()</code> in the subroutine to check.</p>
 <p>What do you think was the intention of the programmer? What remedies
@@ -763,7 +764,7 @@ most once.</li>
 <h3 class="callout-title">Tri-diagonal modules</h3>
 <div class="callout-content">
 <p>Consider again the problem of the tri-diagonal matrix.</p>
-<p>Refactor your existing stand-alone program (or use the template <a href="exercises/10-dummy-array-arguments/exercise.f90">exercise.f90</a>)
+<p>Refactor your existing stand-alone program (or use the template <a href="files/exercises/10-dummy-array-arguments/exercise.f90">exercise.f90</a>)
 to provide a module subroutine such as</p>
 <pre><code>  subroutine tridiagonal_solve(b, a, c, rhs, x)</code></pre>
 <p>where <code>b</code>, <code>a</code>, and <code>c</code> are arrays
@@ -801,8 +802,8 @@ copies in local automatic arrays and using those instead.</p>
 <p>A robust implementation would need to include checks on the bounds of
 the dummy arrays to make sure that they correctly conform to one
 another.</p>
-<p>Sample solutions are available in the later <a href="16-data-structures.html">episode on derived types</a> in <a href="exercises/16-data-structures/exercise_program.f90">exercise_program.f90</a>
-and <a href="exercises/16-data-structures/exercise_module.f90">exercise_module.f90</a>.</p>
+<p>Sample solutions are available in the later <a href="16-data-structures.html">episode on derived types</a> in <a href="files/exercises/16-data-structures/exercise_program.f90">exercise_program.f90</a>
+and <a href="files/exercises/16-data-structures/exercise_module.f90">exercise_module.f90</a>.</p>
 </div>
 </div>
 </div>

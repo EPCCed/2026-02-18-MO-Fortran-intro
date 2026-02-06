@@ -666,8 +666,8 @@ a module).</p>
 <h3 class="callout-title">Externals and interfaces</h3>
 <div class="callout-content">
 <p>To illustrate the points made above, a very simple external function
-is defined in the file <a href="../exercises/18-further-functions/external.f90">external.f90</a>, and
-an accompanying program <a href="../exercises/18-further-functions/example1.f90">example1.f90</a>
+is defined in the file <a href="../files/exercises/18-further-functions/external.f90">external.f90</a>,
+and an accompanying program <a href="../files/exercises/18-further-functions/example1.f90">example1.f90</a>
 calls the function therein.</p>
 <p>Try to compile the two files, e.g.:</p>
 <pre><code>$ ftn external.f90 example1.f90</code></pre>
@@ -809,12 +809,12 @@ different.</p>
 <div class="callout-content">
 <p>In the earlier <a href="13-IO.html">episode on I/O</a>, we wrote a
 module to produce a <code>.pbm</code> image file. The accompanying
-module <a href="../exercises/18-further-functions/pbm_image.f90">pbm_image.f90</a>
+module <a href="../files/exercises/18-further-functions/pbm_image.f90">pbm_image.f90</a>
 provides two implementations of such a routine: one for a logical array,
 and another for an integer array.</p>
 <p>Check you can add the appropriate <code>interface</code> block with
-the generic name <code>write_pbm</code> to allow the program <a href="../exercises/18-further-functions/example3.f90">example3.f90</a> to
-be compiled correctly.</p>
+the generic name <code>write_pbm</code> to allow the program <a href="../files/exercises/18-further-functions/example3.f90">example3.f90</a>
+to be compiled correctly.</p>
 </div>
 </div>
 </div>
@@ -902,7 +902,7 @@ routine usually must also be <code>pure</code>.</p>
 <div id="elemental-conversion-from-logical-to-pbm" class="callout-inner">
 <h3 class="callout-title">Elemental conversion from logical to PBM</h3>
 <div class="callout-content">
-<p>In the <a href="../exercises/18-further-functions/pbm_image.f90">pbm_image.f90</a>
+<p>In the <a href="../files/exercises/18-further-functions/pbm_image.f90">pbm_image.f90</a>
 module there is a utility function <code>logical_to_pbm()</code> which
 is used in <code>write_logical_pbm()</code> to translate the logical
 array to an integer array. Refactor this part of the code to use an
@@ -993,8 +993,8 @@ be 1/2). Check your answer gets better for value of
 </button>
 <div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
-<p>A sample solution is provided in <a href="../exercises/18-further-functions/solutions/integral_program.f90">integral_program.f90</a>
-and <a href="../exercises/18-further-functions/solutions/integral_module.f90">integral_module.f90</a>.</p>
+<p>A sample solution is provided in <a href="../files/exercises/18-further-functions/solutions/integral_program.f90">integral_program.f90</a>
+and <a href="../files/exercises/18-further-functions/solutions/integral_module.f90">integral_module.f90</a>.</p>
 </div>
 </div>
 </div>

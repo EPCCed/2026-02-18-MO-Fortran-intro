@@ -82,7 +82,7 @@ A caution. How should we interpret the following assignments?
 ```
 
 Compile the accompanying program
-[example1.f90](exercises/06-array-expressions/example1.f90), check the
+[example1.f90](files/exercises/06-array-expressions/example1.f90), check the
 compilation errors and improve the program.
 
 :::::::::::::::  solution
@@ -94,7 +94,7 @@ an entire array? The second assignment is clearly on every element of the
 rank-1 array `e`.
 
 The compiler errors you get when compiling
-[example1.f90](exercises/06-array-expressions/example1.f90) may spell out
+[example1.f90](files/exercises/06-array-expressions/example1.f90) may spell out
 exactly what is going wrong. At line 13,
 
 ```source
@@ -230,7 +230,7 @@ If array expressions are used, simple ones are best.
 
 ## Quadratic equation
 
-The template [exercise1.f90](exercises/06-array-expressions/exercise1.f90)
+The template [exercise1.f90](files/exercises/06-array-expressions/exercise1.f90)
 re-visits the quadratic equation exercise. Check you can replace the scalars
 where appropriate. See the template for further instructions.
 
@@ -243,7 +243,7 @@ where appropriate. See the template for further instructions.
 Here's an additional exercise: write a program to implement the [Sieve of
 Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes) algorithm
 which performs a search for prime numbers. See
-[exercise2.f90](exercises/06-array-expressions/exercise2.f90) for a template
+[exercise2.f90](files/exercises/06-array-expressions/exercise2.f90) for a template
 with some further instructions. How much array syntax can you reasonably
 introduce?
 
@@ -251,7 +251,7 @@ introduce?
 
 ## Solution
 
-A sample solution is provided in [solution.f90](exercises/06-array-expressions/solutions/solution.f90).
+A sample solution is provided in [solution.f90](files/exercises/06-array-expressions/solutions/solution.f90).
 
 :::::::::::::::::::::::::
 

@@ -115,7 +115,7 @@ A single clause `if` statement is also available, for example:
 
 ## Using relational operators
 
-The file [example1.f90](exercises/03-if-statements/example1.f90) contains a
+The file [example1.f90](files/exercises/03-if-statements/example1.f90) contains a
 version of the code above. Check it works as expected. Can you replace the
 relational operators to use the older form given in the table above?
 
@@ -254,7 +254,7 @@ strings in a later section.
 ## Character `len`
 
 Compile and check the output of
-[example2.f90](exercises/03-if-statements/example2.f90) to see the result
+[example2.f90](files/exercises/03-if-statements/example2.f90) to see the result
 of the examples above. What happens if you change one of the `len`
 specifications to be too short?
 
@@ -309,7 +309,7 @@ to the quadratic equation:
 
 for given values of `a`, `b`, and `c`. See [Wikipedia's
 page](https://en.wikipedia.org/wiki/Quadratic_formula) for some background. A
-template [exercise1.f90](exercises/03-if-statements/exercise1.f90) provides
+template [exercise1.f90](files/exercises/03-if-statements/exercise1.f90) provides
 some instructions.
 
 :::::::::::::::  solution
@@ -317,7 +317,7 @@ some instructions.
 ## Solution
 
 A solution to this exercise appears as a template for the [first
-exercise](exercises/06-array-expressions/exercise1.f90) in the [episode on
+exercise](files/exercises/06-array-expressions/exercise1.f90) in the [episode on
 array expressions](06-array-expressions.md)
 
 :::::::::::::::::::::::::

@@ -158,7 +158,7 @@ If a leading plus sign is wanted, use the `sp` control, e.g.:
 ## Exercise name
 
 Compile and run the accompanying
-[example1.f90](exercises/12-read-write/example1.f90) program, which provides
+[example1.f90](files/exercises/12-read-write/example1.f90) program, which provides
 some specimen formats. Some of the format specifiers have not been allowed a
 large enough width. What's the result? What's the solution?
 
@@ -265,7 +265,7 @@ when we come to error handling.
 
 ## Experimenting with formats
 
-Using the [example1.f90](exercises/12-read-write/example1.f90) program, check
+Using the [example1.f90](files/exercises/12-read-write/example1.f90) program, check
 what happens if there is a mismatch between the format specifier and the data
 type in the I/O list. Choose an example, and run the program.
 

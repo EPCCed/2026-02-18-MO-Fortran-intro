@@ -106,7 +106,7 @@ associated with a specific target, e.g.,
 ## Associating a pointer
 
 Try to compile the accompanying
-[example1.f90](exercises/17-pointers/example1.f90), which is an erroneous
+[example1.f90](files/exercises/17-pointers/example1.f90), which is an erroneous
 version of the code above. See what compiler message you get (if any). Fix the
 problem.
 
@@ -164,7 +164,7 @@ right hand side of the association can be either a variable or an expression.
 ## Using an `associate` construct
 
 Compile, and check the output of the accompanying code in
-[example2.f90](exercises/17-pointers/example2.f90).
+[example2.f90](files/exercises/17-pointers/example2.f90).
 
 :::::::::::::::  solution
 

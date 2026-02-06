@@ -44,7 +44,7 @@ at [Wikipedia](https://en.wikipedia.org/wiki/Tridiagonal_matrix_algorithm),
 the solution `x` can be determined.
 
 The accompanying template
-[tri-diagonal.f90](exercises/07-exercise/tri-diagonal.f90) has some further
+[tri-diagonal.f90](files/exercises/07-exercise/tri-diagonal.f90) has some further
 instructions, and some suggestions on how to test the result.
 
 :::::::::::::::  solution
@@ -52,7 +52,7 @@ instructions, and some suggestions on how to test the result.
 ## Solution
 
 A solution to the problem appears as a
-[template](exercises/10-dummy-array-arguments/exercise.f90) to the
+[template](files/exercises/10-dummy-array-arguments/exercise.f90) to the
 exercise in the [later episode on dummy arguments](10-dummy-array-arguments.md).
 
 :::::::::::::::::::::::::
@@ -84,7 +84,7 @@ rules governing the update are summarised in the following table:
 | 1          | 4,5,6,7,8                   | 0              | 
 | 1          | 2,3                         | 1              | 
 
-A template [life.f90](exercises/07-exercise/life.f90) is provided with some
+A template [life.f90](files/exercises/07-exercise/life.f90) is provided with some
 hints to get you started.
 
 ### Reference
@@ -146,9 +146,9 @@ $ ./a.out
 ## Solution
 
 Two reference answers are given in the `solutions` directory. The
-[first](exercises/07-exercise/solutions/life-step2.f90) only computes
+[first](files/exercises/07-exercise/solutions/life-step2.f90) only computes
 the first update, while the
-[second](exercises/07-exercise/solutions/life-step3.f90) includes the
+[second](files/exercises/07-exercise/solutions/life-step3.f90) includes the
 time stepping loop.
 
 :::::::::::::::::::::::::

@@ -76,7 +76,7 @@ The bounds are the minimum and maximum indices used in each dimension.
 ### `lbound()` and `ubound()` again
 
 You will have seen the `lbound()` and `ubound()` functions being used during the
-[example](exercises/05-arrays/example1.f90) in the earlier [episode on
+[example](files/exercises/05-arrays/example1.f90) in the earlier [episode on
 arrays](05-arrays.md). These functions
 return a rank one array which is the relevant bound in each dimension. The
 optional argument `dim` can be used to obtain the bound in the corresponding
@@ -97,8 +97,8 @@ rank or dimension e.g.,
 ## Checking array bounds
 
 Consider the accompanying example in
-[program1.f90](exercises/10-dummy-array-arguments/program1.f90) and
-[module1.f90](exercises/10-dummy-array-arguments/module1.f90). Is the code
+[program1.f90](files/exercises/10-dummy-array-arguments/program1.f90) and
+[module1.f90](files/exercises/10-dummy-array-arguments/module1.f90). Is the code
 correct? Add calls to `lbound()` and `ubound()` in the subroutine to check.
 
 What do you think was the intention of the programmer? What remedies are
@@ -213,7 +213,7 @@ argument `ierr`. The rules are:
 Consider again the problem of the tri-diagonal matrix.
 
 Refactor your existing stand-alone program (or use the template
-[exercise.f90](exercises/10-dummy-array-arguments/exercise.f90)) to provide a
+[exercise.f90](files/exercises/10-dummy-array-arguments/exercise.f90)) to provide a
 module subroutine such as
 
 ```
@@ -251,9 +251,9 @@ A robust implementation would need to include checks on the bounds of the dummy 
 to make sure that they correctly conform to one another.
 
 Sample solutions are available in the later [episode on derived types](16-data-structures.md)
-in [exercise\_program.f90](exercises/16-data-structures/exercise_program.f90)
+in [exercise\_program.f90](files/exercises/16-data-structures/exercise_program.f90)
 and
-[exercise\_module.f90](exercises/16-data-structures/exercise_module.f90).
+[exercise\_module.f90](files/exercises/16-data-structures/exercise_module.f90).
 
 :::::::::::::::::::::::::
 

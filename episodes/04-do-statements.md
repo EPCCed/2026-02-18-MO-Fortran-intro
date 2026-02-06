@@ -30,7 +30,7 @@ A simple iteration is provided by the `do` statement. For example, ...
 ```
 
 A slightly more useful version requires some control (see
-[example1.f90](exercises/04-do-statements/example1.f90)):
+[example1.f90](files/exercises/04-do-statements/example1.f90)):
 
 ```
    integer :: i = 0
@@ -45,7 +45,7 @@ A slightly more useful version requires some control (see
 ```
 
 Loop constructs may be nested, and may also be named (see
-[example2.f90](exercises/04-do-statements/example2.f90)):
+[example2.f90](files/exercises/04-do-statements/example2.f90)):
 
 ```
   some_outer_loop: &
@@ -120,7 +120,7 @@ What is the number of iterations in the following cases?
 ```
 
 You can confirm your answers by running
-[example3.f90](exercises/04-do-statements/example3.f90). Note there is no
+[example3.f90](files/exercises/04-do-statements/example3.f90). Note there is no
 way (cf. C `for`) to limit the scope of the loop variable to the loop
 construct itself; the variable will then have a final value after exit from
 the loop.
@@ -173,7 +173,7 @@ We return the exercises discussed in the earlier [episode on
 variables](02-variables.md). You can use
 your own solutions, or the new template here.
 
-For [exercise1.f90](exercises/04-do-statements/exercise1.f90) which
+For [exercise1.f90](files/exercises/04-do-statements/exercise1.f90) which
 computes an approximation to the constant pi using the Gauss-Legendre
 algorithm, introduce an iteration to compute a fixed number of successive
 improvements. How many iterations are required to converge when using
@@ -185,7 +185,7 @@ the approximation is within a given tolerance of the true answer?
 ## Solution
 
 Sample code implementing loops with this problem is used as a template to the
-[exercise](exercises/05-arrays/exercise1.f90) in the [episode on
+[exercise](files/exercises/05-arrays/exercise1.f90) in the [episode on
 arrays](05-arrays.md).
 
 You should be able to observe that with `kind(1.d0)` the value of pi
@@ -204,7 +204,7 @@ tolerance.
 
 ## Conductance of a channel with loops
 
-[exercise2.f90](exercises/04-do-statements/exercise2.f90) returns to the
+[exercise2.f90](files/exercises/04-do-statements/exercise2.f90) returns to the
 calculation of the conductance in the narrow channel and will need similar
 work. Use a loop to compute a fixed number of terms in the sum over index k
 (use real type `real64` for the sum). Here you should find convergence is much

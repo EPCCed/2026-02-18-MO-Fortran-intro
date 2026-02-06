@@ -142,7 +142,7 @@ and so on. One might be tempted to try something of the form:
 ### Exercise (2 minutes)
 
 Check the result of the compilation of
-[example3.f90](exercises/11-characters-strings/example3.f90).
+[example3.f90](files/exercises/11-characters-strings/example3.f90).
 
 The are a number of solutions to this issue. One could try to pad the
 lengths of each array element to be the same length. A better way is
@@ -156,7 +156,7 @@ Here the type specification is used to avoid ambiguity in how the
 list is to be interpreted.
 
 Check you can make this adjustment to
-[example3.f90](exercises/11-characters-strings/example3.f90).
+[example3.f90](files/exercises/11-characters-strings/example3.f90).
 
 ## Strings as dummy arguments, or results
 
@@ -201,18 +201,18 @@ Write an additional function to return a new string which is all
 lower case, leaving the original unchanged.
 
 You can use the accompanying templates
-[exercise\_module1.f90](exercises/11-characters-strings/exercise_module1.f90)
+[exercise\_module1.f90](files/exercises/11-characters-strings/exercise_module1.f90)
 and
-[exercise\_program1.f90](exercises/11-characters-strings/exercise_program1.f90).
+[exercise\_program1.f90](files/exercises/11-characters-strings/exercise_program1.f90).
 
 :::::::::::::::  solution
 
 ## Solution
 
 A solution to the exercise can be found in
-[solution\_program1.f90](exercises/11-characters-strings/solutions/solution_program1.f90)
+[solution\_program1.f90](files/exercises/11-characters-strings/solutions/solution_program1.f90)
 and
-[solution\_module1.f90](exercises/11-characters-strings/solutions/solution_module1.f90).
+[solution\_module1.f90](files/exercises/11-characters-strings/solutions/solution_module1.f90).
 
 :::::::::::::::::::::::::
 

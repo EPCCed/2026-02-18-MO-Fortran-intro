@@ -24,7 +24,7 @@ exercises: 10
 
 Arrays may be declared with addition of the `dimension` attribute, e.g.,
 
-```
+```fortran
 program example1
 
   implicit none
@@ -40,7 +40,7 @@ The default *lower bound* is 1 and the *upper bound* is 3.
 In a slightly older style you may also see arrays declared by placing the size
 of the array directly after the name, e.g. and equivalently,
 
-```
+```fortran
   real :: a(3)               ! declare a with elements a(1), a(2), a(3)
 ```
 
@@ -63,7 +63,7 @@ more visible.
 If necessary or useful, you can however choose yourself the bounding indices of
 your arrays:
 
-```
+```fortran
   real, dimension(-2:1) :: b ! elements b(-2), b(-1), b(0), b(1)
 ```
 
@@ -74,14 +74,14 @@ Here we specify, explicitly, the lower and upper bounds. The
 
 One may specify array values as a constructor
 
-```
+```fortran
   integer, dimension(3), parameter :: s = (/ -1, 0, +1 /)   ! F2003 or
   integer, dimension(3), parameter :: t = [  -1, 0, +1 ]    ! F2008
 ```
 
 ## A two-dimensional array
 
-```
+```fortran
   real, dimension(2,3) :: a   ! elements a(1,1), a(1,2), a(1,3)
                               !          a(2,1), a(2,2), a(2,3)
 ```
@@ -96,7 +96,7 @@ to store contiguously in memory. In Fortran this has to be the left-most
 dimension counting fastest. For array `a` we expect the order in
 memory to be
 
-```
+```fortran
 a(1,1), a(2,1), a(1,2), a(2,2), a(1,3), a(2,3)
 ```
 
@@ -111,7 +111,7 @@ typically move most quickly through the first index. That means that generally
 the innermost loop's control variable should be used for the first index, the
 next outer loop should use the second control variable, and so on, e.g.,
 
-```
+```fortran
 do j = 1, 10
   do i = 1, 20
     a(i,j) = ...   ! Do work to calculate the (i,j)th element of an array.
@@ -129,7 +129,7 @@ allow for even more.
 
 A constructor for an array of rank 2 or above might be used, e.g.,
 
-```
+```fortran
   integer, dimension(2,3) :: m = reshape([1,2,3,4,5,6], shape = [2,3])
 ```
 
@@ -155,7 +155,7 @@ If we wish to establish storage with shape determined at run time, the
 *allocatable* attribute can be used. The rank must be specified but the value of
 the extent in each dimension is deferred using the `:` symbol:
 
-```
+```fortran
   real, dimension(:, :), allocatable :: a
 
   ! ... establish shape required, say (imax, jmax) ...
@@ -172,7 +172,7 @@ dimension.
 
 Formally,
 
-```
+```fortran
   allocate(allocate-list [, source = array-expr] [ , stat = scalar-int-var])
 ```
 
@@ -189,7 +189,7 @@ An array declared with the *allocatable* attribute is initially in
 an unallocated state. When allocated, this status will change; this
 status can be interrogated via the intrinsic function `allocated()`.
 
-```
+```fortran
   integer, dimension(:), allocatable :: m
   ...
   if (allocated(m)) then
@@ -231,7 +231,7 @@ this is `-fcheck=bounds`.
 
 E.g.,
 
-```
+```bash
 $ ftn -hbounds exercise1.f90
 ```
 

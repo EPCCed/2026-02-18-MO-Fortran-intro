@@ -26,7 +26,7 @@ start: yes
 We have already used one *intrinsic module* (`iso_fortran_env`); we
 can also write our own, e.g.,
 
-```
+```fortran
 module module1
 
   implicit none
@@ -47,7 +47,7 @@ end module module1
 We may now `use` the new module in other *program units* (main program or
 other modules). For example:
 
-```
+```fortran
 program example1
 
   use module1
@@ -65,7 +65,7 @@ must come before the `implicit` statement.
 
 Formally, the structure of a module is:
 
-```
+```fortran
   module module-name
     [specification-statements]
   [ contains
@@ -83,7 +83,7 @@ subroutines which will cover in the [next episode](09-functions-subroutines.md)
 One would typically expect modules and a main program to be in
 separate files, e.g.,:
 
-```
+```fortran
 $ ls
 module1.f90     program1.f90
 ```
@@ -94,14 +94,14 @@ differently, but it can become confusing. Likewise for the main program.
 
 We can compile the module, e.g.,
 
-```
+```bash
 $ ftn -c module1.f90
 ```
 
 where the `-c` option to the Fortran compiler `ftn` requests compilation
 only (no link). This should give us two new files:
 
-```
+```bash
 $ ls
 module1.f90     module1.mod     module1.o       program1.f90
 ```
@@ -116,7 +116,7 @@ executable.
 We can now compile both the main program and the module to give an
 executable.
 
-```
+```bash
 $ ftn module1.o program1.f90
 ```
 
@@ -153,19 +153,17 @@ If you haven't already done so, compile the accompanying
 occur if you: (1) try to compile the program without the module file via,
 e.g.,
 
-```
+```bash
 $ ftn program1.f90
 ```
 
 and (2), if you try to compile and link the module file alone:
 
-```
+```bash
 $ ftn module1.f90
 ```
 
 :::::::::::::::  solution
-
-## Solution
 
 Compiling the program alone produces (with the Cray compiler) the following error:
 
@@ -215,7 +213,7 @@ Entities declared in a module are, by default, available by use association,
 that is, they are visible in program units which `use` the module. One can
 make this scope explicit via the `public` and `private` statements.
 
-```
+```fortran
 module module1
 
   implicit none
@@ -240,7 +238,7 @@ Note that the parameter `mykind` is available throughout the module via
 An alternative would be to switch the default to `private`, and explicitly
 add `public` attributes:
 
-```
+```fortran
 module module1
 
   implicit none
@@ -275,8 +273,6 @@ Edit the accompanying [module1.f90]() to add a `private` statement and check the
 
 :::::::::::::::  solution
 
-## Solution
-
 Making the module `private` hides the `mykind` parameter it provide from the program. On compilation, `mykind` can't be found
 in the scope of the program, and the compiler will complain that no such name exists.
 
@@ -289,7 +285,7 @@ in the scope of the program, and the compiler will complain that no such name ex
 It is possible to establish non-parameter data in the specification
 section of a module. E.g.,
 
-```
+```fortran
 module module2
 
   implicit none
@@ -308,7 +304,7 @@ of reasons.
 Even worse, variables declared with an initialisation in a module
 sub-program, e.g.,
 
-```
+```fortran
   integer :: i = 1
 ```
 
@@ -335,7 +331,7 @@ of large routines.
 It is possible to introduce a local scope which follows executable
 statements using the `block` construct. Schematically:
 
-```
+```fortran
    ... some computation ...
    block
      integer :: itmp                  ! in scope within the block only
@@ -362,8 +358,6 @@ use the new function from a main program.
 
 :::::::::::::::  solution
 
-## Solution
-
 An example solution is provided in
 [solution\_program.f90](files/exercises/08-modules/solutions/solution_program.f90)
 and
@@ -379,7 +373,7 @@ and
 
 Food for thought: can we have the following situation?
 
-```
+```fortran
 module a
 
   use b
@@ -390,7 +384,7 @@ end module a
 
 and
 
-```
+```fortran
 module b
 
   use a
@@ -402,8 +396,6 @@ end module b
 If not, why not?
 
 :::::::::::::::  solution
-
-## Solution
 
 This is a circular dependency: `a` depends on `b` depends on `a`. There is
 no solvable dependency tree, and this is not allowed.

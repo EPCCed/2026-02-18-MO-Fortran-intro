@@ -25,13 +25,13 @@ exercises: 20
 A general subset of array elements, an *array section*,  may be constructed
 from a triplet with a start and end subscript and a stride:
 
-```
+```fortran
   [subscript] : [subscript] [: stride]
 ```
 
 Given a rank 1 array `a(:)`, some valid array sub-objects are:
 
-```
+```fortran
   a         ! the whole array
   a(:)      ! the whole array again
   a(1:4)    ! array section [ a(1), a(2), a(3), a(4) ]
@@ -47,7 +47,7 @@ it may not be zero.
 Intrinsic operations can be used to construct expressions which are
 arrays. For example:
 
-```
+```fortran
   integer, dimension(4, 8) :: a1, a2
   integer, dimension(4)    :: b1
 
@@ -64,7 +64,7 @@ with an array of any shape.
 
 Given the above declarations, the following would not make sense:
 
-```
+```fortran
   b1 = a1
 ```
 
@@ -76,7 +76,7 @@ Given the above declarations, the following would not make sense:
 
 A caution. How should we interpret the following assignments?
 
-```
+```fortran
   d = 1.0
   e(:) = 1.0
 ```
@@ -87,8 +87,6 @@ compilation errors and improve the program.
 
 :::::::::::::::  solution
 
-## Solution
-
 The first assignment given above is ambiguous. Is `d` a scalar variable, or
 an entire array? The second assignment is clearly on every element of the
 rank-1 array `e`.
@@ -97,19 +95,19 @@ The compiler errors you get when compiling
 [example1.f90](files/exercises/06-array-expressions/example1.f90) may spell out
 exactly what is going wrong. At line 13,
 
-```source
+```fortran
 b1 = a1
 ```
 
 `b1` is a rank-1 array; the rank-2 array `a1` cannot be used to assign values to it. Change it to
 
-```source
+```fortran
 b1(:) = a1(:,1)
 ```
 
 Then, the second issue is the assignment
 
-```source
+```fortran
 b1(1:4) = a2(1, 4:4)
 ```
 
@@ -118,7 +116,7 @@ as the section `a2(1, 4:4)` is an array of the incorrect size
 `b2` to the first half of the first row of `a2`). To correct the error, fix
 the start index:
 
-```source
+```fortran
 b1(1:4) = a2(1, 1:4)
 ```
 
@@ -147,7 +145,7 @@ return an array with the result of the function for each individual
 element of the argument.
 For example,
 
-```
+```fortran
    real, dimension(4) :: a, b
    ...
    b(1:4) = cos(a(1:4))
@@ -161,7 +159,7 @@ will fill each element of `b` with the cosine of the corresponding element in
 Other intrinsic functions can be used to perform reduction operations
 on arrays, and usually return a scalar. Common reductions are
 
-```
+```fortran
    a = minval( [1.0, 2.0, 3.0] )  ! the minimum value from the array
    b = maxval( [1.0, 2.0, 3.0] )  ! the maximum value from the array
    c = sum(array(:))              ! the sum of all values in the array
@@ -171,7 +169,7 @@ on arrays, and usually return a scalar. Common reductions are
 
 There is an array equivalent of the `if` construct called `where`, e.g.,:
 
-```
+```fortran
   real, dimension(20) :: a
   ...
   where (a(:) >= 0.0)
@@ -181,7 +179,7 @@ There is an array equivalent of the `if` construct called `where`, e.g.,:
 
 which performs the appropriate operations element-wise. Formally,
 
-```
+```fortran
   where (array-logical-expr)
     array-assignments
   end where
@@ -194,7 +192,7 @@ Logical functions `any()`, `all()`, and others may be used to reduce logical
 arrays or array expressions. These return a `logical` value so can be used in an
 `if` statement:
 
-```
+```fortran
    if (any(a(:) < 0.0)) then
      ! do something if at least one element of a(:) is negative
    end if
@@ -206,7 +204,7 @@ arrays or array expressions. These return a `logical` value so can be used in an
 Some intrinsic functions have an optional mask argument which can be used to
 restrict the operations to certain elements, e.g.,
 
-```
+```fortran
   b = min(array(:), mask = (array(:) > 0.0))     ! minimum of positive value
   n = count(array(:), mask = (array(:) > 0.0))   ! count the number of positive values
 ```
@@ -248,8 +246,6 @@ with some further instructions. How much array syntax can you reasonably
 introduce?
 
 :::::::::::::::  solution
-
-## Solution
 
 A sample solution is provided in [solution.f90](files/exercises/06-array-expressions/solutions/solution.f90).
 

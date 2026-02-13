@@ -23,7 +23,7 @@ exercises: 10
 
 A simple iteration is provided by the `do` statement. For example, ...
 
-```
+```fortran
   do
     ! ... go around for ever ...
   end do
@@ -32,7 +32,7 @@ A simple iteration is provided by the `do` statement. For example, ...
 A slightly more useful version requires some control (see
 [example1.f90](files/exercises/04-do-statements/example1.f90)):
 
-```
+```fortran
    integer :: i = 0
    do
      i = i + 1
@@ -47,7 +47,7 @@ A slightly more useful version requires some control (see
 Loop constructs may be nested, and may also be named (see
 [example2.f90](files/exercises/04-do-statements/example2.f90)):
 
-```
+```fortran
   some_outer_loop: &
   do
     some_inner_loop: &
@@ -66,7 +66,7 @@ they belong to the innermost construct in which they appear.
 More typically, one encounters controlled iterations with an `integer`
 loop control variable. E.g.,
 
-```
+```fortran
   integer :: i
   do i = 1, 10, 2
     ! ... perform some computation ...
@@ -75,7 +75,7 @@ loop control variable. E.g.,
 
 Formally, we have
 
-```
+```fortran
 [do-name:] do [loop-control]
              do-block
 	   end do [do-name]
@@ -83,13 +83,13 @@ Formally, we have
 
 with *loop-control* of the form:
 
-```
+```fortran
   do-variable = int-expr-lower, int-expr-upper [, int-expr-stride]
 ```
 
 and where the number of iterations will be
 
-```
+```fortran
   max(0, (int-expr-upper - int-expr-lower + int-expr-stride)/int-expr-stride)
 ```
 
@@ -105,7 +105,7 @@ present, it will be 1 (unity); if the stride is present, it may not be zero.
 
 What is the number of iterations in the following cases?
 
-```
+```fortran
    do i = 1, 10
      print *, "i is  ", i
    end do
@@ -126,8 +126,6 @@ construct itself; the variable will then have a final value after exit from
 the loop.
 
 :::::::::::::::  solution
-
-## Solution
 
 The following output is produced:
 
@@ -182,8 +180,6 @@ the approximation is within a given tolerance of the true answer?
 
 :::::::::::::::  solution
 
-## Solution
-
 Sample code implementing loops with this problem is used as a template to the
 [exercise](files/exercises/05-arrays/exercise1.f90) in the [episode on
 arrays](05-arrays.md).
@@ -215,8 +211,6 @@ Expert question: What happens if you accumulate the sum in the reverse order
 in this case? Can you think why this happens?
 
 :::::::::::::::  solution
-
-## Solution
 
 Answer to the expert question: floating point numbers of a given format
 (such as `real64`) all have the same *relative error*, no matter how big or

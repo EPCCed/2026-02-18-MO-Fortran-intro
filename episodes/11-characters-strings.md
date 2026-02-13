@@ -26,18 +26,18 @@ exercises: 10
 
 The meaning of relational operators `==` and so on in the context of
 characters is largely what one would expect from the standard ASCII
-sequence. E.g.,
+sequence. *E.g.*,
 
-```
+```fortran
    "A" <  "b"      ! true
    "A" == "a"      ! false
    "A" /= "]"      ! true
 ```
 
 Note the ordinal position of a single character in the ASCII sequence
-can be found via an intrinsic function, e.g.:
+can be found via an intrinsic function, *e.g.*:
 
-```
+```fortran
    integer             :: i
    character (len = 1) :: c
    i = iachar("A")           ! i = 65
@@ -46,7 +46,7 @@ can be found via an intrinsic function, e.g.:
 
 Remember that in ASCII the upper case characters `A` to `Z` have integer values
 65 to 90, while the lower case characters `a` to `z` have integer values 97 to
-122\.
+122.
 
 If `character` variables are compared, then each letter is compared
 left-to-right until a difference is found (or not). If the variables have
@@ -61,23 +61,23 @@ The length with trailing blanks removed is `len_trim()`. To actually
 remove the trailing blanks, use `trim()`. This is often seen when
 concatenating fixed-length character strings using the `//` operator:
 
-```
+```fortran
   print *, "File name: ", trim(file_stub)//"."//trim(extension)
 ```
 
 It's also useful if you want to perform an operation on each individual
-character, e.g.,
+character, *e.g.*,
 
-```
+```fortran
   do n = 1, len_trim(string)
     if (string(n:n) == 'a') counta = counta + 1
   end do
 ```
 
 Note that the colon is mandatory in a sub-string reference, so a
-single character must be referenced, e.g.,
+single character must be referenced, *e.g.*,
 
-```
+```fortran
    print *, "Character at position i: ", string(i:i)
 ```
 
@@ -89,7 +89,7 @@ justification, sub-string searches, and so on.
 The easiest way to provide a string which can be manipulated on a
 flexible basis is the deferred length `character`:
 
-```
+```fortran
   character (len = :), allocatable :: string
 
   string = "ABCD"         ! Allocate and assign string
@@ -106,7 +106,7 @@ If an allocation is required for which only the length is known (e.g.,
 there is no literal string involved), the following form of allocation
 is required:
 
-```
+```fortran
   integer :: mylen
   character (len = :), allocatable :: string
 
@@ -118,7 +118,7 @@ is required:
 Allocatable strings will automatically be deallocated when they go out
 of scope and are no longer required. One can also be explicit:
 
-```
+```fortran
   deallocate(string)
 ```
 
@@ -126,16 +126,16 @@ if wanted.
 
 ## Arrays of strings
 
-We have seen that we can define a fixed length parameter, e.g.,:
+We have seen that we can define a fixed length parameter, *e.g.*,:
 
-```
+```fortran
   character (len = *), parameter :: day = "Sunday"
 ```
 
 Suppose we wanted an array of strings for "Sunday", "Monday", "Tuesday",
 and so on. One might be tempted to try something of the form:
 
-```
+```fortran
   character (len = *), dimension(7), parameter :: days = [ ... ]
 ```
 
@@ -148,7 +148,7 @@ The are a number of solutions to this issue. One could try to pad the
 lengths of each array element to be the same length. A better way is
 to use a constructor with a type specification:
 
-```
+```fortran
 [character (len = 9) :: "Sunday", "Monday", "Tuesday", "Wednesday", ...]
 ```
 
@@ -163,7 +163,7 @@ Check you can make this adjustment to
 If a character variable has intent `in` in the context of a procedure,
 it typically may be declared:
 
-```
+```fortran
   subroutine some_character_operation(carg1, ...)
 
      character (len = *), intent(in) :: arg1
@@ -174,9 +174,9 @@ This is also appropriate for character variables of intent `inout`
 where the length does not change.
 
 For all other cases, use of deferred length allocatable characters is
-recommended. E.g.,
+recommended. *E.g.*,
 
-```
+```fortran
   function build_filename(stub, extension) result(filename)
 
     character (len = *), intent(in)  :: stub
@@ -206,8 +206,6 @@ and
 [exercise\_program1.f90](files/exercises/11-characters-strings/exercise_program1.f90).
 
 :::::::::::::::  solution
-
-## Solution
 
 A solution to the exercise can be found in
 [solution\_program1.f90](files/exercises/11-characters-strings/solutions/solution_program1.f90)

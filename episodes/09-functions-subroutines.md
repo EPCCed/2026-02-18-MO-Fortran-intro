@@ -25,7 +25,7 @@ The difference between functions and subroutines is to a degree one of
 context. A function returns a result and is generally used where it
 is best invoked as part of an expression or assignment, schematically:
 
-```
+```fortran
   value = my_function(arg1, arg2, ...)
 ```
 
@@ -33,7 +33,7 @@ Unlike C, it is not possible simply to discard a function result.
 A subroutine, by contrast, does not return a result (it may be thought of as a
 `void` function in C terms), but it is also invoked differently:
 
-```
+```fortran
   call my_subroutine(arg1, arg2, ...)
 ```
 
@@ -56,7 +56,7 @@ different cases can be identified:
 These three cases may be encoded in the declarations of the dummy
 arguments of a procedure via the `intent` attribute . For example:
 
-```
+```fortran
   subroutine print_x(x)
 
     real, intent(in) :: x
@@ -89,7 +89,7 @@ be reflected in the actual arguments passed to it, unless prevented by having
 If one wants to alter the existing value of the argument, `intent(inout)`
 is appropriate:
 
-```
+```fortran
   subroutine increment_x(x)
 
     real, intent(inout) :: x
@@ -102,7 +102,7 @@ is appropriate:
 If the dummy argument is undefined on entry, or has a value which is
 simply to be overwritten, use `intent(out)`, e.g.:
 
-```
+```fortran
   subroutine assign_x(x)
 
     real, intent(out) :: x
@@ -133,8 +133,6 @@ in [module1.f90](files/exercises/09-functions-subroutines/module1.f90).
 
 :::::::::::::::  solution
 
-## Solution
-
 `assign_x()` should use `intent(out)` for `x` as it doesn't matter what it
 was previously; we want to set it to 1 and return it.
 
@@ -159,7 +157,7 @@ in [module1.f90](files/exercises/09-functions-subroutines/module1.f90).
 
 A function may be defined as:
 
-```
+```fortran
 function my_mapping(value) result(a)
 
   real, intent(in) :: value
@@ -172,7 +170,7 @@ end function my_mapping
 
 Formally,
 
-```
+```fortran
 [prefix] function function-name (dummy-arg-list) [suffix]
   [ specification-part ]
   [ executable-part ]
@@ -182,9 +180,9 @@ end [ function [function-name] ]
 As ever, there is some elasticity in the exact form of the declarations
 you may see. In particular, older versions did not have the `result()`
 suffix, and the *function-name* was used as the variable to which the
-return value was assigned. E.g.,
+return value was assigned. *E.g.*,
 
-```
+```fortran
 real function length(area)
   real area
   length = sqrt(area)
@@ -198,7 +196,7 @@ names to be decoupled.
 
 Procedures which have no side effects may be declared with the
 `pure` prefix; this may provide useful information to the compiler
-in some circumstances. E.g.,
+in some circumstances. *E.g.*,
 
 ```
 pure function special_function(x) result(y)
@@ -218,9 +216,9 @@ There are a number of conditions which must be met to qualify for
 ### `recursive` procedures
 
 If recursion is required, a procedure must be declared with the
-`recursive` prefix. E.g.,
+`recursive` prefix. *E.g.*,
 
-```
+```fortran
 recursive function fibonacci(n) result(nf)
   ! ... implementation...
   nf = fibonacci(n-1) + fibonacci(n-2)
@@ -236,7 +234,7 @@ turn calls the first).
 Subroutines follow the same rules as functions, except that there is no
 `result()` suffix specification:
 
-```
+```fortran
 [prefix] subroutine subroutine-name (dummy-arg-list)
   [ specification-part ]
   [ executable-part ]
@@ -280,8 +278,6 @@ passing the procedure as an argument).
   [Wikipedia](https://en.wikipedia.org/wiki/Fibonacci_number).
 
 :::::::::::::::  solution
-
-## Solution
 
 Solutions are available in
 [solution\_program1.f90](files/exercises/09-functions-subroutines/solutions/solution_program1.f90)

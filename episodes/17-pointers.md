@@ -23,9 +23,9 @@ exercises: 10
 ## Pointer attribute
 
 A pointer may be declared by adding the `pointer` attribute to the relevant data
-type, e.g.,
+type, *e.g.*,
 
-```
+```fortran
 integer, pointer :: p => null()
 ```
 
@@ -39,7 +39,7 @@ to forget the `>` if pointer assignment is intended.
 It is important to be able to check that a given pointer is not `null()`. This
 is done with the `associated()` intrinsic; schematically,
 
-```
+```fortran
    integer, pointer :: p => null()
    ...
    if (associated(p)) ... do something
@@ -53,7 +53,7 @@ the usual way.
 If one wishes to have a pointer to an array, the rank of the pointer should be
 the same as the target:
 
-```
+```fortran
   real, dimension(:),   pointer :: p1
   real, dimension(:,:), pointer :: p2
 ```
@@ -65,7 +65,7 @@ and so on.
 A pointer may be associated with another variable of the appropriate type (which
 is not itself a pointer) by using the target attribute:
 
-```
+```fortran
   integer, target  :: datum
   integer, pointer :: p
 
@@ -76,7 +76,7 @@ The pointer is now said to be associated with the target. We can now perform
 operations on `datum` vicariously through `p`. E.g., a standard assignment would
 be
 
-```
+```fortran
   integer, target  :: datum = 1
   integer, pointer :: p
 
@@ -95,7 +95,7 @@ Note that there is an optional *target* argument to the `associated()`
 intrinsic, which allows the programmer to inquire whether a pointer is
 associated with a specific target, e.g.,
 
-```
+```fortran
    associated(p, target = datum)   ! .true. if p => datum
 ```
 
@@ -115,19 +115,17 @@ before and after the pointer assignment.
 
 :::::::::::::::  solution
 
-## Solution
-
 The `p` pointer can't be associated with `datum` as the latter doesn't have
 the `target` attribute; the compilation should fail with an error. If you
 add the attribute, it should compile and run:
 
-```source
+```fortran
   integer, target  :: datum = 1
 ```
 
 Check the `associated()` status of `p` along these lines:
 
-```source
+```fortran
   print *, "p associated?", associated(p)
 ```
 
@@ -141,7 +139,7 @@ One common use of pointers is to provide a temporary alias to another variable
 (where no copying takes place). As a convenience, one can use the `associate`
 construct, e.g.:
 
-```
+```fortran
   real :: improbably_or_tediously_long_variable_name
   ...
   associate(p => improbably_or_tediously_long_variable_name)
@@ -168,12 +166,10 @@ Compile, and check the output of the accompanying code in
 
 :::::::::::::::  solution
 
-## Solution
-
 You should see that the association is made to a strided section
 of the array `r1`:
 
-```source
+```fortran
 associate(p => r1(2::2))
 ```
 
@@ -189,7 +185,7 @@ and sixth elements of `r1`.
 One common use of pointers is for linked data structures. For example, an entry
 in a linked list might be represented by the type
 
-```
+```fortran
   type :: my_node
     integer                 :: datum
     type (my_node), pointer :: next
@@ -199,7 +195,7 @@ in a linked list might be represented by the type
 This sort of dynamic data structure requires that we establish or destroy
 storage as entries are added to the list, or removed from the list.
 
-```
+```fortran
   subroutine my_list_add_node(head, datum)
 
     ! Insert new datum at head of list
@@ -240,14 +236,14 @@ If one needs to increase (or decrease) the size of an existing allocatable
 array, the `move_alloc()` intrinsic is useful. E.g., if we have an integer rank
 one array
 
-```
+```fortran
   integer, dimension(:), allocatable :: iorig
 ```
 
 and establish storage of a given size, and some relevant initialisations, we may
 then wish to increase the size of it.
 
-```
+```fortran
   integer :: nold
   integer, dimension(:), allocatable :: itmp
 
@@ -270,13 +266,11 @@ available when enlarging the size of an existing allocatable array?
 
 :::::::::::::::  solution
 
-## Solution
-
 If `move_alloc()` were not available, we would need to make two copies rather
 than one. Analogously to the above example, we would have to perform the following
 to double the storage in `iorig`:
 
-```source
+```fortran
   integer :: nold
   integer, dimension(:), allocatable :: itmp
 
@@ -297,14 +291,14 @@ to double the storage in `iorig`:
 
 A small trick is required to arrange an array of pointers. Recall that
 
-```
+```fortran
   real, dimension(:), pointer :: a
 ```
 
 is a pointer to a rank one array, and *not* a rank one array of pointers. If one
 did want an array of such objects, it can be achieved by wrapping it in a type:
 
-```
+```fortran
   type :: pointer_rr1
     real, dimension(:), pointer :: p => null()
   end type pointer_rr1

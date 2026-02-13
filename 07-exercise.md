@@ -49,8 +49,6 @@ instructions, and some suggestions on how to test the result.
 
 :::::::::::::::  solution
 
-## Solution
-
 A solution to the problem appears as a
 [template](files/exercises/10-dummy-array-arguments/exercise.f90) to the
 exercise in the [later episode on dummy arguments](10-dummy-array-arguments.md).
@@ -142,8 +140,6 @@ $ ./a.out
 ```
 
 :::::::::::::::  solution
-
-## Solution
 
 Two reference answers are given in the `solutions` directory. The
 [first](files/exercises/07-exercise/solutions/life-step2.f90) only computes

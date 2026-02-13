@@ -552,7 +552,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Miscellaneous</h1>
-        <p>Last updated on 2026-02-06 |
+        <p>Last updated on 2026-02-13 |
 
         <a href="https://github.com/welucas2/2026-02-18-MO-Fortran-intro/edit/main/episodes/19-intrinsic-functions.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -601,23 +601,35 @@ are useful in certain contexts.</p>
 arguments, or simply wish to know the executable name at run time, the
 command line can be retrieved.</p>
 <p>The number of command line arguments is returned by the function</p>
-<pre><code><span><span class="fu">command_argument_count</span><span class="op">(</span><span class="op">)</span></span></code></pre>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co">command_argument_count()</span></span></code></pre>
+</div>
 <p>This returns an <code>integer</code>: zero if the information is not
 available, or the number of arguments <em>not including</em> the
 executable name itself.</p>
 <p>The entire command line can be retrieved as a string via</p>
-<pre><code>  call get_command(command = cmd, length = len, status = stat)</code></pre>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>  <span class="kw">call</span> get_command(command <span class="kw">=</span> cmd, length <span class="kw">=</span> <span class="fu">len</span>, status <span class="kw">=</span> stat)</span></code></pre>
+</div>
 <p>This returns the command line as a string (truncated or padded with
 spaces as appropriate), the integer length of the command line string,
 and an integer status which will be non-zero if the information is not
 available. All the arguments are optional.</p>
 <p>Individual command line arguments based on their position can be
 retrieved using the subroutine</p>
-<pre><code>  subroutine get_command_argument(position, value, length, status)
-    integer,                       intent(in)  :: position
-    character (len = *), optional, intent(out) :: value
-    integer,             optional, intent(out) :: length
-    integer,             optional, intent(out) :: status</code></pre>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>  <span class="kw">subroutine</span> get_command_argument(position, value, length, status)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>    <span class="dt">integer</span>,                       <span class="dt">intent(in)</span>  <span class="dt">::</span> position</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>    <span class="dt">character (len = *)</span>, <span class="dt">optional</span>, <span class="dt">intent(out)</span> <span class="dt">::</span> value</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>    <span class="dt">integer</span>,             <span class="dt">optional</span>, <span class="dt">intent(out)</span> <span class="dt">::</span> length</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>    <span class="dt">integer</span>,             <span class="dt">optional</span>, <span class="dt">intent(out)</span> <span class="dt">::</span> status</span></code></pre>
+</div>
 <p>Here, <code>position</code> is zero for the (executable) command
 itself and positive for others. The remaining arguments are:
 <code>value</code> is the command; length is the length of the command,
@@ -627,12 +639,16 @@ string is too short, or +ve if the information is not available.</p>
 <div class="section level3">
 <h3 id="environment-variables">Environment variables<a class="anchor" aria-label="anchor" href="#environment-variables"></a></h3>
 <p>A similar routine exists for inquiry about environment variables:</p>
-<pre><code>subroutine get_environment_variable(name, value, length, status, trim_name)
-  character (len = *),           intent(in)  :: name
-  character (len = *), optional, intent(out) :: value
-  integer,             optional, intent(out) :: length
-  integer,             optional, intent(out) :: status
-  logical,             optional, intent(in)  :: trim_name</code></pre>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="kw">subroutine</span> get_environment_variable(name, value, length, status, trim_name)</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  <span class="dt">character (len = *)</span>,           <span class="dt">intent(in)</span>  <span class="dt">::</span> name</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="dt">character (len = *)</span>, <span class="dt">optional</span>, <span class="dt">intent(out)</span> <span class="dt">::</span> value</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  <span class="dt">integer</span>,             <span class="dt">optional</span>, <span class="dt">intent(out)</span> <span class="dt">::</span> length</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>  <span class="dt">integer</span>,             <span class="dt">optional</span>, <span class="dt">intent(out)</span> <span class="dt">::</span> status</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>  <span class="dt">logical</span>,             <span class="dt">optional</span>, <span class="dt">intent(in)</span>  <span class="dt">::</span> trim_name</span></code></pre>
+</div>
 <p>This will return the value associated with the given name if it
 exists. Various non-zero <code>status</code> error conditions can occur,
 including a value of <code>1</code> if the variable does not exist, or
@@ -643,14 +659,17 @@ string provided.</p>
 <h3 id="system-commands">System commands<a class="anchor" aria-label="anchor" href="#system-commands"></a></h3>
 <p>It is sometimes useful to pass control of execution back to the
 operating system so that some other command can be used.</p>
-<pre><code>subroutine execute_command_line(command, wait, iexit, icmd, cmdmsg)
-
-  character (len = *),           intent(in)    :: command
-  logical,             optional, intent(in)    :: wait
-  integer,             optional, intent(inout) :: iexit
-  integer,             optional, intent(out)   :: icmd
-  character (len = *), optional, intent(inout) :: cmdmsg
-</code></pre>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="kw">subroutine</span> execute_command_line(command, wait, iexit, icmd, cmdmsg)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="dt">character (len = *)</span>,           <span class="dt">intent(in)</span>    <span class="dt">::</span> command</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="dt">logical</span>,             <span class="dt">optional</span>, <span class="dt">intent(in)</span>    <span class="dt">::</span> wait</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>  <span class="dt">integer</span>,             <span class="dt">optional</span>, <span class="dt">intent(inout)</span> <span class="dt">::</span> iexit</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>  <span class="dt">integer</span>,             <span class="dt">optional</span>, <span class="dt">intent(out)</span>   <span class="dt">::</span> icmd</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>  <span class="dt">character (len = *)</span>, <span class="dt">optional</span>, <span class="dt">intent(inout)</span> <span class="dt">::</span> cmdmsg</span></code></pre>
+</div>
 <p>The command should be a string. The <code>wait</code> argument tells
 the routine to return only when the command has finishing executing. The
 <code>iexit</code> argument gives the return value of the command. The
@@ -666,13 +685,17 @@ all.</p>
 <div class="section level3">
 <h3 id="time-and-date-from-date_and_time">Time and date from <code>date_and_time()</code>
 <a class="anchor" aria-label="anchor" href="#time-and-date-from-date_and_time"></a></h3>
-<p>Use, e.g.,</p>
-<pre><code>  character (len = 8)   :: date        ! "yyyymmdd"
-  character (len = 10)  :: time        ! "hhmmss.sss"
-  character (len = 5)   :: zone        ! "shhmm"
-  integer, dimension(8) :: ivalues     ! see below
-
-  call date_and_time(date = date, time = time, zone = zone, values = ivalues)</code></pre>
+<p>Use, <em>e.g.</em>,</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>  <span class="dt">character (len = 8)</span>   <span class="dt">::</span> date        <span class="co">! "yyyymmdd"</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="dt">character (len = 10)</span>  <span class="dt">::</span> time        <span class="co">! "hhmmss.sss"</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="dt">character (len = 5)</span>   <span class="dt">::</span> zone        <span class="co">! "shhmm"</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">dimension(8)</span> <span class="dt">::</span> ivalues     <span class="co">! see below</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>  <span class="kw">call</span> <span class="fu">date_and_time</span>(date <span class="kw">=</span> date, time <span class="kw">=</span> time, zone <span class="kw">=</span> zone, values <span class="kw">=</span> ivalues)</span></code></pre>
+</div>
 <p>All the arguments are optional. On return the <code>date</code> holds
 the year, month, and day in a string of the form “yyyymmdd”;
 <code>time</code> holds the time in hours, minutes, seconds, and
@@ -691,13 +714,17 @@ of code, the <code>cpu_time()</code> function can be used. This returns
 a <code>real</code> positive value which is some system-dependent time
 in seconds. Subtracting two consecutive values will give an elapsed
 time:</p>
-<pre><code>   real :: t0, t1
-
-   call cpu_time(t0)
-   ! ... code to be timed here ...
-   call cpu_time(t1)
-
-   print *, "That piece of code took ", t1-t0, " seconds"</code></pre>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>   <span class="dt">real</span> <span class="dt">::</span> t0, t1</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>   <span class="kw">call</span> cpu_time(t0)</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>   <span class="co">! ... code to be timed here ...</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>   <span class="kw">call</span> cpu_time(t1)</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>   <span class="fu">print</span> <span class="kw">*</span>, <span class="st">"That piece of code took "</span>, t1<span class="kw">-</span>t0, <span class="st">" seconds"</span></span></code></pre>
+</div>
 <p>In the unlikely event that there is no clock available, a negative
 value may be returned from <code>cpu_time()</code>.</p>
 <div id="keypoints1" class="callout keypoints">
@@ -778,7 +805,7 @@ your code.</li>
   "url": "https://welucas2.github.io/2026-02-18-MO-Fortran-intro/19-intrinsic-functions.html",
   "identifier": "https://welucas2.github.io/2026-02-18-MO-Fortran-intro/19-intrinsic-functions.html",
   "dateCreated": "2025-05-05",
-  "dateModified": "2026-02-06",
+  "dateModified": "2026-02-13",
   "datePublished": "2026-02-13"
 }
 

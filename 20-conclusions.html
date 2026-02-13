@@ -555,7 +555,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Other things you may see</h1>
-        <p>Last updated on 2026-02-06 |
+        <p>Last updated on 2026-02-13 |
 
         <a href="https://github.com/welucas2/2026-02-18-MO-Fortran-intro/edit/main/episodes/20-conclusions.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -574,16 +574,17 @@
 <div class="card-body">
 <div class="inner">
 <h3 class="card-title">Questions</h3>
-<ul><li>
-</li></ul></div>
+<ul><li>What have we not covered that I should be aware of?</li>
+</ul></div>
 </div>
 </div>
 <div class="col-md-8">
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
-<ul><li>
-</li></ul></div>
+<ul><li>Learn about some other Fortran features which may be of
+interest.</li>
+</ul></div>
 </div>
 </div>
 </div>
@@ -618,10 +619,15 @@ at some point in the future.</p>
 <p>The processing of Fortran is not standardised in the same way as the
 C-preprocessor is part of the C standard.</p>
 <p>However, it is very common to see preprocessor directives for
-conditional compilation, and other preprocessor features. E.g.,</p>
-<pre><code><span><span class="co">#ifdef HAVE_SOME_FEATURE</span></span>
-<span>  <span class="va">...</span></span>
-<span><span class="co">#endif</span></span></code></pre>
+conditional compilation, and other preprocessor features.
+<em>E.g.</em>,</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ot">#ifdef HAVE_SOME_FEATURE</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>  ...</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="ot">#endif</span></span></code></pre>
+</div>
 <p>As the Fortran preprocessor is not standardised, some care may be
 required to ensure portability. For example, stringification of macro
 arguments can be problematic.</p>
@@ -648,21 +654,37 @@ distributed memory computing.</p>
 <p>MPI makes use of a number of data types, macro definitions, and
 library subroutines. A modern program might introduce the information
 required via</p>
-<pre><code>  use mpi_f08</code></pre>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>  <span class="kw">use</span> mpi_f08</span></code></pre>
+</div>
 <p>which uses derived types for data types (which are often opaque).</p>
 <p>Earlier versions might use</p>
-<pre><code>  use mpi</code></pre>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>  <span class="kw">use</span> mpi</span></code></pre>
+</div>
 <p>where the opaque types are integer handles.</p>
 <p>Older codes may even use</p>
-<pre><code><span><span class="co">#include 'mpif.h'</span></span></code></pre>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ot">#include 'mpif.h'</span></span></code></pre>
+</div>
 <p>to make the necessary handles and macros available.</p>
 </div>
 <div class="section level3">
 <h3 id="mpi-library-calls">MPI library calls<a class="anchor" aria-label="anchor" href="#mpi-library-calls"></a></h3>
 <p>MPI is at base a C interface which accommodates Fortran. The C
 routines often have prototypes of the form:</p>
-<pre><code>  int MPI_Send(const void * buf, int ount, MPI_Datatype dt, int dest, int tag,
-               MPI_Comm comm);</code></pre>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>  <span class="bu">int</span> MPI_Send(const void <span class="kw">*</span> buf, <span class="bu">int</span> ount, MPI_Datatype dt, <span class="bu">int</span> dest, <span class="bu">int</span> tag,</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>               MPI_Comm comm);</span></code></pre>
+</div>
 <p>The data to be sent is identified here using <code>void * buf</code>.
 A return code provides an error status.</p>
 <p>The lack of <code>void *</code> in Fortran means that the Fortran
@@ -679,15 +701,23 @@ integer arguments.</p>
 <h3 id="openmp">OpenMP<a class="anchor" aria-label="anchor" href="#openmp"></a></h3>
 <p>OpenMP is a standard way to introduce thread-level parallelism
 (typically at the level of loops). A program should</p>
-<pre><code>  use omp_lib</code></pre>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>  <span class="kw">use</span> omp_lib</span></code></pre>
+</div>
 <p>to provide OpenMP functions and kind type parameters.</p>
 <p>OpenMP is largely based around compiler directives, which are
 switched on via a compiler option, usually <code>-fopenmp</code>.</p>
 <p>In Fortran, the directives are introduced by the
 <em>sentinels</em>:</p>
-<pre><code>  !$omp ...
-  ...
-  !$omp end ...</code></pre>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>  <span class="co">!$omp ...</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  ...</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="co">!$omp end ...</span></span></code></pre>
+</div>
 <p>which is ignored as a comment if no OpenMP is required
 (cf. <code>#pragma omp ... { }</code> in C).</p>
 <p>The OpenMP standard documents provide a useful <code>stub</code>
@@ -722,8 +752,15 @@ wiki</a> also has a lot of useful material.</p>
 <span class="callout-header">Key Points</span>
 <div class="callout-inner">
 <div class="callout-content">
-<ul><li>
-</li></ul></div>
+<ul><li>You may come across Fortran following an older standard; some will
+be understandable on sight, but you may need to consult a
+reference.</li>
+<li>MPI and OpenMP allow you to write Fortran code that will execute in
+parallel.</li>
+<li>NVIDIA supports CUDA in Fortran for execution on GPUs.</li>
+<li>Writing tests is an important step in safe code development.</li>
+<li>Several books and the Fortran Wiki are invaluable resources.</li>
+</ul></div>
 </div>
 </div>
 </section></div> <!-- / div.lesson-content -->
@@ -786,7 +823,7 @@ wiki</a> also has a lot of useful material.</p>
   "url": "https://welucas2.github.io/2026-02-18-MO-Fortran-intro/20-conclusions.html",
   "identifier": "https://welucas2.github.io/2026-02-18-MO-Fortran-intro/20-conclusions.html",
   "dateCreated": "2025-05-05",
-  "dateModified": "2026-02-06",
+  "dateModified": "2026-02-13",
   "datePublished": "2026-02-13"
 }
 

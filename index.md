@@ -50,8 +50,6 @@ The course requires a Fortran compiler. We will provide accounts on ARCHER2 for 
 
 ::::::::::::::::::::::::::::::::::::::::::  prereq
 
-## Prerequisites
-
 You should have used remote HPC facilities before. In particular, you should be happy with connecting
 using SSH, know what a batch scheduling system is and be familiar with using the Linux command line.
 You should also be happy editing plain text files in a remote terminal (or, alternatively, editing them

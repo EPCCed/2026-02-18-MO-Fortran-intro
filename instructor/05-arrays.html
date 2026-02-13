@@ -553,7 +553,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Array declarations</h1>
-        <p>Last updated on 2026-02-06 |
+        <p>Last updated on 2026-02-13 |
 
         <a href="https://github.com/welucas2/2026-02-18-MO-Fortran-intro/edit/main/episodes/05-arrays.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -598,20 +598,28 @@ dimensions.</li>
 <section><h2 class="section-heading" id="a-one-dimensional-array">A one-dimensional array<a class="anchor" aria-label="anchor" href="#a-one-dimensional-array"></a></h2>
 <hr class="half-width"><p>Arrays may be declared with addition of the <code>dimension</code>
 attribute, e.g.,</p>
-<pre><code>program example1
-
-  implicit none
-
-  real, dimension(3) :: a    ! declare a with elements a(1), a(2), a(3)
-
-end program example1</code></pre>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="kw">program</span> example1</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>  <span class="kw">implicit</span> <span class="kw">none</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>  <span class="dt">real</span>, <span class="dt">dimension(3)</span> <span class="dt">::</span> a    <span class="co">! declare a with elements a(1), a(2), a(3)</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="kw">end program</span> example1</span></code></pre>
+</div>
 <p>The <em>size</em> of the array is the total number of elements (here
 3). The default <em>lower bound</em> is 1 and the <em>upper bound</em>
 is 3.</p>
 <p>In a slightly older style you may also see arrays declared by placing
 the size of the array directly after the name, e.g. and
 equivalently,</p>
-<pre><code>  real :: a(3)               ! declare a with elements a(1), a(2), a(3)</code></pre>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>  <span class="dt">real</span> <span class="dt">::</span> a(<span class="dv">3</span>)               <span class="co">! declare a with elements a(1), a(2), a(3)</span></span></code></pre>
+</div>
 <div id="fortran-array-indexing" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -633,19 +641,31 @@ makes the offset in the memory more visible.</p>
 <h3 id="lower-and-upper-bounds">Lower and upper bounds<a class="anchor" aria-label="anchor" href="#lower-and-upper-bounds"></a></h3>
 <p>If necessary or useful, you can however choose yourself the bounding
 indices of your arrays:</p>
-<pre><code>  real, dimension(-2:1) :: b ! elements b(-2), b(-1), b(0), b(1)</code></pre>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>  <span class="dt">real</span>, <span class="dt">dimension(-2:1)</span> <span class="dt">::</span> b <span class="co">! elements b(-2), b(-1), b(0), b(1)</span></span></code></pre>
+</div>
 <p>Here we specify, explicitly, the lower and upper bounds. The
 <em>size</em> of this array is 4.</p>
 </div>
 <div class="section level3">
 <h3 id="array-constructor">Array constructor<a class="anchor" aria-label="anchor" href="#array-constructor"></a></h3>
 <p>One may specify array values as a constructor</p>
-<pre><code>  integer, dimension(3), parameter :: s = (/ -1, 0, +1 /)   ! F2003 or
-  integer, dimension(3), parameter :: t = [  -1, 0, +1 ]    ! F2008</code></pre>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">dimension(3)</span>, <span class="dt">parameter</span> <span class="dt">::</span> s <span class="kw">=</span> <span class="kw">(/</span> <span class="kw">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="kw">+</span><span class="dv">1</span> <span class="kw">/)</span>   <span class="co">! F2003 or</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">dimension(3)</span>, <span class="dt">parameter</span> <span class="dt">::</span> t <span class="kw">=</span> <span class="kw">[</span>  <span class="kw">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="kw">+</span><span class="dv">1</span> <span class="kw">]</span>    <span class="co">! F2008</span></span></code></pre>
+</div>
 </div>
 </section><section><h2 class="section-heading" id="a-two-dimensional-array">A two-dimensional array<a class="anchor" aria-label="anchor" href="#a-two-dimensional-array"></a></h2>
-<hr class="half-width"><pre><code>  real, dimension(2,3) :: a   ! elements a(1,1), a(1,2), a(1,3)
-                              !          a(2,1), a(2,2), a(2,3)</code></pre>
+<hr class="half-width"><div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>  <span class="dt">real</span>, <span class="dt">dimension(2,3)</span> <span class="dt">::</span> a   <span class="co">! elements a(1,1), a(1,2), a(1,3)</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>                              <span class="co">!          a(2,1), a(2,2), a(2,3)</span></span></code></pre>
+</div>
 <p>This two-dimensional array (said to have <em>rank</em> 2) has two
 elements in the first dimension (or <em>extent</em> 2), and 3 elements
 in the second dimension (<em>extent</em> 3). It is said to have
@@ -655,7 +675,11 @@ dimension. Its size is 6 elements.</p>
 implementation to store contiguously in memory. In Fortran this has to
 be the left-most dimension counting fastest. For array <code>a</code> we
 expect the order in memory to be</p>
-<pre><code>a(1,1), a(2,1), a(1,2), a(2,2), a(1,3), a(2,3)</code></pre>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>a(<span class="dv">1</span>,<span class="dv">1</span>), a(<span class="dv">2</span>,<span class="dv">1</span>), a(<span class="dv">1</span>,<span class="dv">2</span>), a(<span class="dv">2</span>,<span class="dv">2</span>), a(<span class="dv">1</span>,<span class="dv">3</span>), a(<span class="dv">2</span>,<span class="dv">3</span>)</span></code></pre>
+</div>
 <p>that is, the opposite the convention in C.</p>
 <div id="looping-through-multi-dimensional-arrays" class="callout">
 <div class="callout-square">
@@ -670,11 +694,15 @@ will typically move most quickly through the first index. That means
 that generally the innermost loop’s control variable should be used for
 the first index, the next outer loop should use the second control
 variable, and so on, e.g.,</p>
-<pre><code>do j = 1, 10
-  do i = 1, 20
-    a(i,j) = ...   ! Do work to calculate the (i,j)th element of an array.
-  end do
-end do</code></pre>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="kw">do</span> j <span class="kw">=</span> <span class="dv">1</span>, <span class="dv">10</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  <span class="kw">do</span> i <span class="kw">=</span> <span class="dv">1</span>, <span class="dv">20</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>    a(i,j) <span class="kw">=</span> ...   <span class="co">! Do work to calculate the (i,j)th element of an array.</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>  <span class="kw">end do</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="kw">end do</span></span></code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -685,7 +713,11 @@ individual compilers may allow for even more.</p>
 <h3 id="reshape"><code>reshape</code><a class="anchor" aria-label="anchor" href="#reshape"></a></h3>
 <p>A constructor for an array of rank 2 or above might be used,
 e.g.,</p>
-<pre><code>  integer, dimension(2,3) :: m = reshape([1,2,3,4,5,6], shape = [2,3])</code></pre>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">dimension(2,3)</span> <span class="dt">::</span> m <span class="kw">=</span> <span class="fu">reshape</span>(<span class="kw">[</span><span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span><span class="kw">]</span>, <span class="fu">shape</span> <span class="kw">=</span> <span class="kw">[</span><span class="dv">2</span>,<span class="dv">3</span><span class="kw">]</span>)</span></code></pre>
+</div>
 <p>where we have used the intrinsic function <code>reshape()</code>.</p>
 <p><code>reshape()</code> can be used wherever you might need to alter
 an array’s shape.</p>
@@ -712,19 +744,27 @@ shape at run time.</p>
 the <em>allocatable</em> attribute can be used. The rank must be
 specified but the value of the extent in each dimension is deferred
 using the <code>:</code> symbol:</p>
-<pre><code>  real, dimension(:, :), allocatable :: a
-
-  ! ... establish shape required, say (imax, jmax) ...
-
-  allocate(a(imax, jmax))
-
-  ! ... use and then release storage ...
-
-  deallocate(a)</code></pre>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>  <span class="dt">real</span>, <span class="dt">dimension(:, :)</span>, <span class="dt">allocatable</span> <span class="dt">::</span> a</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  <span class="co">! ... establish shape required, say (imax, jmax) ...</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>  <span class="kw">allocate</span>(a(imax, jmax))</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>  <span class="co">! ... use and then release storage ...</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>  <span class="kw">deallocate</span>(a)</span></code></pre>
+</div>
 <p>Again, this array will take on the default lower bound of 1 in each
 dimension.</p>
 <p>Formally,</p>
-<pre><code><span>  <span class="fu">allocate</span><span class="op">(</span><span class="va">allocate</span><span class="op">-</span><span class="va">list</span> <span class="op">[</span>, source <span class="op">=</span> <span class="va">array</span><span class="op">-</span><span class="va">expr</span><span class="op">]</span> <span class="op">[</span> , stat <span class="op">=</span> <span class="va">scalar</span><span class="op">-</span><span class="va">int</span><span class="op">-</span><span class="va">var</span><span class="op">]</span><span class="op">)</span></span></code></pre>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>  <span class="kw">allocate</span>(<span class="kw">allocate-</span>list <span class="kw">[</span>, source <span class="kw">=</span> array<span class="kw">-</span>expr<span class="kw">]</span> <span class="kw">[</span> , stat <span class="kw">=</span> scalar<span class="kw">-</span><span class="bu">int</span><span class="kw">-</span>var<span class="kw">]</span>)</span></code></pre>
+</div>
 <p>The optional <code>source</code> argument may be used to provide a
 template for the newly allocated object (values will be copied). We will
 return to this in more detail in the context of dynamic type.</p>
@@ -736,11 +776,15 @@ will assign a value of zero to the argument.</p>
 initially in an unallocated state. When allocated, this status will
 change; this status can be interrogated via the intrinsic function
 <code>allocated()</code>.</p>
-<pre><code>  integer, dimension(:), allocatable :: m
-  ...
-  if (allocated(m)) then
-    ! ... we can do something ...
-  end if</code></pre>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">dimension(:)</span>, <span class="dt">allocatable</span> <span class="dt">::</span> m</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>  ...</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>  <span class="kw">if</span> (<span class="fu">allocated</span>(m)) <span class="kw">then</span></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>    <span class="co">! ... we can do something ...</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>  <span class="kw">end if</span></span></code></pre>
+</div>
 <p>An attempt to <code>deallocate</code> a variable which is not
 allocated is an error.</p>
 </div>
@@ -776,7 +820,11 @@ instructs the compiler to inject additional code which checks bounds at
 run time. For the Cray Fortran compiler, this is <code>-hbounds</code>;
 for the GNU compiler, this is <code>-fcheck=bounds</code>.</p>
 <p>E.g.,</p>
-<pre><code>$ ftn -hbounds exercise1.f90</code></pre>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">$</span> ftn <span class="at">-hbounds</span> exercise1.f90</span></code></pre>
+</div>
 <p>Some compilers may also be able to check certain bounds at compile
 time, and issue a compile-time message. However, in general, errors may
 not appear until run time. If your program crashes, or produces
@@ -848,7 +896,7 @@ you ask them to.</li>
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.18.1)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/EPCCed/varnish/tree/acfe32934f5497c232888f9b9f527f73a60d63c3" class="external-link">varnish (1.0.9)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.18.1)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/EPCCed/varnish/tree/fdaceaf8e4da03c335feb2827ae028c3c008c005" class="external-link">varnish (1.0.9)</a></p>
 		</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -870,8 +918,8 @@ you ask them to.</li>
   "url": "https://welucas2.github.io/2026-02-18-MO-Fortran-intro/instructor/05-arrays.html",
   "identifier": "https://welucas2.github.io/2026-02-18-MO-Fortran-intro/instructor/05-arrays.html",
   "dateCreated": "2025-05-05",
-  "dateModified": "2026-02-06",
-  "datePublished": "2026-02-12"
+  "dateModified": "2026-02-13",
+  "datePublished": "2026-02-13"
 }
 
   </script><script>

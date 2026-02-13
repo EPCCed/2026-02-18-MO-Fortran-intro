@@ -558,7 +558,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Operations on external files</h1>
-        <p>Last updated on 2026-02-06 |
+        <p>Last updated on 2026-02-13 |
 
         <a href="https://github.com/welucas2/2026-02-18-MO-Fortran-intro/edit/main/episodes/13-IO.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -607,23 +607,31 @@ essential part of a useful application.</p>
 <hr class="half-width"><p>File handles, or <em>unit numbers</em> are obtained using
 <code>open()</code>, and are used to direct the output of
 <code>write()</code> to the relevant file.</p>
-<pre><code>  integer :: myunit
-
-  open(newunit = myunit, file = 'filename.dat', form = 'formatted', &amp;
-       action = 'write', status = 'new')
-
-  write(unit = myunit, *) data1    ! write data first record
-  write(unit = myunit, *) data2    ! second record ... and so on
-
-  close(unit = myunit, status = 'keep')</code></pre>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>  <span class="dt">integer</span> <span class="dt">::</span> myunit</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>  <span class="fu">open(</span>newunit <span class="kw">=</span> myunit, <span class="fu">file</span> <span class="kw">=</span> <span class="st">'filename.dat'</span>, <span class="fu">form</span> <span class="kw">=</span> <span class="st">'formatted'</span>, <span class="kw">&amp;</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>       <span class="fu">action</span> <span class="kw">=</span> <span class="st">'write'</span>, <span class="fu">status</span> <span class="kw">=</span> <span class="st">'new'</span><span class="fu">)</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>  <span class="fu">write(unit</span> <span class="kw">=</span> myunit, <span class="fu">*)</span> data1    <span class="co">! write data first record</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>  <span class="fu">write(unit</span> <span class="kw">=</span> myunit, <span class="fu">*)</span> data2    <span class="co">! second record ... and so on</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>  <span class="fu">close(unit</span> <span class="kw">=</span> myunit, <span class="fu">status</span> <span class="kw">=</span> <span class="st">'keep'</span><span class="fu">)</span></span></code></pre>
+</div>
 <p>To read back the same data, we might use:</p>
-<pre><code>   open(newunit = myunit, file = 'filename.dat', form = 'formatted', &amp;
-        action = "read", status = "old")
-
-   read(unit = myunit, *) data1
-   read(unit = myunit, *) data2
-
-   close (unit = myunit, status = 'keep')</code></pre>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>   <span class="fu">open(</span>newunit <span class="kw">=</span> myunit, <span class="fu">file</span> <span class="kw">=</span> <span class="st">'filename.dat'</span>, <span class="fu">form</span> <span class="kw">=</span> <span class="st">'formatted'</span>, <span class="kw">&amp;</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>        <span class="fu">action</span> <span class="kw">=</span> <span class="st">"read"</span>, <span class="fu">status</span> <span class="kw">=</span> <span class="st">"old"</span><span class="fu">)</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>   <span class="fu">read(unit</span> <span class="kw">=</span> myunit, <span class="fu">*)</span> data1</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>   <span class="fu">read(unit</span> <span class="kw">=</span> myunit, <span class="fu">*)</span> data2</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>   <span class="fu">close (unit</span> <span class="kw">=</span> myunit, <span class="fu">status</span> <span class="kw">=</span> <span class="st">'keep'</span><span class="fu">)</span></span></code></pre>
+</div>
 <div class="section level3">
 <h3 id="unit-numbers">Unit numbers<a class="anchor" aria-label="anchor" href="#unit-numbers"></a></h3>
 <p>A valid unit number can be assigned by using the <code>newunit</code>
@@ -674,17 +682,25 @@ default is <code>keep</code>, except for scratch files.</p>
 on the current state of either unit numbers or files. There are a large
 number of optional arguments. One common usage is to check whether a
 file exists:</p>
-<pre><code><span>  <span class="fu">logical</span> <span class="fu">::</span> <span class="va">exists</span></span>
-<span>  <span class="fu">inquire</span><span class="op">(</span> file <span class="op">=</span> <span class="st">'filename.dat'</span>, exist <span class="op">=</span> <span class="va">exists</span><span class="op">)</span></span></code></pre>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>  <span class="dt">logical</span> <span class="dt">::</span> exists</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>  <span class="fu">inquire(</span> <span class="fu">file</span> <span class="kw">=</span> <span class="st">'filename.dat'</span>, <span class="fu">exist</span> <span class="kw">=</span> exists<span class="fu">)</span></span></code></pre>
+</div>
 </section><section><h2 class="section-heading" id="internal-files">Internal files<a class="anchor" aria-label="anchor" href="#internal-files"></a></h2>
 <hr class="half-width"><p>In some situations, it may be convenient to use a formatted read to
 generate a new string in memory (in the same way as <code>sprintf</code>
 in C). Fortran uses a so-called <em>internal file</em>, which is usually
 a character string. E.g.,</p>
-<pre><code>   character (len = 10) :: buffer
-   integer              :: ival
-   ...
-   read(buffer, fmt = "i10") ival</code></pre>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>   <span class="dt">character (len = 10)</span> <span class="dt">::</span> buffer</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>   <span class="dt">integer</span>              <span class="dt">::</span> ival</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>   ...</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>   <span class="fu">read(</span>buffer, <span class="fu">fmt</span> <span class="kw">=</span> <span class="st">"i10"</span><span class="fu">)</span> ival</span></code></pre>
+</div>
 <p>Here <code>buffer</code> takes the place of the input unit. This can
 be used, e.g., to create format strings at run time.</p>
 </section><section><h2 class="section-heading" id="recovery-from-errors">Recovery from errors<a class="anchor" aria-label="anchor" href="#recovery-from-errors"></a></h2>
@@ -692,25 +708,29 @@ be used, e.g., to create format strings at run time.</p>
 formal exception mechanism in Fortran, some ability to recover is
 available.</p>
 <p>Consider the following schematic example:</p>
-<pre><code>subroutine read_my_file_format(myunit, ..., ierr)
-
-  integer, intent(in)   :: myunit
-  integer, intent(out)  :: ierr          ! error code
-
-  character (len = 256) :: msg
-
-  read (myunit, ..., err = 999, iomsg = msg) ...
-
-  ! Everything was ok
-  ierr = 0
-  return
-
-999 continue
-  ierr = -1
-  print *, "Error reading file: ", trim(msg)
-
-  return
-end subroutine real_my_file_format</code></pre>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="kw">subroutine</span> read_my_file_format(myunit, ..., ierr)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">intent(in)</span>   <span class="dt">::</span> myunit</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">intent(out)</span>  <span class="dt">::</span> ierr          <span class="co">! error code</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>  <span class="dt">character (len = 256)</span> <span class="dt">::</span> msg</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>  <span class="fu">read (</span>myunit, ..., <span class="fu">err</span> <span class="kw">=</span> <span class="dv">999</span>, iomsg <span class="kw">=</span> msg<span class="fu">)</span> ...</span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>  <span class="co">! Everything was ok</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>  ierr <span class="kw">=</span> <span class="dv">0</span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>  <span class="kw">return</span></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="dv">999</span> <span class="kw">continue</span></span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a>  ierr <span class="kw">=</span> <span class="kw">-</span><span class="dv">1</span></span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a>  <span class="fu">print</span> <span class="kw">*</span>, <span class="st">"Error reading file: "</span>, <span class="fu">trim</span>(msg)</span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a>  <span class="kw">return</span></span>
+<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a><span class="kw">end subroutine</span> real_my_file_format</span></code></pre>
+</div>
 <p>We assume the relevant file has been opened successfully, and is
 connected to unit number <code>myunit</code>. If an error occurs at the
 point of the read statement, the <code>err</code> argument directs
@@ -725,10 +745,14 @@ statement with intent out <code>ierr = 0</code>.</p>
 <p>Both <code>open</code> and <code>close</code> statements provide
 optional arguments for error handling, illustrated schematically here
 with <code>open()</code>:</p>
-<pre><code>  integer :: ierr
-  character (len = 128) :: msg
-
-  open( newunit = myunit, ..., err = 900, iostat = ierr, iomsg = msg)</code></pre>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>  <span class="dt">integer</span> <span class="dt">::</span> ierr</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="dt">character (len = 128)</span> <span class="dt">::</span> msg</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  <span class="fu">open(</span> newunit <span class="kw">=</span> myunit, ..., <span class="fu">err</span> <span class="kw">=</span> <span class="dv">900</span>, <span class="fu">iostat</span> <span class="kw">=</span> ierr, iomsg <span class="kw">=</span> msg<span class="fu">)</span></span></code></pre>
+</div>
 <ul><li>
 <code>err</code>: is a label in the same scope to which control is
 transferred on error;</li>
@@ -749,7 +773,11 @@ the message will be truncated or padded appropriately.</p>
 <a class="anchor" aria-label="anchor" href="#error-handling-for-read-and-write"></a></h3>
 <p>Error handling facilities for <code>read()</code> and
 <code>write()</code> are similar, and are illustrated here:</p>
-<pre><code>  write (myunit, myformat, end = 999, err = 998, iostat = ierr, iomsg = msg) ..</code></pre>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>  <span class="fu">write (</span>myunit, myformat, <span class="fu">end</span> <span class="kw">=</span> <span class="dv">999</span>, <span class="fu">err</span> <span class="kw">=</span> <span class="dv">998</span>, <span class="fu">iostat</span> <span class="kw">=</span> ierr, iomsg <span class="kw">=</span> msg<span class="fu">)</span> ..</span></code></pre>
+</div>
 <ul><li>
 <code>end</code>: label in same scope to which control is
 transferred on end-of-file;</li>
@@ -765,15 +793,23 @@ format conversion) or zero on success;</li>
 <code>iomsg</code>: should return a useful message on error.</li>
 </ul><p>The two negative <code>iostat</code> cases can be distinguished via
 calls to the intrinsic functions</p>
-<pre><code><span>  <span class="fu">is_iostat_end</span><span class="op">(</span><span class="va">ierr</span><span class="op">)</span></span>
-<span>  <span class="fu">is_iostat_eor</span><span class="op">(</span><span class="va">ierr</span><span class="op">)</span></span></code></pre>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>  is_iostat_<span class="kw">end</span>(ierr)</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  is_iostat_eor(ierr)</span></code></pre>
+</div>
 </div>
 </section><section><h2 class="section-heading" id="stop-statement">
 <code>stop</code> statement<a class="anchor" aria-label="anchor" href="#stop-statement"></a></h2>
 <hr class="half-width"><p>If one really can’t continue, then execution can be terminated
 immediately via the <code>stop</code> statement. This has an optional
 message string argument.</p>
-<pre><code>  stop "Cannot continue"</code></pre>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>  <span class="kw">stop</span> <span class="st">"Cannot continue"</span></span></code></pre>
+</div>
 <p>In general one should try to recover by returning control to the
 caller, so <code>stop</code> is a last resort.</p>
 </section><section><h2 class="section-heading" id="moving-around-an-open-file">Moving around an open file<a class="anchor" aria-label="anchor" href="#moving-around-an-open-file"></a></h2>
@@ -781,11 +817,19 @@ caller, so <code>stop</code> is a last resort.</p>
 file so that a given record can be read (or written) more than once.
 This can be done using <code>backspace()</code> with the relevant unit
 number. Formally</p>
-<pre><code>  backspace([unit = ] unit-number [, iostat = iostat] [, err = label])</code></pre>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>  <span class="fu">backspace(</span><span class="kw">[</span><span class="fu">unit</span> <span class="kw">=</span> <span class="kw">]</span> <span class="fu">unit</span><span class="kw">-</span><span class="fu">number</span> <span class="kw">[</span>, <span class="fu">iostat</span> <span class="kw">=</span> <span class="fu">iostat</span><span class="kw">]</span> <span class="kw">[</span>, <span class="fu">err</span> <span class="kw">=</span> label<span class="kw">]</span><span class="fu">)</span></span></code></pre>
+</div>
 <p>This steps back one record.</p>
 <p>It is also possible to reposition to the beginning of the file, again
 with the relevant connected unit number using <code>rewind()</code>.</p>
-<pre><code>  rewind([unit = ] unit-number [, iostat = iostat] [, err = label])</code></pre>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>  <span class="fu">rewind(</span><span class="kw">[</span><span class="fu">unit</span> <span class="kw">=</span> <span class="kw">]</span> <span class="fu">unit</span><span class="kw">-</span><span class="fu">number</span> <span class="kw">[</span>, <span class="fu">iostat</span> <span class="kw">=</span> <span class="fu">iostat</span><span class="kw">]</span> <span class="kw">[</span>, <span class="fu">err</span> <span class="kw">=</span> label<span class="kw">]</span><span class="fu">)</span></span></code></pre>
+</div>
 </section><section><h2 class="section-heading" id="exercise-20-minutes">Exercise (20 minutes)<a class="anchor" aria-label="anchor" href="#exercise-20-minutes"></a></h2>
 <hr class="half-width"><div id="writing-a-simple-image" class="callout challenge">
 <div class="callout-square">
@@ -910,7 +954,7 @@ returned message.</li>
   "url": "https://welucas2.github.io/2026-02-18-MO-Fortran-intro/instructor/13-IO.html",
   "identifier": "https://welucas2.github.io/2026-02-18-MO-Fortran-intro/instructor/13-IO.html",
   "dateCreated": "2025-05-05",
-  "dateModified": "2026-02-06",
+  "dateModified": "2026-02-13",
   "datePublished": "2026-02-13"
 }
 

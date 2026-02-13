@@ -3104,7 +3104,7 @@ check the compilation errors and improve the program.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The first assignment given above is ambiguous. Is <code>d</code> a
 scalar variable, or an entire array? The second assignment is clearly on
@@ -3289,7 +3289,7 @@ you reasonably introduce?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>A sample solution is provided in <a href="../files/exercises/06-array-expressions/solutions/solution.f90">solution.f90</a>.</p>
 </div>
@@ -4052,7 +4052,7 @@ elsewhere.</li>
 </div>
 </section></section><section id="aio-09-functions-subroutines"><p>Content from <a href="09-functions-subroutines.html">Functions and subroutines</a></p>
 <hr>
-<p>Last updated on 2026-02-06 |
+<p>Last updated on 2026-02-13 |
 
         <a href="https://github.com/welucas2/2026-02-18-MO-Fortran-intro/edit/main/episodes/09-functions-subroutines.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 20 minutes</p>
@@ -4097,12 +4097,20 @@ their read and write permissions within the procedure.</li>
 of context. A function returns a result and is generally used where it
 is best invoked as part of an expression or assignment,
 schematically:</p>
-<pre><code><span>  <span class="va">value</span> <span class="op">=</span> <span class="fu">my_function</span><span class="op">(</span><span class="va">arg1</span>, <span class="va">arg2</span>, <span class="va">...</span><span class="op">)</span></span></code></pre>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>  value <span class="kw">=</span> my_function(arg1, arg2, ...)</span></code></pre>
+</div>
 <p>Unlike C, it is not possible simply to discard a function result. A
 subroutine, by contrast, does not return a result (it may be thought of
 as a <code>void</code> function in C terms), but it is also invoked
 differently:</p>
-<pre><code>  call my_subroutine(arg1, arg2, ...)</code></pre>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>  <span class="kw">call</span> my_subroutine(arg1, arg2, ...)</span></code></pre>
+</div>
 <p>Subroutines are generally used to express more lengthy
 algorithms.</p>
 <p>Note that in the calling context, the arguments <code>arg1</code>,
@@ -4124,13 +4132,17 @@ entry, and may also be updated by the procedure;</li>
 <p>These three cases may be encoded in the declarations of the dummy
 arguments of a procedure via the <code>intent</code> attribute . For
 example:</p>
-<pre><code>  subroutine print_x(x)
-
-    real, intent(in) :: x
-
-    print *, "The value of x is: ", x
-
-  end subroutine print_x</code></pre>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>  <span class="kw">subroutine</span> print_x(x)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>    <span class="dt">real</span>, <span class="dt">intent(in)</span> <span class="dt">::</span> x</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>    <span class="fu">print</span> <span class="kw">*</span>, <span class="st">"The value of x is: "</span>, x</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>  <span class="kw">end subroutine</span> print_x</span></code></pre>
+</div>
 <p>Here, dummy argument <code>x</code> has <code>intent(in)</code> which
 tells the compiler that any attempt to modify the value is erroneous (a
 compiler error will result). This is different from C, where a change to
@@ -4155,22 +4167,30 @@ passed to it, unless prevented by having <code>intent(in)</code>.</p>
 </div>
 <p>If one wants to alter the existing value of the argument,
 <code>intent(inout)</code> is appropriate:</p>
-<pre><code>  subroutine increment_x(x)
-
-    real, intent(inout) :: x
-
-    x = x + 1.0
-
-  end subroutine increment_x</code></pre>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>  <span class="kw">subroutine</span> increment_x(x)</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>    <span class="dt">real</span>, <span class="dt">intent(inout)</span> <span class="dt">::</span> x</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>    x <span class="kw">=</span> x <span class="kw">+</span> <span class="fl">1.0</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>  <span class="kw">end subroutine</span> increment_x</span></code></pre>
+</div>
 <p>If the dummy argument is undefined on entry, or has a value which is
 simply to be overwritten, use <code>intent(out)</code>, e.g.:</p>
-<pre><code>  subroutine assign_x(x)
-
-    real, intent(out) :: x
-
-    x = 1.0
-
-  end subroutine assign_x</code></pre>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>  <span class="kw">subroutine</span> assign_x(x)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>    <span class="dt">real</span>, <span class="dt">intent(out)</span> <span class="dt">::</span> x</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>    x <span class="kw">=</span> <span class="fl">1.0</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>  <span class="kw">end subroutine</span> assign_x</span></code></pre>
+</div>
 <p>The <code>intent</code> attribute, as well as allowing the compiler
 to detect inadvertent errors, provides some useful documentation for the
 reader.</p>
@@ -4223,27 +4243,39 @@ arguments in <a href="../files/exercises/09-functions-subroutines/module1.f90">m
 </h2>
 <hr class="half-width">
 <p>A function may be defined as:</p>
-<pre><code>function my_mapping(value) result(a)
-
-  real, intent(in) :: value
-  real             :: a
-
-  a = ...
-
-end function my_mapping</code></pre>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="kw">function</span> my_mapping(value) <span class="kw">result</span>(a)</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="dt">real</span>, <span class="dt">intent(in)</span> <span class="dt">::</span> value</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  <span class="dt">real</span>             <span class="dt">::</span> a</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>  a <span class="kw">=</span> ...</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="kw">end function</span> my_mapping</span></code></pre>
+</div>
 <p>Formally,</p>
-<pre><code>[prefix] function function-name (dummy-arg-list) [suffix]
-  [ specification-part ]
-  [ executable-part ]
-end [ function [function-name] ]</code></pre>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="kw">[</span>prefix<span class="kw">]</span> <span class="kw">function</span> <span class="kw">function-</span>name (dummy<span class="kw">-</span>arg<span class="kw">-</span>list) <span class="kw">[</span>suffix<span class="kw">]</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  <span class="kw">[</span> specification<span class="kw">-</span>part <span class="kw">]</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="kw">[</span> executable<span class="kw">-</span>part <span class="kw">]</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="kw">end</span> <span class="kw">[</span> <span class="kw">function</span> <span class="kw">[function-</span>name<span class="kw">]</span> <span class="kw">]</span></span></code></pre>
+</div>
 <p>As ever, there is some elasticity in the exact form of the
 declarations you may see. In particular, older versions did not have the
 <code>result()</code> suffix, and the <em>function-name</em> was used as
-the variable to which the return value was assigned. E.g.,</p>
-<pre><code>real function length(area)
-  real area
-  length = sqrt(area)
-end function length</code></pre>
+the variable to which the return value was assigned. <em>E.g.</em>,</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="dt">real</span> <span class="kw">function</span> length(area)</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  <span class="dt">real</span> area</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  length <span class="kw">=</span> <span class="bu">sqrt</span>(area)</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="kw">end function</span> length</span></code></pre>
+</div>
 <p>The modern form should be preferred; the <code>result()</code> part
 allows the two names to be decoupled.</p>
 <div class="section level3">
@@ -4252,7 +4284,7 @@ allows the two names to be decoupled.</p>
 </h3>
 <p>Procedures which have no side effects may be declared with the
 <code>pure</code> prefix; this may provide useful information to the
-compiler in some circumstances. E.g.,</p>
+compiler in some circumstances. <em>E.g.</em>,</p>
 <pre><code>pure function special_function(x) result(y)
   real, intent(in) :: x
   ! ...
@@ -4272,11 +4304,15 @@ variables with <code>save</code> attribute);</li>
 <code>recursive</code> procedures<a class="anchor" aria-label="anchor" href="#recursive-procedures"></a>
 </h3>
 <p>If recursion is required, a procedure must be declared with the
-<code>recursive</code> prefix. E.g.,</p>
-<pre><code>recursive function fibonacci(n) result(nf)
-  ! ... implementation...
-  nf = fibonacci(n-1) + fibonacci(n-2)
-end function fibonacci</code></pre>
+<code>recursive</code> prefix. <em>E.g.</em>,</p>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="kw">recursive</span> <span class="kw">function</span> fibonacci(n) <span class="kw">result</span>(nf)</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>  <span class="co">! ... implementation...</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>  nf <span class="kw">=</span> fibonacci(n<span class="kw">-</span><span class="dv">1</span>) <span class="kw">+</span> fibonacci(n<span class="kw">-</span><span class="dv">2</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="kw">end function</span> fibonacci</span></code></pre>
+</div>
 <p>Such a declaration must be included for both types of recursion:
 direct (a procedure calling itself) and indirect (a procedure calling
 another which in turn calls the first).</p>
@@ -4286,10 +4322,14 @@ another which in turn calls the first).</p>
 <hr class="half-width">
 <p>Subroutines follow the same rules as functions, except that there is
 no <code>result()</code> suffix specification:</p>
-<pre><code>[prefix] subroutine subroutine-name (dummy-arg-list)
-  [ specification-part ]
-  [ executable-part ]
-end [ subroutine [subroutine-name] ]</code></pre>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="kw">[</span>prefix<span class="kw">]</span> <span class="kw">subroutine</span> <span class="kw">subroutine-</span>name (dummy<span class="kw">-</span>arg<span class="kw">-</span>list)</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>  <span class="kw">[</span> specification<span class="kw">-</span>part <span class="kw">]</span></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>  <span class="kw">[</span> executable<span class="kw">-</span>part <span class="kw">]</span></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="kw">end</span> <span class="kw">[</span> <span class="kw">subroutine</span> <span class="kw">[subroutine-</span>name<span class="kw">]</span> <span class="kw">]</span></span></code></pre>
+</div>
 <div class="section level3">
 <h3 id="return-statement">
 <code>return</code> statement<a class="anchor" aria-label="anchor" href="#return-statement"></a>
@@ -4374,7 +4414,7 @@ module file.</li>
 </div>
 </section></section><section id="aio-10-dummy-array-arguments"><p>Content from <a href="10-dummy-array-arguments.html">More on array dummy arguments</a></p>
 <hr>
-<p>Last updated on 2026-02-06 |
+<p>Last updated on 2026-02-13 |
 
         <a href="https://github.com/welucas2/2026-02-18-MO-Fortran-intro/edit/main/episodes/10-dummy-array-arguments.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 20 minutes</p>
@@ -4426,11 +4466,15 @@ the procedure to know about its shape.</p>
 </h3>
 <p>One is entitled to make explicit the shape of an array in a procedure
 definition, e.g.,</p>
-<pre><code>  subroutine array_action1(nmax, a)
-    integer, intent(in)                    :: nmax
-    real, dimension(1:nmax), intent(inout) :: a
-    ...
-  end subroutine array_action1</code></pre>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>  <span class="kw">subroutine</span> array_action1(nmax, a)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>    <span class="dt">integer</span>, <span class="dt">intent(in)</span>                    <span class="dt">::</span> nmax</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>    <span class="dt">real</span>, <span class="dt">dimension(1:nmax)</span>, <span class="dt">intent(inout)</span> <span class="dt">::</span> a</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>    ...</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>  <span class="kw">end subroutine</span> array_action1</span></code></pre>
+</div>
 <p>and similarly for arrays of higher rank. As before, if the lower
 bound of the array is unspecified, it takes on the default value of
 <code>1</code>.</p>
@@ -4440,11 +4484,15 @@ bound of the array is unspecified, it takes on the default value of
 </h3>
 <p>However, it may be more desirable to leave the exact shape implicit
 in the array itself, e.g.,</p>
-<pre><code>  subroutine array_action2(a, b)
-    real, dimension(:,:), intent(in   ) :: a
-    real, dimension(:,:), intent(inout) :: b
-    ...
-  end subroutine array_action2</code></pre>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>  <span class="kw">subroutine</span> array_action2(a, b)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>    <span class="dt">real</span>, <span class="dt">dimension(:,:)</span>, <span class="dt">intent(in)</span> <span class="dt">::</span> a</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>    <span class="dt">real</span>, <span class="dt">dimension(:,:)</span>, <span class="dt">intent(inout)</span> <span class="dt">::</span> b</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>    ...</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>  <span class="kw">end subroutine</span> array_action2</span></code></pre>
+</div>
 <p>Note that the rank is always explicit.</p>
 <p>There are pros and cons to this: it is slightly more concise and
 general, but some care may need to be exercised with the distinction
@@ -4477,11 +4525,15 @@ each dimension.</p>
 rank one array which is the relevant bound in each dimension. The
 optional argument <code>dim</code> can be used to obtain the bound in
 the corresponding rank or dimension e.g.,</p>
-<pre><code>  real, dimension(:,:), intent(in) :: a
-  integer :: lb1, lb2
-
-  lb1 = lbound(a, dim = 1)  ! lower bound in first dimension
-  lb2 = ubound(a, dim = 2)  ! upper bound in second dimension</code></pre>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>  <span class="dt">real</span>, <span class="dt">dimension(:,:)</span>, <span class="dt">intent(in)</span> <span class="dt">::</span> a</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>  <span class="dt">integer</span> <span class="dt">::</span> lb1, lb2</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>  lb1 <span class="kw">=</span> <span class="fu">lbound</span>(a, <span class="bu">dim</span> <span class="kw">=</span> <span class="dv">1</span>)  <span class="co">! lower bound in first dimension</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>  lb2 <span class="kw">=</span> <span class="fu">ubound</span>(a, <span class="bu">dim</span> <span class="kw">=</span> <span class="dv">2</span>)  <span class="co">! upper bound in second dimension</span></span></code></pre>
+</div>
 </div>
 <div class="section level3">
 <h3 id="exercise-4-minutes">Exercise (4 minutes)<a class="anchor" aria-label="anchor" href="#exercise-4-minutes"></a>
@@ -4509,14 +4561,18 @@ are available?</p>
 </h3>
 <p>One is allowed to bring into existence `automatic’ arrays on the
 stack. These are usually related to temporary workspace, e.g.,</p>
-<pre><code>subroutine array_swap1(a, b)
-  integer, dimension(:), intent(inout) :: a, b
-  integer, dimension(size(a))          :: tmp
-
-  tmp(:) = a(:)
-  a(:)   = b(:)
-  b(:)   = tmp(:)
-end subroutine array_swap1</code></pre>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="kw">subroutine</span> array_swap1(a, b)</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">dimension(:)</span>, <span class="dt">intent(inout)</span> <span class="dt">::</span> a, b</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">dimension(size(a))</span>          <span class="dt">::</span> tmp</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>  tmp(:) <span class="kw">=</span> a(:)</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>  a(:)   <span class="kw">=</span> b(:)</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>  b(:)   <span class="kw">=</span> tmp(:)</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="kw">end subroutine</span> array_swap1</span></code></pre>
+</div>
 <p>In this example, the same effect could have been achieved using a
 loop and a temporary scalar.</p>
 </div>
@@ -4525,14 +4581,18 @@ loop and a temporary scalar.</p>
 </h3>
 <p>It may occasionally be appropriate to have a dummy argument with both
 an intent and <code>allocatable</code> attribute.</p>
-<pre><code>  subroutine my_storage(lb, ub, a)
-
-    integer, intent(in) :: lb, ub
-    integer, dimension(:), allocatable, intent(out) :: a
-
-    allocate(a(lb:ub))
-
-  end subroutine my_storage</code></pre>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>  <span class="kw">subroutine</span> my_storage(lb, ub, a)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>    <span class="dt">integer</span>, <span class="dt">intent(in)</span> <span class="dt">::</span> lb, ub</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>    <span class="dt">integer</span>, <span class="dt">dimension(:)</span>, <span class="dt">allocatable</span>, <span class="dt">intent(out)</span> <span class="dt">::</span> a</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>    <span class="kw">allocate</span>(a(lb:ub))</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>  <span class="kw">end subroutine</span> my_storage</span></code></pre>
+</div>
 <p>There are a number of conditions to such usage.</p>
 <ol style="list-style-type: decimal">
 <li>The corresponding actual argument must also be allocatable (and have
@@ -4555,17 +4615,25 @@ evaluated.</p>
 <p>We have encountered a number of intrinsic procedures with optional
 dummy arguments. Such procedures may be constructed with the
 <code>optional</code> attribute for a dummy argument, e.g.:</p>
-<pre><code>  subroutine do_something(a, flag, ierr)
-    integer, intent(in)            :: a
-    logical, intent(in),  optional :: flag
-    integer, intent(out), optional :: ierr
-
-  end subroutine do_something</code></pre>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>  <span class="kw">subroutine</span> do_something(a, flag, ierr)</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>    <span class="dt">integer</span>, <span class="dt">intent(in)</span>            <span class="dt">::</span> a</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>    <span class="dt">logical</span>, <span class="dt">intent(in)</span>,  <span class="dt">optional</span> <span class="dt">::</span> flag</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>    <span class="dt">integer</span>, <span class="dt">intent(out)</span>, <span class="dt">optional</span> <span class="dt">::</span> ierr</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>  <span class="kw">end subroutine</span> do_something</span></code></pre>
+</div>
 <p>Any operations on such optional arguments should guard against the
 possibility that the corresponding actual argument was not present using
 the intrinsic function <code>present()</code>. E.g.,</p>
-<pre><code><span>  <span class="va">local_flag</span> <span class="op">=</span> <span class="va">some_default_value</span></span>
-<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu">present</span><span class="op">(</span><span class="va">flag</span><span class="op">)</span><span class="op">)</span> <span class="va">local_flag</span> <span class="op">=</span> <span class="va">flag</span></span></code></pre>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>  local_flag <span class="kw">=</span> some_default_value</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  <span class="kw">if</span> (<span class="fu">present</span>(flag)) local_flag <span class="kw">=</span> flag</span></code></pre>
+</div>
 <p>Any attempt to reference a missing optional argument will generate an
 error.</p>
 <p>The one exception is that an optional argument may be passed directly
@@ -4578,7 +4646,11 @@ argument is also optional.</p>
 (non-optional) dummy arguments, and optional arguments. These may be
 mixed via the use of keywords, which are the dummy argument name. E.g.,
 using the subroutine defined above:,</p>
-<pre><code>  call do_something(a, ierr = my_error_var)</code></pre>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>  <span class="kw">call</span> do_something(a, ierr <span class="kw">=</span> my_error_var)</span></code></pre>
+</div>
 <p>Here, <code>a</code> is appearing as a conventional positional
 argument, while a keyword argument is used to select the appropriate
 optional argument <code>ierr</code>. The rules are:</p>
@@ -4603,7 +4675,11 @@ most once.</li>
 <p>Consider again the problem of the tri-diagonal matrix.</p>
 <p>Refactor your existing stand-alone program (or use the template <a href="../files/exercises/10-dummy-array-arguments/exercise.f90">exercise.f90</a>)
 to provide a module subroutine such as</p>
-<pre><code>  subroutine tridiagonal_solve(b, a, c, rhs, x)</code></pre>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>  <span class="kw">subroutine</span> tridiagonal_solve(b, a, c, rhs, x)</span></code></pre>
+</div>
 <p>where <code>b</code>, <code>a</code>, and <code>c</code> are arrays
 of the relevant extent to represent the diagonal elements, the lower
 diagonal elements and the upper diagonal elements respectively. Use the
@@ -4677,7 +4753,7 @@ keyword argument.</li>
         </div>
 <p>Comfort break.</p></section><section id="aio-11-characters-strings"><p>Content from <a href="11-characters-strings.html">More on characters and strings</a></p>
 <hr>
-<p>Last updated on 2026-02-06 |
+<p>Last updated on 2026-02-13 |
 
         <a href="https://github.com/welucas2/2026-02-18-MO-Fortran-intro/edit/main/episodes/11-characters-strings.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 20 minutes</p>
@@ -4723,16 +4799,24 @@ results.</li>
 </h3>
 <p>The meaning of relational operators <code>==</code> and so on in the
 context of characters is largely what one would expect from the standard
-ASCII sequence. E.g.,</p>
-<pre><code>   "A" &lt;  "b"      ! true
-   "A" == "a"      ! false
-   "A" /= "]"      ! true</code></pre>
+ASCII sequence. <em>E.g.</em>,</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>   <span class="st">"A"</span> <span class="op">&lt;</span>  <span class="st">"b"</span>      <span class="co">! true</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>   <span class="st">"A"</span> <span class="op">==</span> <span class="st">"a"</span>      <span class="co">! false</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>   <span class="st">"A"</span> <span class="op">/=</span> <span class="st">"]"</span>      <span class="co">! true</span></span></code></pre>
+</div>
 <p>Note the ordinal position of a single character in the ASCII sequence
-can be found via an intrinsic function, e.g.:</p>
-<pre><code>   integer             :: i
-   character (len = 1) :: c
-   i = iachar("A")           ! i = 65
-   c = achar(i)              ! c = "A"; requires 1 &lt;= i &lt;= 127</code></pre>
+can be found via an intrinsic function, <em>e.g.</em>:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>   <span class="dt">integer</span>             <span class="dt">::</span> i</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>   <span class="dt">character (len = 1)</span> <span class="dt">::</span> c</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>   i <span class="kw">=</span> <span class="bu">iachar</span>(<span class="st">"A"</span>)           <span class="co">! i = 65</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>   c <span class="kw">=</span> <span class="bu">achar</span>(i)              <span class="co">! c = "A"; requires 1 &lt;= i &lt;= 127</span></span></code></pre>
+</div>
 <p>Remember that in ASCII the upper case characters <code>A</code> to
 <code>Z</code> have integer values 65 to 90, while the lower case
 characters <code>a</code> to <code>z</code> have integer values 97 to
@@ -4751,15 +4835,27 @@ blanks.</p>
 To actually remove the trailing blanks, use <code>trim()</code>. This is
 often seen when concatenating fixed-length character strings using the
 <code>//</code> operator:</p>
-<pre><code>  print *, "File name: ", trim(file_stub)//"."//trim(extension)</code></pre>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>  <span class="fu">print</span> <span class="kw">*</span>, <span class="st">"File name: "</span>, <span class="fu">trim</span>(file_stub)<span class="kw">//</span><span class="st">"."</span><span class="kw">//</span><span class="fu">trim</span>(extension)</span></code></pre>
+</div>
 <p>It’s also useful if you want to perform an operation on each
-individual character, e.g.,</p>
-<pre><code>  do n = 1, len_trim(string)
-    if (string(n:n) == 'a') counta = counta + 1
-  end do</code></pre>
+individual character, <em>e.g.</em>,</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>  <span class="kw">do</span> n <span class="kw">=</span> <span class="dv">1</span>, <span class="bu">len_trim</span>(string)</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>    <span class="kw">if</span> (string(n:n) <span class="op">==</span> <span class="st">'a'</span>) counta <span class="kw">=</span> counta <span class="kw">+</span> <span class="dv">1</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="kw">end do</span></span></code></pre>
+</div>
 <p>Note that the colon is mandatory in a sub-string reference, so a
-single character must be referenced, e.g.,</p>
-<pre><code>   print *, "Character at position i: ", string(i:i)</code></pre>
+single character must be referenced, <em>e.g.</em>,</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>   <span class="fu">print</span> <span class="kw">*</span>, <span class="st">"Character at position i: "</span>, string(i:i)</span></code></pre>
+</div>
 <p>Various other intrinsic functions exist for lexical comparisons,
 justification, sub-string searches, and so on.</p>
 </div>
@@ -4768,37 +4864,58 @@ justification, sub-string searches, and so on.</p>
 <hr class="half-width">
 <p>The easiest way to provide a string which can be manipulated on a
 flexible basis is the deferred length <code>character</code>:</p>
-<pre><code>  character (len = :), allocatable :: string
-
-  string = "ABCD"         ! Allocate and assign string
-  string = "ABCDEFG"      ! Reallocate and assign again
-
-  string(:) = ''          ! Keep same allocation, but set all blanks</code></pre>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>  <span class="dt">character (len = :)</span>, <span class="dt">allocatable</span> <span class="dt">::</span> string</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  string <span class="kw">=</span> <span class="st">"ABCD"</span>         <span class="co">! Allocate and assign string</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  string <span class="kw">=</span> <span class="st">"ABCDEFG"</span>      <span class="co">! Reallocate and assign again</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>  string(:) <span class="kw">=</span> <span class="st">''</span>          <span class="co">! Keep same allocation, but set all blanks</span></span></code></pre>
+</div>
 <p>This may be initialised and updated in a general way, and the run
 time will keep track of book-keeping. This also (usually) reduces
 occurrences of trailing blanks.</p>
 <p>If an allocation is required for which only the length is known
 (e.g., there is no literal string involved), the following form of
 allocation is required:</p>
-<pre><code>  integer :: mylen
-  character (len = :), allocatable :: string
-
-  ! ... establish value of mylen ...
-
-  allocate(character(len = mylen) :: string)</code></pre>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>  <span class="dt">integer</span> <span class="dt">::</span> mylen</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  <span class="dt">character (len = :)</span>, <span class="dt">allocatable</span> <span class="dt">::</span> string</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>  <span class="co">! ... establish value of mylen ...</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>  <span class="kw">allocate</span>(<span class="dt">character(len = mylen)</span> <span class="dt">::</span> string)</span></code></pre>
+</div>
 <p>Allocatable strings will automatically be deallocated when they go
 out of scope and are no longer required. One can also be explicit:</p>
-<pre><code><span>  <span class="fu">deallocate</span><span class="op">(</span><span class="va">string</span><span class="op">)</span></span></code></pre>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>  <span class="kw">deallocate</span>(string)</span></code></pre>
+</div>
 <p>if wanted.</p>
 </section><section><h2 class="section-heading" id="arrays-of-strings">Arrays of strings<a class="anchor" aria-label="anchor" href="#arrays-of-strings"></a>
 </h2>
 <hr class="half-width">
-<p>We have seen that we can define a fixed length parameter, e.g.,:</p>
-<pre><code>  character (len = *), parameter :: day = "Sunday"</code></pre>
+<p>We have seen that we can define a fixed length parameter,
+<em>e.g.</em>,:</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>  <span class="dt">character (len = *)</span>, <span class="dt">parameter</span> <span class="dt">::</span> day <span class="kw">=</span> <span class="st">"Sunday"</span></span></code></pre>
+</div>
 <p>Suppose we wanted an array of strings for “Sunday”, “Monday”,
 “Tuesday”, and so on. One might be tempted to try something of the
 form:</p>
-<pre><code>  character (len = *), dimension(7), parameter :: days = [ ... ]</code></pre>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>  <span class="dt">character (len = *)</span>, <span class="dt">dimension(7)</span>, <span class="dt">parameter</span> <span class="dt">::</span> days <span class="kw">=</span> <span class="kw">[</span> ... <span class="kw">]</span></span></code></pre>
+</div>
 <div class="section level3">
 <h3 id="exercise-2-minutes">Exercise (2 minutes)<a class="anchor" aria-label="anchor" href="#exercise-2-minutes"></a>
 </h3>
@@ -4806,7 +4923,11 @@ form:</p>
 <p>The are a number of solutions to this issue. One could try to pad the
 lengths of each array element to be the same length. A better way is to
 use a constructor with a type specification:</p>
-<pre><code>[character (len = 9) :: "Sunday", "Monday", "Tuesday", "Wednesday", ...]</code></pre>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="kw">[</span><span class="dt">character (len = 9)</span> <span class="dt">::</span> <span class="st">"Sunday"</span>, <span class="st">"Monday"</span>, <span class="st">"Tuesday"</span>, <span class="st">"Wednesday"</span>, ...<span class="kw">]</span></span></code></pre>
+</div>
 <p>Here the type specification is used to avoid ambiguity in how the
 list is to be interpreted.</p>
 <p>Check you can make this adjustment to <a href="../files/exercises/11-characters-strings/example3.f90">example3.f90</a>.</p>
@@ -4816,20 +4937,28 @@ list is to be interpreted.</p>
 <hr class="half-width">
 <p>If a character variable has intent <code>in</code> in the context of
 a procedure, it typically may be declared:</p>
-<pre><code>  subroutine some_character_operation(carg1, ...)
-
-     character (len = *), intent(in) :: arg1
-     ...</code></pre>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>  <span class="kw">subroutine</span> some_character_operation(carg1, ...)</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="bu">     c</span>haracter (<span class="fu">len</span> <span class="kw">=</span> <span class="kw">*</span>), <span class="dt">intent(in)</span> <span class="dt">::</span> arg1</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="bu">     .</span>..</span></code></pre>
+</div>
 <p>This is also appropriate for character variables of intent
 <code>inout</code> where the length does not change.</p>
 <p>For all other cases, use of deferred length allocatable characters is
-recommended. E.g.,</p>
-<pre><code>  function build_filename(stub, extension) result(filename)
-
-    character (len = *), intent(in)  :: stub
-    character (len = *), intent(in)  :: extension
-    character (len = :), allocatable :: filenane
-    ...</code></pre>
+recommended. <em>E.g.</em>,</p>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>  <span class="kw">function</span> build_filename(stub, extension) <span class="kw">result</span>(filename)</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>    <span class="dt">character (len = *)</span>, <span class="dt">intent(in)</span>  <span class="dt">::</span> stub</span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>    <span class="dt">character (len = *)</span>, <span class="dt">intent(in)</span>  <span class="dt">::</span> extension</span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>    <span class="dt">character (len = :)</span>, <span class="dt">allocatable</span> <span class="dt">::</span> filenane</span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>    ...</span></code></pre>
+</div>
 <p>A matching declaration in the caller is required.</p>
 </section><section><h2 class="section-heading" id="exercise-10-minutes">Exercise (10 minutes)<a class="anchor" aria-label="anchor" href="#exercise-10-minutes"></a>
 </h2>
@@ -4857,7 +4986,7 @@ and <a href="../files/exercises/11-characters-strings/exercise_program1.f90">exe
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>A solution to the exercise can be found in <a href="../files/exercises/11-characters-strings/solutions/solution_program1.f90">solution_program1.f90</a>
 and <a href="../files/exercises/11-characters-strings/solutions/solution_module1.f90">solution_module1.f90</a>.</p>
@@ -4886,7 +5015,7 @@ results.</li>
 </div>
 </section></section><section id="aio-12-read-write"><p>Content from <a href="12-read-write.html">Formats and edit descriptors</a></p>
 <hr>
-<p>Last updated on 2026-02-06 |
+<p>Last updated on 2026-02-13 |
 
         <a href="https://github.com/welucas2/2026-02-18-MO-Fortran-intro/edit/main/episodes/12-read-write.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 20 minutes</p>
@@ -4930,9 +5059,13 @@ various types we have encountered.</li>
 <hr class="half-width">
 <p>So far we have seen only output (via either <code>print</code> or
 <code>write</code>). Input is via the <code>read</code> statement.</p>
-<pre><code>  use :: iso_fortran_env
-  ...
-  read (unit = input_unit, fmt = *) var-io-list</code></pre>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>  <span class="kw">use</span> <span class="dt">::</span> iso_fortran_env</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>  ...</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>  <span class="fu">read (unit</span> <span class="kw">=</span> input_unit, <span class="fu">fmt</span> <span class="kw">=</span> <span class="fu">*)</span> var<span class="kw">-</span>io<span class="kw">-</span>list</span></code></pre>
+</div>
 <p>In very many respects, <code>read</code> looks much like
 <code>write</code>, in that it takes the same arguments, including unit
 number and format specifier. However, whereas <code>write</code> may
@@ -4948,10 +5081,14 @@ the variables which will store the incoming values.</p>
 <code>*</code> specifier, a format may be a string literal, a fixed
 character parameter, or a string constructed at run time. Some examples
 are:</p>
-<pre><code>   read (*, *) var             ! read using list-directed, or free format
-   print '(a)', "A string"     ! character literal '(a)'
-   write (*, myformat) var     ! character variable (or parameter)
-   write(unit = myunit) var    ! unformatted (no format)</code></pre>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>   <span class="fu">read (*</span>, <span class="fu">*)</span> var             <span class="co">! read using list-directed, or free format</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>   <span class="fu">print</span> <span class="st">'(a)'</span>, <span class="st">"A string"</span>     <span class="co">! character literal '(a)'</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>   <span class="fu">write (*</span>, myformat<span class="fu">)</span> var     <span class="co">! character variable (or parameter)</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>   <span class="fu">write(unit</span> <span class="kw">=</span> myunit<span class="fu">)</span> var    <span class="co">! unformatted (no format)</span></span></code></pre>
+</div>
 <p>Output with a format specifier, either string or <code>*</code>, is
 referred to as <em>formatted</em> I/O. This is to distinguish it from
 <em>unformatted</em> I/O; this is essentially a direct dump of the
@@ -4977,21 +5114,29 @@ some common examples of the three different types of descriptor.</p>
 <p>Data edit descriptors feature a single character describing the type
 data format wanted, and a literal integer part indicating the total
 field width, and number of decimals. These include</p>
-<pre><code>  iw        ! integer width w characters
-  fw.d      ! floating point number total width w and d decimal characters
-  ew.d      ! scientific notation with total width w and d decimal characters
-  aw        ! character string total width w</code></pre>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>  iw        <span class="co">! integer width w characters</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>  fw.d      <span class="co">! floating point number total width w and d decimal characters</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  ew.d      <span class="co">! scientific notation with total width w and d decimal characters</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>  aw        <span class="co">! character string total width w</span></span></code></pre>
+</div>
 <p>The width is the total width of the field, and must be wide enough to
 accommodate any leading signs, decimal points, or exponents. Where there
 is a <em>w.d</em> the <em>d</em> indicates the number of digits to
 appear after the decimal point.</p>
 <p>Data edit descriptors should correspond to the relevant item in the
 <em>io-list</em>, based on position. Some simple examples are:</p>
-<pre><code>  integer :: ivar = 40
-  real    :: avar = 40.0
-  print "(  i10)", ivar           ! produces "40" with 8 leading spaces
-  print "(f10.3)", avar           ! produces "40.000" with 4 leading spaces
-  print "(e10.3)", avar           ! produces "0.400e+02" with 1 leading space</code></pre>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>  <span class="dt">integer</span> <span class="dt">::</span> ivar <span class="kw">=</span> <span class="dv">40</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  <span class="dt">real</span>    <span class="dt">::</span> avar <span class="kw">=</span> <span class="fl">40.0</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="fu">print</span> <span class="st">"(  i10)"</span>, ivar           <span class="co">! produces "40" with 8 leading spaces</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  <span class="fu">print</span> <span class="st">"(f10.3)"</span>, avar           <span class="co">! produces "40.000" with 4 leading spaces</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>  <span class="fu">print</span> <span class="st">"(e10.3)"</span>, avar           <span class="co">! produces "0.400e+02" with 1 leading space</span></span></code></pre>
+</div>
 <p>For scientific notation, the exponent will appear either with two
 digits (“E+<em>dd</em>” or “E-<em>dd</em>”), or three digits for
 exponents greater than 99 (“+<em>ddd</em>” or “-<em>ddd</em>”).</p>
@@ -5006,7 +5151,11 @@ prefixes milli-, kilo-, mega-, and so on. There will be an appropriate
 movement in the decimal point.</p>
 <p>If an exponent greater than 999 is required, an optional
 <code>e</code> descriptor for the exponent itself is available:</p>
-<pre><code>  print "(e14.3e4)", avar         ! Use at least 4 digits in exponent</code></pre>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>  <span class="fu">print</span> <span class="st">"(e14.3e4)"</span>, avar         <span class="co">! Use at least 4 digits in exponent</span></span></code></pre>
+</div>
 <p>Note that an integer descriptor is allowed to be of the form
 <em>iw.d</em>, in which case leading zeros are added to pad to the width
 <em>w</em>, if required.</p>
@@ -5016,8 +5165,12 @@ movement in the decimal point.</p>
 </h3>
 <p>One can use a string literal as part of the edit descriptor itself,
 e.g.,</p>
-<pre><code>  real :: avar = 4.0
-  print "('This is the result: ', e14.7)", avar</code></pre>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>  <span class="dt">real</span> <span class="dt">::</span> avar <span class="kw">=</span> <span class="fl">4.0</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="fu">print</span> <span class="st">"('This is the result: ', e14.7)"</span>, avar</span></code></pre>
+</div>
 </div>
 <div class="section level3">
 <h3 id="control-edit-descriptors">Control edit descriptors<a class="anchor" aria-label="anchor" href="#control-edit-descriptors"></a>
@@ -5025,12 +5178,20 @@ e.g.,</p>
 <p>There are a number of these. They do not correspond to an item in the
 <em>io-list</em>, but alter the appearance of the output. The most
 common is <code>x</code> which introduces a space (or blank). E.g.,</p>
-<pre><code>   print "(i12,x,e12.6)", ivar, avar</code></pre>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>   <span class="fu">print</span> <span class="st">"(i12,x,e12.6)"</span>, ivar, avar</span></code></pre>
+</div>
 <p>This will ensure at least one space between the two items in the
 list.</p>
 <p>If a leading plus sign is wanted, use the <code>sp</code> control,
 e.g.:</p>
-<pre><code>  print "(sp,e12.6)", abs(avar)</code></pre>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>  <span class="fu">print</span> <span class="st">"(sp,e12.6)"</span>, <span class="bu">abs</span>(avar)</span></code></pre>
+</div>
 </div>
 <div class="section level3">
 <h3 id="exercise-2-minutes">Exercise (2 minutes)<a class="anchor" aria-label="anchor" href="#exercise-2-minutes"></a>
@@ -5100,10 +5261,14 @@ appropriate.</p>
 <p>For a larger number of items of the same type, it can be useful to
 specify a <em>repeat count</em>. Simply place the items to be repeated
 within parentheses and prefix a literal integer count to the format,
-e.g.:</p>
-<pre><code>   real, dimension(4) :: a = [ 1.0, 2.0, 3.0, 4.0]
-
-   print "(4(2x,e14.7))", a(1:4)</code></pre>
+<em>e.g.</em>:</p>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>   <span class="dt">real</span>, <span class="dt">dimension(4)</span> <span class="dt">::</span> a <span class="kw">=</span> <span class="kw">[</span> <span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">3.0</span>, <span class="fl">4.0</span><span class="kw">]</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>   <span class="fu">print</span> <span class="st">"(4(2x,e14.7))"</span>, a(<span class="dv">1</span>:<span class="dv">4</span>)</span></code></pre>
+</div>
 <p>Multiple subformats are comma-separated, much like the individual
 items, and subformats can also be nested. In this way, more complex
 formats can be constructed.</p>
@@ -5126,18 +5291,27 @@ although some implementations may only produce an <code>F</code>.</p>
 </h2>
 <hr class="half-width">
 <p>If no new line at all is wanted, one can use the
-<code>advance = no</code> argument to <code>write()</code>, e.g.:</p>
-<pre><code>  write (*, "('Input an integer: ')", advance = 'no')
-  read (*, *) ivar</code></pre>
+<code>advance = no</code> argument to <code>write()</code>,
+<em>e.g.</em>:</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>  <span class="fu">write (*</span>, <span class="st">"('Input an integer: ')"</span>, <span class="fu">advance</span> <span class="kw">=</span> <span class="st">'no'</span><span class="fu">)</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>  <span class="fu">read (*</span>, <span class="fu">*)</span> ivar</span></code></pre>
+</div>
 <p>Non-advancing output must not use list-directed I/O.</p>
 </section><section><h2 class="section-heading" id="statement-labels">Statement labels<a class="anchor" aria-label="anchor" href="#statement-labels"></a>
 </h2>
 <hr class="half-width">
 <p>Formally, a format specifier may also be a <em>statement label</em>.
 For example,</p>
-<pre><code>   write (unit = myunit, fmt = 100) ia, ib, c
-
-100 format(i3, i3, f14.7)</code></pre>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>   <span class="fu">write (unit</span> <span class="kw">=</span> myunit, <span class="fu">fmt</span> <span class="kw">=</span> <span class="dv">100</span><span class="fu">)</span> ia, ib, c</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="dv">100</span> <span class="fu">format(</span>i3, i3, f14.7<span class="fu">)</span></span></code></pre>
+</div>
 <p>Here, the statement at the line with label <code>100</code> is the
 <code>format</code> keyword, which may be used to define a format
 specifier. This is very common in older forms of Fortran. However, as
@@ -5212,7 +5386,7 @@ human readers.</li>
         </div>
 <p>Break for lunch.</p></section><section id="aio-13-IO"><p>Content from <a href="13-IO.html">Operations on external files</a></p>
 <hr>
-<p>Last updated on 2026-02-06 |
+<p>Last updated on 2026-02-13 |
 
         <a href="https://github.com/welucas2/2026-02-18-MO-Fortran-intro/edit/main/episodes/13-IO.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 40 minutes</p>
@@ -5262,23 +5436,31 @@ essential part of a useful application.</p>
 <p>File handles, or <em>unit numbers</em> are obtained using
 <code>open()</code>, and are used to direct the output of
 <code>write()</code> to the relevant file.</p>
-<pre><code>  integer :: myunit
-
-  open(newunit = myunit, file = 'filename.dat', form = 'formatted', &amp;
-       action = 'write', status = 'new')
-
-  write(unit = myunit, *) data1    ! write data first record
-  write(unit = myunit, *) data2    ! second record ... and so on
-
-  close(unit = myunit, status = 'keep')</code></pre>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>  <span class="dt">integer</span> <span class="dt">::</span> myunit</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>  <span class="fu">open(</span>newunit <span class="kw">=</span> myunit, <span class="fu">file</span> <span class="kw">=</span> <span class="st">'filename.dat'</span>, <span class="fu">form</span> <span class="kw">=</span> <span class="st">'formatted'</span>, <span class="kw">&amp;</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>       <span class="fu">action</span> <span class="kw">=</span> <span class="st">'write'</span>, <span class="fu">status</span> <span class="kw">=</span> <span class="st">'new'</span><span class="fu">)</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>  <span class="fu">write(unit</span> <span class="kw">=</span> myunit, <span class="fu">*)</span> data1    <span class="co">! write data first record</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>  <span class="fu">write(unit</span> <span class="kw">=</span> myunit, <span class="fu">*)</span> data2    <span class="co">! second record ... and so on</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>  <span class="fu">close(unit</span> <span class="kw">=</span> myunit, <span class="fu">status</span> <span class="kw">=</span> <span class="st">'keep'</span><span class="fu">)</span></span></code></pre>
+</div>
 <p>To read back the same data, we might use:</p>
-<pre><code>   open(newunit = myunit, file = 'filename.dat', form = 'formatted', &amp;
-        action = "read", status = "old")
-
-   read(unit = myunit, *) data1
-   read(unit = myunit, *) data2
-
-   close (unit = myunit, status = 'keep')</code></pre>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>   <span class="fu">open(</span>newunit <span class="kw">=</span> myunit, <span class="fu">file</span> <span class="kw">=</span> <span class="st">'filename.dat'</span>, <span class="fu">form</span> <span class="kw">=</span> <span class="st">'formatted'</span>, <span class="kw">&amp;</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>        <span class="fu">action</span> <span class="kw">=</span> <span class="st">"read"</span>, <span class="fu">status</span> <span class="kw">=</span> <span class="st">"old"</span><span class="fu">)</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>   <span class="fu">read(unit</span> <span class="kw">=</span> myunit, <span class="fu">*)</span> data1</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>   <span class="fu">read(unit</span> <span class="kw">=</span> myunit, <span class="fu">*)</span> data2</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>   <span class="fu">close (unit</span> <span class="kw">=</span> myunit, <span class="fu">status</span> <span class="kw">=</span> <span class="st">'keep'</span><span class="fu">)</span></span></code></pre>
+</div>
 <div class="section level3">
 <h3 id="unit-numbers">Unit numbers<a class="anchor" aria-label="anchor" href="#unit-numbers"></a>
 </h3>
@@ -5339,8 +5521,12 @@ default is <code>keep</code>, except for scratch files.</p>
 on the current state of either unit numbers or files. There are a large
 number of optional arguments. One common usage is to check whether a
 file exists:</p>
-<pre><code><span>  <span class="fu">logical</span> <span class="fu">::</span> <span class="va">exists</span></span>
-<span>  <span class="fu">inquire</span><span class="op">(</span> file <span class="op">=</span> <span class="st">'filename.dat'</span>, exist <span class="op">=</span> <span class="va">exists</span><span class="op">)</span></span></code></pre>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>  <span class="dt">logical</span> <span class="dt">::</span> exists</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>  <span class="fu">inquire(</span> <span class="fu">file</span> <span class="kw">=</span> <span class="st">'filename.dat'</span>, <span class="fu">exist</span> <span class="kw">=</span> exists<span class="fu">)</span></span></code></pre>
+</div>
 </section><section><h2 class="section-heading" id="internal-files">Internal files<a class="anchor" aria-label="anchor" href="#internal-files"></a>
 </h2>
 <hr class="half-width">
@@ -5348,10 +5534,14 @@ file exists:</p>
 generate a new string in memory (in the same way as <code>sprintf</code>
 in C). Fortran uses a so-called <em>internal file</em>, which is usually
 a character string. E.g.,</p>
-<pre><code>   character (len = 10) :: buffer
-   integer              :: ival
-   ...
-   read(buffer, fmt = "i10") ival</code></pre>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>   <span class="dt">character (len = 10)</span> <span class="dt">::</span> buffer</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>   <span class="dt">integer</span>              <span class="dt">::</span> ival</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>   ...</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>   <span class="fu">read(</span>buffer, <span class="fu">fmt</span> <span class="kw">=</span> <span class="st">"i10"</span><span class="fu">)</span> ival</span></code></pre>
+</div>
 <p>Here <code>buffer</code> takes the place of the input unit. This can
 be used, e.g., to create format strings at run time.</p>
 </section><section><h2 class="section-heading" id="recovery-from-errors">Recovery from errors<a class="anchor" aria-label="anchor" href="#recovery-from-errors"></a>
@@ -5361,25 +5551,29 @@ be used, e.g., to create format strings at run time.</p>
 formal exception mechanism in Fortran, some ability to recover is
 available.</p>
 <p>Consider the following schematic example:</p>
-<pre><code>subroutine read_my_file_format(myunit, ..., ierr)
-
-  integer, intent(in)   :: myunit
-  integer, intent(out)  :: ierr          ! error code
-
-  character (len = 256) :: msg
-
-  read (myunit, ..., err = 999, iomsg = msg) ...
-
-  ! Everything was ok
-  ierr = 0
-  return
-
-999 continue
-  ierr = -1
-  print *, "Error reading file: ", trim(msg)
-
-  return
-end subroutine real_my_file_format</code></pre>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="kw">subroutine</span> read_my_file_format(myunit, ..., ierr)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">intent(in)</span>   <span class="dt">::</span> myunit</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">intent(out)</span>  <span class="dt">::</span> ierr          <span class="co">! error code</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>  <span class="dt">character (len = 256)</span> <span class="dt">::</span> msg</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>  <span class="fu">read (</span>myunit, ..., <span class="fu">err</span> <span class="kw">=</span> <span class="dv">999</span>, iomsg <span class="kw">=</span> msg<span class="fu">)</span> ...</span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>  <span class="co">! Everything was ok</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>  ierr <span class="kw">=</span> <span class="dv">0</span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>  <span class="kw">return</span></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="dv">999</span> <span class="kw">continue</span></span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a>  ierr <span class="kw">=</span> <span class="kw">-</span><span class="dv">1</span></span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a>  <span class="fu">print</span> <span class="kw">*</span>, <span class="st">"Error reading file: "</span>, <span class="fu">trim</span>(msg)</span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a>  <span class="kw">return</span></span>
+<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a><span class="kw">end subroutine</span> real_my_file_format</span></code></pre>
+</div>
 <p>We assume the relevant file has been opened successfully, and is
 connected to unit number <code>myunit</code>. If an error occurs at the
 point of the read statement, the <code>err</code> argument directs
@@ -5395,10 +5589,14 @@ statement with intent out <code>ierr = 0</code>.</p>
 <p>Both <code>open</code> and <code>close</code> statements provide
 optional arguments for error handling, illustrated schematically here
 with <code>open()</code>:</p>
-<pre><code>  integer :: ierr
-  character (len = 128) :: msg
-
-  open( newunit = myunit, ..., err = 900, iostat = ierr, iomsg = msg)</code></pre>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>  <span class="dt">integer</span> <span class="dt">::</span> ierr</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="dt">character (len = 128)</span> <span class="dt">::</span> msg</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  <span class="fu">open(</span> newunit <span class="kw">=</span> myunit, ..., <span class="fu">err</span> <span class="kw">=</span> <span class="dv">900</span>, <span class="fu">iostat</span> <span class="kw">=</span> ierr, iomsg <span class="kw">=</span> msg<span class="fu">)</span></span></code></pre>
+</div>
 <ul>
 <li>
 <code>err</code>: is a label in the same scope to which control is
@@ -5422,7 +5620,11 @@ the message will be truncated or padded appropriately.</p>
 </h3>
 <p>Error handling facilities for <code>read()</code> and
 <code>write()</code> are similar, and are illustrated here:</p>
-<pre><code>  write (myunit, myformat, end = 999, err = 998, iostat = ierr, iomsg = msg) ..</code></pre>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>  <span class="fu">write (</span>myunit, myformat, <span class="fu">end</span> <span class="kw">=</span> <span class="dv">999</span>, <span class="fu">err</span> <span class="kw">=</span> <span class="dv">998</span>, <span class="fu">iostat</span> <span class="kw">=</span> ierr, iomsg <span class="kw">=</span> msg<span class="fu">)</span> ..</span></code></pre>
+</div>
 <ul>
 <li>
 <code>end</code>: label in same scope to which control is
@@ -5440,8 +5642,12 @@ format conversion) or zero on success;</li>
 </ul>
 <p>The two negative <code>iostat</code> cases can be distinguished via
 calls to the intrinsic functions</p>
-<pre><code><span>  <span class="fu">is_iostat_end</span><span class="op">(</span><span class="va">ierr</span><span class="op">)</span></span>
-<span>  <span class="fu">is_iostat_eor</span><span class="op">(</span><span class="va">ierr</span><span class="op">)</span></span></code></pre>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>  is_iostat_<span class="kw">end</span>(ierr)</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  is_iostat_eor(ierr)</span></code></pre>
+</div>
 </div>
 </section><section><h2 class="section-heading" id="stop-statement">
 <code>stop</code> statement<a class="anchor" aria-label="anchor" href="#stop-statement"></a>
@@ -5450,7 +5656,11 @@ calls to the intrinsic functions</p>
 <p>If one really can’t continue, then execution can be terminated
 immediately via the <code>stop</code> statement. This has an optional
 message string argument.</p>
-<pre><code>  stop "Cannot continue"</code></pre>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>  <span class="kw">stop</span> <span class="st">"Cannot continue"</span></span></code></pre>
+</div>
 <p>In general one should try to recover by returning control to the
 caller, so <code>stop</code> is a last resort.</p>
 </section><section><h2 class="section-heading" id="moving-around-an-open-file">Moving around an open file<a class="anchor" aria-label="anchor" href="#moving-around-an-open-file"></a>
@@ -5460,11 +5670,19 @@ caller, so <code>stop</code> is a last resort.</p>
 file so that a given record can be read (or written) more than once.
 This can be done using <code>backspace()</code> with the relevant unit
 number. Formally</p>
-<pre><code>  backspace([unit = ] unit-number [, iostat = iostat] [, err = label])</code></pre>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>  <span class="fu">backspace(</span><span class="kw">[</span><span class="fu">unit</span> <span class="kw">=</span> <span class="kw">]</span> <span class="fu">unit</span><span class="kw">-</span><span class="fu">number</span> <span class="kw">[</span>, <span class="fu">iostat</span> <span class="kw">=</span> <span class="fu">iostat</span><span class="kw">]</span> <span class="kw">[</span>, <span class="fu">err</span> <span class="kw">=</span> label<span class="kw">]</span><span class="fu">)</span></span></code></pre>
+</div>
 <p>This steps back one record.</p>
 <p>It is also possible to reposition to the beginning of the file, again
 with the relevant connected unit number using <code>rewind()</code>.</p>
-<pre><code>  rewind([unit = ] unit-number [, iostat = iostat] [, err = label])</code></pre>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>  <span class="fu">rewind(</span><span class="kw">[</span><span class="fu">unit</span> <span class="kw">=</span> <span class="kw">]</span> <span class="fu">unit</span><span class="kw">-</span><span class="fu">number</span> <span class="kw">[</span>, <span class="fu">iostat</span> <span class="kw">=</span> <span class="fu">iostat</span><span class="kw">]</span> <span class="kw">[</span>, <span class="fu">err</span> <span class="kw">=</span> label<span class="kw">]</span><span class="fu">)</span></span></code></pre>
+</div>
 </section><section><h2 class="section-heading" id="exercise-20-minutes">Exercise (20 minutes)<a class="anchor" aria-label="anchor" href="#exercise-20-minutes"></a>
 </h2>
 <hr class="half-width">
@@ -5536,7 +5754,7 @@ returned message.</li>
 </div>
 </section></section><section id="aio-14-namelists"><p>Content from <a href="14-namelists.html">Using namelists</a></p>
 <hr>
-<p>Last updated on 2026-02-06 |
+<p>Last updated on 2026-02-13 |
 
         <a href="https://github.com/welucas2/2026-02-18-MO-Fortran-intro/edit/main/episodes/14-namelists.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 40 minutes</p>
@@ -5583,12 +5801,20 @@ enable the grouping of variables for reading and writing.</p>
 <p>The namelist associates a name with a list of variables. The namelist
 is declared using a <code>namelist</code> construct which takes the
 form</p>
-<pre><code><span>  <span class="va">namelist</span> <span class="op">/</span><span class="va">namelist</span><span class="op">-</span><span class="va">group</span><span class="op">-</span><span class="va">name</span><span class="op">/</span> <span class="va">variable</span><span class="op">-</span><span class="va">name</span><span class="op">-</span><span class="va">list</span></span></code></pre>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>  <span class="kw">namelist</span> <span class="kw">/namelist-</span>group<span class="kw">-</span>name<span class="kw">/</span> variable<span class="kw">-</span>name<span class="kw">-</span>list</span></code></pre>
+</div>
 <p>where the <code>namelist-group-name</code> is surrounded by forward
 slashes <code>/</code> and the <code>variable-name-list</code> is a
 comma separated list of variables, e.g.:</p>
-<pre><code>  integer :: a, b, c
-  namelist /ints/ a, b, c</code></pre>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>  <span class="dt">integer</span> <span class="dt">::</span> a, b, c</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>  <span class="kw">namelist</span> <span class="kw">/</span>ints<span class="kw">/</span> a, b, c</span></code></pre>
+</div>
 </section><section><h2 class="section-heading" id="namelists-in-a-file">Namelists in a file<a class="anchor" aria-label="anchor" href="#namelists-in-a-file"></a>
 </h2>
 <hr class="half-width">
@@ -5596,29 +5822,41 @@ comma separated list of variables, e.g.:</p>
 Each of these is begun by <code>&amp;namelist-group-name</code> and
 terminated by <code>/</code>. Variable-value assignments occur in the
 body of the <code>namelist</code>, e.g. the file may contain</p>
-<pre><code>&amp;ints
-a = 1
-b = 2
-c = 3
-/</code></pre>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="kw">&amp;</span>ints</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>a <span class="kw">=</span> <span class="dv">1</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>b <span class="kw">=</span> <span class="dv">2</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co">c = 3</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="kw">/</span></span></code></pre>
+</div>
 <p>The ordering of variables in the namelist does not matter, so the
 previous example could also have been written as</p>
-<pre><code>&amp;ints
-c = 3
-a = 1
-b = 2
-/</code></pre>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="kw">&amp;</span>ints</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co">c = 3</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>a <span class="kw">=</span> <span class="dv">1</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>b <span class="kw">=</span> <span class="dv">2</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="kw">/</span></span></code></pre>
+</div>
 </section><section><h2 class="section-heading" id="reading-a-namelist">Reading a namelist<a class="anchor" aria-label="anchor" href="#reading-a-namelist"></a>
 </h2>
 <hr class="half-width">
 <p>A common usecase for namelists is to specify parameters for a program
 at runtime. For example a simulation code might read its configuration
 from a namelist called <code>run</code> as follows:</p>
-<pre><code>&amp;run
-name = "TGV" ! Case name
-nsteps = 100 ! Number of timesteps
-dt = 0.1     ! Timestep
-/</code></pre>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="kw">&amp;</span>run</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>name <span class="kw">=</span> <span class="st">"TGV"</span> <span class="co">! Case name</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>nsteps <span class="kw">=</span> <span class="dv">100</span> <span class="co">! Number of timesteps</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>dt <span class="kw">=</span> <span class="fl">0.1</span>     <span class="co">! Timestep</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="kw">/</span></span></code></pre>
+</div>
 <p>As you can see, an extra nice feature of namelists is their support
 for comments using the same <code>!</code> character as in Fortran
 code.</p>
@@ -5626,16 +5864,20 @@ code.</p>
 <code>namelist-group-name</code> is passed as the argument to
 <code>read()</code>, so in order to read this <code>run</code> namelist
 we might do the following:</p>
-<pre><code>  integer :: myunit
-  character(len=:) :: name
-  integer :: nsteps
-  real :: dt
-
-  namelist /run/ name, nsteps, dt
-
-  open(newunit = myunit, file = 'config', action = 'read', status = 'old')
-  read(myunit, run)
-  close(myunit)</code></pre>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>  <span class="dt">integer</span> <span class="dt">::</span> myunit</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="dt">character(len=:)</span> <span class="dt">::</span> name</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="dt">integer</span> <span class="dt">::</span> nsteps</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  <span class="dt">real</span> <span class="dt">::</span> dt</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>  <span class="kw">namelist</span> <span class="kw">/</span>run<span class="kw">/</span> name, nsteps, dt</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>  <span class="fu">open(</span>newunit <span class="kw">=</span> myunit, <span class="fu">file</span> <span class="kw">=</span> <span class="st">'config'</span>, <span class="fu">action</span> <span class="kw">=</span> <span class="st">'read'</span>, <span class="fu">status</span> <span class="kw">=</span> <span class="st">'old'</span><span class="fu">)</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>  <span class="fu">read(</span>myunit, run<span class="fu">)</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>  <span class="fu">close(</span>myunit<span class="fu">)</span></span></code></pre>
+</div>
 <p>Note that any variables not set in the <code>namelist</code> file
 will retain their initial values.</p>
 <div class="section level3">
@@ -5666,7 +5908,7 @@ specification in the program?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>If the value in the namelist is not of the same type as the program’s
 variable, you will receive an error stating that it is mismatched.</p>
@@ -5684,17 +5926,21 @@ namelist object cannot be matched to a variable.</p>
 file. Continuing with our simulation example we might additionally want
 to specify some numerical schemes for the simulation, e.g. adding the
 <code>schemes</code> namelist:</p>
-<pre><code>&amp;run
-name = "TGV" ! Case name
-nsteps = 100 ! Number of timesteps
-dt = 0.1     ! Timestep
-/
-
-&amp;schemes
-advection = "upwind"  ! Advection scheme
-diffusion = "central" ! Diffusion scheme
-transient = "RK3"     ! Timestepping scheme
-/</code></pre>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="kw">&amp;</span>run</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>name <span class="kw">=</span> <span class="st">"TGV"</span> <span class="co">! Case name</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>nsteps <span class="kw">=</span> <span class="dv">100</span> <span class="co">! Number of timesteps</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>dt <span class="kw">=</span> <span class="fl">0.1</span>     <span class="co">! Timestep</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="kw">/</span></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="kw">&amp;</span>schemes</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>advection <span class="kw">=</span> <span class="st">"upwind"</span>  <span class="co">! Advection scheme</span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>diffusion <span class="kw">=</span> <span class="st">"central"</span> <span class="co">! Diffusion scheme</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>transient <span class="kw">=</span> <span class="st">"RK3"</span>     <span class="co">! Timestepping scheme</span></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="kw">/</span></span></code></pre>
+</div>
 <p>We can read the values for each of these namelists as outlined
 previously, but note, however that the order of the namelists themselves
 is important. After reading a namelist the file reader will be
@@ -5728,7 +5974,7 @@ order in which they appear.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Add some <code>character</code> variables to store the items from the
 <code>schemes</code> namelist, declare the namelist itself with those
@@ -5750,24 +5996,32 @@ encounter an end of file error.</p>
 <p>Writing a namelist works similarly to reading one. With an open file,
 or other output device, passing the namelist as the argument to
 <code>write()</code> will write the namelist to the file.</p>
-<pre><code>  integer :: myunit
-  integer :: a, b, c
-  namelist /ints/ a, b, c
-
-  a = 1
-  b = 2
-  c = 3
-
-  open(newunit = myunit, file = 'output.nml', action = 'write', status = 'new')
-  write(myunit, ints)
-  close(myunit)</code></pre>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>  <span class="dt">integer</span> <span class="dt">::</span> myunit</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  <span class="dt">integer</span> <span class="dt">::</span> a, b, c</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  <span class="kw">namelist</span> <span class="kw">/</span>ints<span class="kw">/</span> a, b, c</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>  a <span class="kw">=</span> <span class="dv">1</span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>  b <span class="kw">=</span> <span class="dv">2</span></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>  c <span class="kw">=</span> <span class="dv">3</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>  <span class="fu">open(</span>newunit <span class="kw">=</span> myunit, <span class="fu">file</span> <span class="kw">=</span> <span class="st">'output.nml'</span>, <span class="fu">action</span> <span class="kw">=</span> <span class="st">'write'</span>, <span class="fu">status</span> <span class="kw">=</span> <span class="st">'new'</span><span class="fu">)</span></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>  <span class="fu">write(</span>myunit, ints<span class="fu">)</span></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>  <span class="fu">close(</span>myunit<span class="fu">)</span></span></code></pre>
+</div>
 <p>will output the following to the new file
 <code>output.nml</code>:</p>
-<pre><code>&amp;INTS
- A=1          ,
- B=2          ,
- C=3          ,
- /</code></pre>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="kw">&amp;</span>INTS</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a> A<span class="kw">=</span><span class="dv">1</span>          ,</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a> B<span class="kw">=</span><span class="dv">2</span>          ,</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a> C<span class="kw">=</span><span class="dv">3</span>          ,</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a> <span class="kw">/</span></span></code></pre>
+</div>
 <div class="section level3">
 <h3 id="exercise-10-minutes">Exercise (10 minutes)<a class="anchor" aria-label="anchor" href="#exercise-10-minutes"></a>
 </h3>
@@ -5792,7 +6046,7 @@ any order.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>A solution writing the <code>run</code> namelist can be found in <a href="../files/exercises/14-namelists/solutions/namelist-write.f90">namelist-write.f90</a>.</p>
 </div>
@@ -5909,7 +6163,7 @@ afternoon’s session</a> .</p>
 </div>
 </div></section><section id="aio-16-data-structures"><p>Content from <a href="16-data-structures.html">Structures: derived types</a></p>
 <hr>
-<p>Last updated on 2026-02-06 |
+<p>Last updated on 2026-02-13 |
 
         <a href="https://github.com/welucas2/2026-02-18-MO-Fortran-intro/edit/main/episodes/16-data-structures.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 25 minutes</p>
@@ -5958,29 +6212,45 @@ our choosing. We call these <em>derived types</em>.</p>
 </h2>
 <hr class="half-width">
 <p>A derived type with two <em>components</em> would be declared,
-e.g.,</p>
-<pre><code>  type :: my_type
-    integer                         :: nmax
-    real, dimension(:), allocatable :: data
-  end type my_type</code></pre>
+<em>e.g.</em>,</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>  <span class="dt">type</span> <span class="dt">::</span> my_type</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>    <span class="dt">integer</span>                         <span class="dt">::</span> nmax</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>    <span class="dt">real</span>, <span class="dt">dimension(:)</span>, <span class="dt">allocatable</span> <span class="dt">::</span> data</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>  <span class="dt">end type</span> my_type</span></code></pre>
+</div>
 <p>Components may be intrinsic data types (all declared in the usual
 way), or derived types.</p>
 <p>A variable of this type is declared</p>
-<pre><code>  type (my_type) :: var</code></pre>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>  <span class="dt">type (my_type)</span> <span class="dt">::</span> var</span></code></pre>
+</div>
 <p>and individual components are referenced with the component selector
-<code>%</code>, e.g.,</p>
-<pre><code>  var%nmax = 10
-  ...
-  print *, "Values are ", var%data(1:3)</code></pre>
+<code>%</code>, <em>e.g.</em>,</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>  var<span class="op">%</span>nmax <span class="kw">=</span> <span class="dv">10</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>  ...</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  <span class="fu">print</span> <span class="kw">*</span>, <span class="st">"Values are "</span>, var<span class="op">%</span>data(<span class="dv">1</span>:<span class="dv">3</span>)</span></code></pre>
+</div>
 <p>The component selector is the same as we have seen earlier for the
 complex intrinsic type – recall that the real and imaginary components
 of a complex variable <code>z</code> are accessed with <code>z%re</code>
 and <code>z%im</code> respectively.</p>
 <p>An array of types is defined in the usual way, and the component
-selector is applied to individual elements, e.g.,</p>
-<pre><code>  type (my_type), dimension(10) :: var
-  ...
-  var(1)%nmax = 100</code></pre>
+selector is applied to individual elements, <em>e.g.</em>,</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>  <span class="dt">type (my_type)</span>, <span class="dt">dimension(10)</span> <span class="dt">::</span> var</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  ...</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  var(<span class="dv">1</span>)<span class="op">%</span>nmax <span class="kw">=</span> <span class="dv">100</span></span></code></pre>
+</div>
 <p>Dummy arguments to procedures are declared in the same way as for
 intrinsic types with the appropriate attribute list, including
 intent.</p>
@@ -5996,23 +6266,35 @@ a module.</p>
 <h3 id="scope-of-components">Scope of components<a class="anchor" aria-label="anchor" href="#scope-of-components"></a>
 </h3>
 <p>Formally, we have</p>
-<pre><code>  type [ [, attribute-list] :: ] type-name
-    [private]
-    component-part
-  [ contains
-    procedure-part ]
-  end type [ type-name ]</code></pre>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>  <span class="dt">type</span> <span class="kw">[</span> <span class="kw">[</span>, attribute<span class="kw">-</span>list<span class="kw">]</span> <span class="dt">::</span> <span class="kw">]</span> <span class="dt">type</span><span class="kw">-</span>name</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>    <span class="kw">[</span><span class="dt">private</span><span class="kw">]</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>    component<span class="kw">-</span>part</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="kw">[</span> <span class="kw">contains</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>    <span class="kw">procedure-</span>part <span class="kw">]</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>  <span class="dt">end type</span> <span class="kw">[</span> <span class="dt">type</span><span class="kw">-</span>name <span class="kw">]</span></span></code></pre>
+</div>
 <p>The default situation is for both the type and its components to be
 public. This may be made explicit by</p>
-<pre><code>  type, public :: my_type
-    ...
-  end type my_type</code></pre>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>  <span class="dt">type</span>, <span class="dt">public</span> <span class="dt">::</span> my_type</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>    ...</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="dt">end type</span> my_type</span></code></pre>
+</div>
 <p>If one wants a public type with private components (an opaque type),
 use</p>
-<pre><code>  type, public :: my_opaque_type
-    private
-    ...
-  end type my_opaque_type</code></pre>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>  <span class="dt">type</span>, <span class="dt">public</span> <span class="dt">::</span> my_opaque_type</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>    <span class="dt">private</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>    ...</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>  <span class="dt">end type</span> my_opaque_type</span></code></pre>
+</div>
 <p>Externally, other program units will be able to reference this opaque
 type, but will not be allowed to access the components (a compiler
 error).</p>
@@ -6023,17 +6305,21 @@ then it can be declared <code>private</code> in the attribute list.</p>
 <h3 id="type-constructors">Type constructors<a class="anchor" aria-label="anchor" href="#type-constructors"></a>
 </h3>
 <p>For types with public components, it is possible to use a structure
-constructor to provide initialisation, e.g.,:</p>
-<pre><code>  type, public :: my_type
-     integer :: ia
-     real    :: b
-     complex :: z
-  end type my_type
-
-  ...
-  type (my_type) :: a
-
-  a = my_type(3, 2.0, (0.0, 1.0))</code></pre>
+constructor to provide initialisation, <em>e.g.</em>,:</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>  <span class="dt">type</span>, <span class="dt">public</span> <span class="dt">::</span> my_type</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="bu">     i</span>nteger <span class="dt">::</span> ia</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="bu">     r</span>eal    <span class="dt">::</span> b</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="bu">     c</span>omplex <span class="dt">::</span> z</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>  <span class="dt">end type</span> my_type</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>  ...</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>  <span class="dt">type (my_type)</span> <span class="dt">::</span> a</span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>  a <span class="kw">=</span> my_type(<span class="dv">3</span>, <span class="fl">2.0</span>, (<span class="fl">0.0</span>, <span class="fl">1.0</span>))</span></code></pre>
+</div>
 <p>Values or expressions can be used, but must appear in the order
 specified in the definition of the components. An allocatable or pointer
 (next episode) component must appear as <code>null()</code> in a
@@ -6044,17 +6330,25 @@ constructor expression list.</p>
 </h3>
 <p>A type may be defined with default initial values. One notable
 exception is that allocatable components do not have an initialisation.
-E.g.:</p>
-<pre><code>  type :: my_type
-    integer                            :: nmax = 10
-    real                               :: a0 = 1.0
-    integer, dimension(:), allocatable :: ndata
-  end type</code></pre>
+<em>E.g.</em>:</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>  <span class="dt">type</span> <span class="dt">::</span> my_type</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>    <span class="dt">integer</span>                            <span class="dt">::</span> nmax <span class="kw">=</span> <span class="dv">10</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>    <span class="dt">real</span>                               <span class="dt">::</span> a0 <span class="kw">=</span> <span class="fl">1.0</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>    <span class="dt">integer</span>, <span class="dt">dimension(:)</span>, <span class="dt">allocatable</span> <span class="dt">::</span> ndata</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>  <span class="dt">end type</span></span></code></pre>
+</div>
 <p>A default initialisation can be applied by using an empty
 constructor::</p>
-<pre><code>  type (my_type) :: a
-
-  a = my_type()</code></pre>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>  <span class="dt">type (my_type)</span> <span class="dt">::</span> a</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>  a <span class="kw">=</span> my_type()</span></code></pre>
+</div>
 <p>For an allocatable component, the result is a component with a not
 allocated status.</p>
 <p>Warning: some compilers can’t manage an empty constructor for
@@ -6099,7 +6393,7 @@ initialisation?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Running the code as provided gives the following output:</p>
 <div class="codewrapper">
@@ -6113,7 +6407,11 @@ initialisation?</p>
  Step  6,  1230752996</code></pre>
 </div>
 <p>Changing to use the suggested bad RNG values means doing</p>
-<pre class="source"><code>type (my_rng) :: rng = my_rng(1, 1, 0, 2147483647)</code></pre>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="dt">type (my_rng)</span> <span class="dt">::</span> rng <span class="kw">=</span> my_rng(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2147483647</span>)</span></code></pre>
+</div>
 <p>and this produces the following output (note Cray Fortran being
 helpful with the first line)</p>
 <div class="codewrapper">
@@ -6127,13 +6425,17 @@ helpful with the first line)</p>
  Step  6,  1</code></pre>
 </div>
 <p>Making the RNG type’s components private means doing:</p>
-<pre class="source"><code>  type, public :: my_rng
-    private
-    integer (int64) :: a = 45991
-    integer (int32) :: s = 1
-    integer (int64) :: c = 0
-    integer (int64) :: m = 2147483647
-  end type my_rng</code></pre>
+<div class="codewrapper sourceCode" id="cb14">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>  <span class="dt">type</span>, <span class="dt">public</span> <span class="dt">::</span> my_rng</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>    <span class="dt">private</span></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>    <span class="dt">integer (int64)</span> <span class="dt">::</span> a <span class="kw">=</span> <span class="dv">45991</span></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>    <span class="dt">integer (int32)</span> <span class="dt">::</span> s <span class="kw">=</span> <span class="dv">1</span></span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>    <span class="dt">integer (int64)</span> <span class="dt">::</span> c <span class="kw">=</span> <span class="dv">0</span></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>    <span class="dt">integer (int64)</span> <span class="dt">::</span> m <span class="kw">=</span> <span class="dv">2147483647</span></span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>  <span class="dt">end type</span> my_rng</span></code></pre>
+</div>
 <p>Trying to compile the program while setting the <code>a</code> etc.
 values will cause a compiler error; those components are no longer
 public, and the compiler knows it shouldn’t touch them. If we wanted to
@@ -6150,10 +6452,14 @@ another module procedure to do so.</p>
 <p>List-directed output for derived types can be used to provide a
 default output in which each component appears in order,
 schematically:</p>
-<pre><code>  type (my_type) :: a
-  ...
-  write (*, fmt = *) a
-  write (*, fmt = *) a%component1, a%component2, ...</code></pre>
+<div class="codewrapper sourceCode" id="cb15">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>  <span class="dt">type (my_type)</span> <span class="dt">::</span> a</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>  ...</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>  <span class="fu">write (*</span>, <span class="fu">fmt</span> <span class="kw">=</span> <span class="fu">*)</span> a</span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>  <span class="fu">write (*</span>, <span class="fu">fmt</span> <span class="kw">=</span> <span class="fu">*)</span> a<span class="op">%</span>component1, a<span class="op">%</span>component2, ...</span></code></pre>
+</div>
 <p>or one can apply a specific format to correspond to the known type
 components.</p>
 <div class="section level3">
@@ -6163,39 +6469,55 @@ components.</p>
 default behaviour of the formatting when a derived type appears in an
 io-list.</p>
 <p>A special <code>dt</code> editor descriptor exists, of the form:</p>
-<pre><code><span>  <span class="va">dt</span><span class="op">[</span><span class="va">iodesc</span><span class="op">-</span><span class="va">string</span><span class="op">]</span><span class="op">[</span><span class="op">(</span><span class="va">v</span><span class="op">-</span><span class="va">list</span><span class="op">)</span><span class="op">]</span></span></code></pre>
+<div class="codewrapper sourceCode" id="cb16">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>  dt<span class="kw">[</span>iodesc<span class="kw">-</span>string<span class="kw">][</span>(v<span class="kw">-</span>list)<span class="kw">]</span></span></code></pre>
+</div>
 <p>For example we may have</p>
-<pre><code>  dt" my-type: "(2,14)</code></pre>
+<div class="codewrapper sourceCode" id="cb17">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>  dt<span class="st">" my-type: "</span>(<span class="dv">2</span>,<span class="dv">14</span>)</span></code></pre>
+</div>
 <p>The <em>iodesc-string</em> and <em>v-list</em> will re-appear as
 arguments to a special function which must be provided by the
 programmer. Information on this function is provided as part of the
 <em>procedure-part</em> of the type definition:</p>
-<pre><code>type, public :: my_type
-  integer :: n
-  complex :: z
-contains
-  procedure :: my_type_write_formatted
-  generic   :: write(formatted) =&gt; my_type_write_formatted
-end type my_type</code></pre>
+<div class="codewrapper sourceCode" id="cb18">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="dt">type</span>, <span class="dt">public</span> <span class="dt">::</span> my_type</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>  <span class="dt">integer</span> <span class="dt">::</span> n</span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>  <span class="dt">complex</span> <span class="dt">::</span> z</span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a><span class="co">contains</span></span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a>  <span class="kw">procedure</span> <span class="dt">::</span> my_type_write_formatted</span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a>  generic   <span class="dt">::</span> <span class="fu">write(formatted)</span> <span class="kw">=</span><span class="op">&gt;</span> my_type_write_formatted</span>
+<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a><span class="dt">end type</span> my_type</span></code></pre>
+</div>
 <p>The following module subroutine should then be provided:</p>
-<pre><code>  subroutine my_type_write_formatted(self, unit, iotype, vlist, iostat, iomsg)
-
-    class (my_type),     intent(in)    :: self
-    integer,             intent(in)    :: unit
-    character (len = *), intent(in)    :: iotype       ! "DT my-type: "
-    integer,             intent(in)    :: vlist(:)     ! (2,14)
-    integer,             intent(out)   :: iostat
-    character (len = *), intent(inout) :: iomsg
-
-    ! ... process arguments to give required output to unit number ...
-    ! iotype is "LISTDIRECTED" for list directed io
-    ! iotype is "DTdesc-string" for dt edit descriptor
-    ! ...
-    ! ... write (unit = unit, fmt = ...)  self%n, self%z
-
-    ! iostat and iomsg should be set if there is an error
-
-  end subroutine my_type_write_formatted</code></pre>
+<div class="codewrapper sourceCode" id="cb19">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>  <span class="kw">subroutine</span> my_type_write_formatted(self, unit, iotype, vlist, iostat, <span class="co">iomsg)</span></span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>    class (my_type),     <span class="dt">intent(in)</span>    <span class="dt">::</span> self</span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>    <span class="dt">integer</span>,             <span class="dt">intent(in)</span>    <span class="dt">::</span> unit</span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a>    <span class="dt">character (len = *)</span>, <span class="dt">intent(in)</span>    <span class="dt">::</span> iotype       <span class="co">! "DT my-type: "</span></span>
+<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a>    <span class="dt">integer</span>,             <span class="dt">intent(in)</span>    <span class="dt">::</span> vlist(:)     <span class="co">! (2,14)</span></span>
+<span id="cb19-7"><a href="#cb19-7" tabindex="-1"></a>    <span class="dt">integer</span>,             <span class="dt">intent(out)</span>   <span class="dt">::</span> iostat</span>
+<span id="cb19-8"><a href="#cb19-8" tabindex="-1"></a>    <span class="dt">character (len = *)</span>, <span class="dt">intent(inout)</span> <span class="dt">::</span> iomsg</span>
+<span id="cb19-9"><a href="#cb19-9" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" tabindex="-1"></a>    <span class="co">! ... process arguments to give required output to unit number ...</span></span>
+<span id="cb19-11"><a href="#cb19-11" tabindex="-1"></a>    <span class="co">! iotype is "LISTDIRECTED" for list directed io</span></span>
+<span id="cb19-12"><a href="#cb19-12" tabindex="-1"></a>    <span class="co">! iotype is "DTdesc-string" for dt edit descriptor</span></span>
+<span id="cb19-13"><a href="#cb19-13" tabindex="-1"></a>    <span class="co">! ...</span></span>
+<span id="cb19-14"><a href="#cb19-14" tabindex="-1"></a>    <span class="co">! ... write (unit = unit, fmt = ...)  self%n, self%z</span></span>
+<span id="cb19-15"><a href="#cb19-15" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="#cb19-16" tabindex="-1"></a>    <span class="co">! iostat and iomsg should be set if there is an error</span></span>
+<span id="cb19-17"><a href="#cb19-17" tabindex="-1"></a></span>
+<span id="cb19-18"><a href="#cb19-18" tabindex="-1"></a>  <span class="kw">end subroutine</span> my_type_write_formatted</span></code></pre>
+</div>
 </div>
 <div class="section level3">
 <h3 id="exercise-15-minutes">Exercise (15 minutes)<a class="anchor" aria-label="anchor" href="#exercise-15-minutes"></a>
@@ -6232,16 +6554,20 @@ point.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Your new tri-diagonal matrix type should look something like
 this:</p>
-<pre class="source"><code>  type, public :: tri_matrix
-    integer :: nmax
-    real (mykind), dimension(:), allocatable :: a     ! lower (2:nmax)
-    real (mykind), dimension(:), allocatable :: b     ! diag (1:nmax)
-    real (mykind), dimension(:), allocatable :: c     ! upper (1:nmax-1)
-  end type tri_matrix</code></pre>
+<div class="codewrapper sourceCode" id="cb20">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>  <span class="dt">type</span>, <span class="dt">public</span> <span class="dt">::</span> tri_matrix</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>    <span class="dt">integer</span> <span class="dt">::</span> nmax</span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>    <span class="dt">real (mykind)</span>, <span class="dt">dimension(:)</span>, <span class="dt">allocatable</span> <span class="dt">::</span> a     <span class="co">! lower (2:nmax)</span></span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a>    <span class="dt">real (mykind)</span>, <span class="dt">dimension(:)</span>, <span class="dt">allocatable</span> <span class="dt">::</span> b     <span class="co">! diag (1:nmax)</span></span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a>    <span class="dt">real (mykind)</span>, <span class="dt">dimension(:)</span>, <span class="dt">allocatable</span> <span class="dt">::</span> c     <span class="co">! upper (1:nmax-1)</span></span>
+<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a>  <span class="dt">end type</span> tri_matrix</span></code></pre>
+</div>
 <p>Implementations of the solution are available in <a href="../files/exercises/16-data-structures/solutions-1/solution_program.f90">solution_program.f90</a>
 and <a href="../files/exercises/16-data-structures/solutions-1/solution_module.f90">solution_module.f90</a>.</p>
 </div>
@@ -6262,11 +6588,15 @@ and <a href="../files/exercises/16-data-structures/solutions-1/solution_module.f
 <div class="callout-content">
 <p>Try implementing the generic <code>write(formatted)</code> function
 for the following type:</p>
-<pre><code>  type, public :: my_date
-    integer :: day = 1        ! day 1-31
-    integer :: month = 1      ! month 1-12
-    integer :: year = 1900    ! year
-  end type my_date</code></pre>
+<div class="codewrapper sourceCode" id="cb21">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>  <span class="dt">type</span>, <span class="dt">public</span> <span class="dt">::</span> my_date</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>    <span class="dt">integer</span> <span class="dt">::</span> day <span class="kw">=</span> <span class="dv">1</span>        <span class="co">! day 1-31</span></span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a>    <span class="dt">integer</span> <span class="dt">::</span> month <span class="kw">=</span> <span class="dv">1</span>      <span class="co">! month 1-12</span></span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a>    <span class="dt">integer</span> <span class="dt">::</span> year <span class="kw">=</span> <span class="dv">1900</span>    <span class="co">! year</span></span>
+<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a>  <span class="dt">end type</span> my_date</span></code></pre>
+</div>
 <p>The format we would like is <code>dd/mm/yyyy</code> e.g,
 <code>01/12/1999</code> for 1st December 1999 for list directed I/O.
 Then try the <code>dt</code> edit descriptor to allow some more
@@ -6279,7 +6609,7 @@ flexibility.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>A suggested implementation of the solution is available in <a href="../files/exercises/16-data-structures/solutions-2/date_program.f90">date_program.f90</a>
 and <a href="../files/exercises/16-data-structures/solutions-2/date_module.f90">date_module.f90</a>.</p>
@@ -6311,7 +6641,7 @@ this introductory course will only touch on this feature.</li>
 </div>
 </section></section><section id="aio-17-pointers"><p>Content from <a href="17-pointers.html">Pointers and targets</a></p>
 <hr>
-<p>Last updated on 2026-02-06 |
+<p>Last updated on 2026-02-13 |
 
         <a href="https://github.com/welucas2/2026-02-18-MO-Fortran-intro/edit/main/episodes/17-pointers.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 20 minutes</p>
@@ -6354,8 +6684,12 @@ if its size needs to be changed.</li>
 </h2>
 <hr class="half-width">
 <p>A pointer may be declared by adding the <code>pointer</code>
-attribute to the relevant data type, e.g.,</p>
-<pre><code>integer, pointer :: p =&gt; null()</code></pre>
+attribute to the relevant data type, <em>e.g.</em>,</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="dt">integer</span>, <span class="dt">pointer</span> <span class="dt">::</span> p <span class="kw">=</span><span class="op">&gt;</span> null()</span></code></pre>
+</div>
 <p>In this case we declare a pointer to integer <code>p</code>, which is
 initialised to the special value <code>null()</code>. The pointer is
 said to be <em>unassociated</em>. This is a different state to
@@ -6366,35 +6700,51 @@ said to be <em>unassociated</em>. This is a different state to
 <p>It is important to be able to check that a given pointer is not
 <code>null()</code>. This is done with the <code>associated()</code>
 intrinsic; schematically,</p>
-<pre><code>   integer, pointer :: p =&gt; null()
-   ...
-   if (associated(p)) ... do something</code></pre>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>   <span class="dt">integer</span>, <span class="dt">pointer</span> <span class="dt">::</span> p <span class="kw">=</span><span class="op">&gt;</span> null()</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>   ...</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>   <span class="kw">if</span> (<span class="fu">associated</span>(p)) ... <span class="kw">do</span> something</span></code></pre>
+</div>
 <p>If a pointer is not initialised as pointing to a target variable, it
 should be initialised with <code>null()</code> to avoid undefined
 behaviour when testing with <code>associated()</code>. Pointers may
 otherwise be used in expressions and assignments in the usual way.</p>
 <p>If one wishes to have a pointer to an array, the rank of the pointer
 should be the same as the target:</p>
-<pre><code>  real, dimension(:),   pointer :: p1
-  real, dimension(:,:), pointer :: p2</code></pre>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>  <span class="dt">real</span>, <span class="dt">dimension(:)</span>,   <span class="dt">pointer</span> <span class="dt">::</span> p1</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>  <span class="dt">real</span>, <span class="dt">dimension(:,:)</span>, <span class="dt">pointer</span> <span class="dt">::</span> p2</span></code></pre>
+</div>
 <p>and so on.</p>
 </section><section><h2 class="section-heading" id="targets">Targets<a class="anchor" aria-label="anchor" href="#targets"></a>
 </h2>
 <hr class="half-width">
 <p>A pointer may be associated with another variable of the appropriate
 type (which is not itself a pointer) by using the target attribute:</p>
-<pre><code>  integer, target  :: datum
-  integer, pointer :: p
-
-  p =&gt; datum</code></pre>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">target</span>  <span class="dt">::</span> datum</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">pointer</span> <span class="dt">::</span> p</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  p <span class="kw">=</span><span class="op">&gt;</span> datum</span></code></pre>
+</div>
 <p>The pointer is now said to be associated with the target. We can now
 perform operations on <code>datum</code> vicariously through
 <code>p</code>. E.g., a standard assignment would be</p>
-<pre><code>  integer, target  :: datum = 1
-  integer, pointer :: p
-
-  p =&gt; datum     ! pointer assignment
-  p = 2          ! normal assignment</code></pre>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">target</span>  <span class="dt">::</span> datum <span class="kw">=</span> <span class="dv">1</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">pointer</span> <span class="dt">::</span> p</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  p <span class="kw">=</span><span class="op">&gt;</span> datum     <span class="co">! pointer assignment</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>  p <span class="kw">=</span> <span class="dv">2</span>          <span class="co">! normal assignment</span></span></code></pre>
+</div>
 <p>leaves us with <code>datum = 2</code>. There is no dereferencing in
 the C fashion; the data is moved as the result of the normal
 assignment.</p>
@@ -6406,7 +6756,11 @@ with a pointer. This somewhat in the same spirit as the C
 <code>associated()</code> intrinsic, which allows the programmer to
 inquire whether a pointer is associated with a specific target,
 e.g.,</p>
-<pre><code>   associated(p, target = datum)   ! .true. if p =&gt; datum</code></pre>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>   <span class="fu">associated</span>(p, <span class="dt">target</span> <span class="kw">=</span> datum)   <span class="co">! .true. if p =&gt; datum</span></span></code></pre>
+</div>
 <div class="section level3">
 <h3 id="exercise-2-minutes">Exercise (2 minutes)<a class="anchor" aria-label="anchor" href="#exercise-2-minutes"></a>
 </h3>
@@ -6438,10 +6792,18 @@ assignment.</p>
 <code>datum</code> as the latter doesn’t have the <code>target</code>
 attribute; the compilation should fail with an error. If you add the
 attribute, it should compile and run:</p>
-<pre class="source"><code>  integer, target  :: datum = 1</code></pre>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">target</span>  <span class="dt">::</span> datum <span class="kw">=</span> <span class="dv">1</span></span></code></pre>
+</div>
 <p>Check the <code>associated()</code> status of <code>p</code> along
 these lines:</p>
-<pre class="source"><code>  print *, "p associated?", associated(p)</code></pre>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>  <span class="fu">print</span> <span class="kw">*</span>, <span class="st">"p associated?"</span>, <span class="fu">associated</span>(p)</span></code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -6453,11 +6815,15 @@ these lines:</p>
 <p>One common use of pointers is to provide a temporary alias to another
 variable (where no copying takes place). As a convenience, one can use
 the <code>associate</code> construct, e.g.:</p>
-<pre><code>  real :: improbably_or_tediously_long_variable_name
-  ...
-  associate(p =&gt; improbably_or_tediously_long_variable_name)
-     ! ... lots of operations involving p ...
-  end associate</code></pre>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>  <span class="dt">real</span> <span class="dt">::</span> improbably_or_tediously_long_variable_name</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>  ...</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  associate(p <span class="kw">=</span><span class="op">&gt;</span> improbably_or_tediously_long_variable_name)</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="bu">     !</span> ... lots of operations involving p ...</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>  <span class="kw">end</span> associate</span></code></pre>
+</div>
 <p>Note that there is no requirement here to have the
 <code>target</code> attribute in the original declaration (and there’s
 no explicit declaration of <code>p</code>). Any update to <code>p</code>
@@ -6491,7 +6857,11 @@ either a variable or an expression.</p>
 <div class="accordion-body">
 <p>You should see that the association is made to a strided section of
 the array <code>r1</code>:</p>
-<pre class="source"><code>associate(p =&gt; r1(2::2))</code></pre>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>associate(p <span class="kw">=</span><span class="op">&gt;</span> r1(<span class="dv">2</span><span class="dt">::</span><span class="dv">2</span>))</span></code></pre>
+</div>
 <p>Within the <code>associate</code> block <code>p</code> acts to point
 to the second, fourth and sixth elements of <code>r1</code>.</p>
 </div>
@@ -6504,28 +6874,36 @@ to the second, fourth and sixth elements of <code>r1</code>.</p>
 <hr class="half-width">
 <p>One common use of pointers is for linked data structures. For
 example, an entry in a linked list might be represented by the type</p>
-<pre><code>  type :: my_node
-    integer                 :: datum
-    type (my_node), pointer :: next
-  end type my_node</code></pre>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>  <span class="dt">type</span> <span class="dt">::</span> my_node</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>    <span class="dt">integer</span>                 <span class="dt">::</span> datum</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>    <span class="dt">type (my_node)</span>, <span class="dt">pointer</span> <span class="dt">::</span> next</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>  <span class="dt">end type</span> my_node</span></code></pre>
+</div>
 <p>This sort of dynamic data structure requires that we establish or
 destroy storage as entries are added to the list, or removed from the
 list.</p>
-<pre><code>  subroutine my_list_add_node(head, datum)
-
-    ! Insert new datum at head of list
-
-    type (my_node), pointer, intent(inout) :: head
-    integer,                 intent(in)    :: datum
-
-    type (my_node), pointer :: pnode
-
-    allocate(pnode)       ! assume no error
-    pnode%datum = datum
-    pnode%next =&gt; head
-    head =&gt; pnode
-
-  end subroutine my_list_add_node</code></pre>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>  <span class="kw">subroutine</span> my_list_add_node(head, datum)</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>    <span class="co">! Insert new datum at head of list</span></span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>    <span class="dt">type (my_node)</span>, <span class="dt">pointer</span>, <span class="dt">intent(inout)</span> <span class="dt">::</span> head</span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>    <span class="dt">integer</span>,                 <span class="dt">intent(in)</span>    <span class="dt">::</span> datum</span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a>    <span class="dt">type (my_node)</span>, <span class="dt">pointer</span> <span class="dt">::</span> pnode</span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a>    <span class="kw">allocate</span>(pnode)       <span class="co">! assume no error</span></span>
+<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a>    pnode<span class="op">%</span>datum <span class="kw">=</span> datum</span>
+<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a>    pnode<span class="op">%</span>next <span class="kw">=</span><span class="op">&gt;</span> head</span>
+<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a>    head <span class="kw">=</span><span class="op">&gt;</span> pnode</span>
+<span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" tabindex="-1"></a>  <span class="kw">end subroutine</span> my_list_add_node</span></code></pre>
+</div>
 <p>In the subroutine, we can see the pointer <code>pnode</code> is
 allocated. This dynamically creates a <code>my_node</code> variable to
 contain the new datum. At the end of the procedure, the
@@ -6551,17 +6929,25 @@ construct is recommended.</p>
 <p>If one needs to increase (or decrease) the size of an existing
 allocatable array, the <code>move_alloc()</code> intrinsic is useful.
 E.g., if we have an integer rank one array</p>
-<pre><code>  integer, dimension(:), allocatable :: iorig</code></pre>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">dimension(:)</span>, <span class="dt">allocatable</span> <span class="dt">::</span> iorig</span></code></pre>
+</div>
 <p>and establish storage of a given size, and some relevant
 initialisations, we may then wish to increase the size of it.</p>
-<pre><code>  integer :: nold
-  integer, dimension(:), allocatable :: itmp
-
-  nold = size(iorig)
-  allocate(itmp(2*nold))           ! double size; assume no error
-  itmp(1:nold) = iorig(1:nold)     ! copy existing contents explicitly
-  call move_alloc(itmp, iorig)
-  ! itmp deallocated, iorig now refers to the memory that had been itmp</code></pre>
+<div class="codewrapper sourceCode" id="cb14">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>  <span class="dt">integer</span> <span class="dt">::</span> nold</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">dimension(:)</span>, <span class="dt">allocatable</span> <span class="dt">::</span> itmp</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>  nold <span class="kw">=</span> <span class="fu">size</span>(iorig)</span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>  <span class="kw">allocate</span>(itmp(<span class="dv">2</span><span class="kw">*</span>nold))           <span class="co">! double size; assume no error</span></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>  itmp(<span class="dv">1</span>:nold) <span class="kw">=</span> iorig(<span class="dv">1</span>:nold)     <span class="co">! copy existing contents explicitly</span></span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>  <span class="kw">call</span> move_alloc(itmp, iorig)</span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a>  <span class="co">! itmp deallocated, iorig now refers to the memory that had been itmp</span></span></code></pre>
+</div>
 <p>This minimises the number of copies involved in re-assigning the
 original storage.</p>
 <div id="move_alloc-efficiency" class="callout challenge">
@@ -6590,16 +6976,20 @@ an existing allocatable array?</p>
 make two copies rather than one. Analogously to the above example, we
 would have to perform the following to double the storage in
 <code>iorig</code>:</p>
-<pre class="source"><code>  integer :: nold
-  integer, dimension(:), allocatable :: itmp
-
-  nold = size(iorig)
-  allocate(itmp(nold))             ! allocate temporary storage for original data
-  itmp(:) = iorig(:)               ! first copy from original storage into the temporary
-  deallocate(iorig)                ! deallocate the original array
-  allocate(iorig(2*ndold))         ! and then reallocate at twice the size
-  iorig(1:nold) = itmp(:)          ! second copy from the temporary into the new storage
-  deallocate(itmp)                 ! deallocate the temporary</code></pre>
+<div class="codewrapper sourceCode" id="cb15">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>  <span class="dt">integer</span> <span class="dt">::</span> nold</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">dimension(:)</span>, <span class="dt">allocatable</span> <span class="dt">::</span> itmp</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>  nold <span class="kw">=</span> <span class="fu">size</span>(iorig)</span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>  <span class="kw">allocate</span>(itmp(nold))             <span class="co">! allocate temporary storage for original data</span></span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>  itmp(:) <span class="kw">=</span> iorig(:)               <span class="co">! first copy from original storage into the temporary</span></span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a>  <span class="kw">deallocate</span>(iorig)                <span class="co">! deallocate the original array</span></span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a>  <span class="kw">allocate</span>(iorig(<span class="dv">2</span><span class="kw">*</span>ndold))         <span class="co">! and then reallocate at twice the size</span></span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a>  iorig(<span class="dv">1</span>:nold) <span class="kw">=</span> itmp(:)          <span class="co">! second copy from the temporary into the new storage</span></span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a>  <span class="kw">deallocate</span>(itmp)                 <span class="co">! deallocate the temporary</span></span></code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -6609,17 +6999,25 @@ would have to perform the following to double the storage in
 </h3>
 <p>A small trick is required to arrange an array of pointers. Recall
 that</p>
-<pre><code>  real, dimension(:), pointer :: a</code></pre>
+<div class="codewrapper sourceCode" id="cb16">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>  <span class="dt">real</span>, <span class="dt">dimension(:)</span>, <span class="dt">pointer</span> <span class="dt">::</span> a</span></code></pre>
+</div>
 <p>is a pointer to a rank one array, and <em>not</em> a rank one array
 of pointers. If one did want an array of such objects, it can be
 achieved by wrapping it in a type:</p>
-<pre><code>  type :: pointer_rr1
-    real, dimension(:), pointer :: p =&gt; null()
-  end type pointer_rr1
-
-  type (pointer_rr1), dimension(10) :: a
-
-  a(1)%p =&gt; null()</code></pre>
+<div class="codewrapper sourceCode" id="cb17">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>  <span class="dt">type</span> <span class="dt">::</span> pointer_rr1</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>    <span class="dt">real</span>, <span class="dt">dimension(:)</span>, <span class="dt">pointer</span> <span class="dt">::</span> p <span class="kw">=</span><span class="op">&gt;</span> null()</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>  <span class="dt">end type</span> pointer_rr1</span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>  <span class="dt">type (pointer_rr1)</span>, <span class="dt">dimension(10)</span> <span class="dt">::</span> a</span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a>  a(<span class="dv">1</span>)<span class="op">%</span>p <span class="kw">=</span><span class="op">&gt;</span> null()</span></code></pre>
+</div>
 <p>So <code>a</code> is a rank one array of the new type, each element
 having the component <code>p</code> which is a pointer to a real rank
 one type.</p>
@@ -7595,7 +7993,7 @@ a module <code>cgradient</code> which supplies a function
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>You can check a suggested solution with <a href="../files/exercises/21-conjugate-gradient/solutions-1/cg_test.f90">cg_test.f90</a>
 and <a href="../files/exercises/21-conjugate-gradient/solutions-1/cgradient.f90">cgradient_solution.f90</a>.</p>
@@ -7657,7 +8055,7 @@ correctly.</p></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>A suggested solution in provided in <a href="../files/exercises/21-conjugate-gradient/solutions-2/mm_test.f90">mmtest.f90</a>
 and <a href="../files/exercises/21-conjugate-gradient/solutions-2/mmarket.f90">mmarket.f90</a>.</p>

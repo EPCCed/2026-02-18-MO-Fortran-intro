@@ -556,7 +556,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Functions and subroutines</h1>
-        <p>Last updated on 2026-02-06 |
+        <p>Last updated on 2026-02-13 |
 
         <a href="https://github.com/welucas2/2026-02-18-MO-Fortran-intro/edit/main/episodes/09-functions-subroutines.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -600,12 +600,20 @@ their read and write permissions within the procedure.</li>
 of context. A function returns a result and is generally used where it
 is best invoked as part of an expression or assignment,
 schematically:</p>
-<pre><code><span>  <span class="va">value</span> <span class="op">=</span> <span class="fu">my_function</span><span class="op">(</span><span class="va">arg1</span>, <span class="va">arg2</span>, <span class="va">...</span><span class="op">)</span></span></code></pre>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>  value <span class="kw">=</span> my_function(arg1, arg2, ...)</span></code></pre>
+</div>
 <p>Unlike C, it is not possible simply to discard a function result. A
 subroutine, by contrast, does not return a result (it may be thought of
 as a <code>void</code> function in C terms), but it is also invoked
 differently:</p>
-<pre><code>  call my_subroutine(arg1, arg2, ...)</code></pre>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>  <span class="kw">call</span> my_subroutine(arg1, arg2, ...)</span></code></pre>
+</div>
 <p>Subroutines are generally used to express more lengthy
 algorithms.</p>
 <p>Note that in the calling context, the arguments <code>arg1</code>,
@@ -623,13 +631,17 @@ entry, and may also be updated by the procedure;</li>
 </ol><p>These three cases may be encoded in the declarations of the dummy
 arguments of a procedure via the <code>intent</code> attribute . For
 example:</p>
-<pre><code>  subroutine print_x(x)
-
-    real, intent(in) :: x
-
-    print *, "The value of x is: ", x
-
-  end subroutine print_x</code></pre>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>  <span class="kw">subroutine</span> print_x(x)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>    <span class="dt">real</span>, <span class="dt">intent(in)</span> <span class="dt">::</span> x</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>    <span class="fu">print</span> <span class="kw">*</span>, <span class="st">"The value of x is: "</span>, x</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>  <span class="kw">end subroutine</span> print_x</span></code></pre>
+</div>
 <p>Here, dummy argument <code>x</code> has <code>intent(in)</code> which
 tells the compiler that any attempt to modify the value is erroneous (a
 compiler error will result). This is different from C, where a change to
@@ -654,22 +666,30 @@ passed to it, unless prevented by having <code>intent(in)</code>.</p>
 </div>
 <p>If one wants to alter the existing value of the argument,
 <code>intent(inout)</code> is appropriate:</p>
-<pre><code>  subroutine increment_x(x)
-
-    real, intent(inout) :: x
-
-    x = x + 1.0
-
-  end subroutine increment_x</code></pre>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>  <span class="kw">subroutine</span> increment_x(x)</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>    <span class="dt">real</span>, <span class="dt">intent(inout)</span> <span class="dt">::</span> x</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>    x <span class="kw">=</span> x <span class="kw">+</span> <span class="fl">1.0</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>  <span class="kw">end subroutine</span> increment_x</span></code></pre>
+</div>
 <p>If the dummy argument is undefined on entry, or has a value which is
 simply to be overwritten, use <code>intent(out)</code>, e.g.:</p>
-<pre><code>  subroutine assign_x(x)
-
-    real, intent(out) :: x
-
-    x = 1.0
-
-  end subroutine assign_x</code></pre>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>  <span class="kw">subroutine</span> assign_x(x)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>    <span class="dt">real</span>, <span class="dt">intent(out)</span> <span class="dt">::</span> x</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>    x <span class="kw">=</span> <span class="fl">1.0</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>  <span class="kw">end subroutine</span> assign_x</span></code></pre>
+</div>
 <p>The <code>intent</code> attribute, as well as allowing the compiler
 to detect inadvertent errors, provides some useful documentation for the
 reader.</p>
@@ -719,27 +739,39 @@ arguments in <a href="files/exercises/09-functions-subroutines/module1.f90">modu
 </div>
 </section><section><h2 class="section-heading" id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a></h2>
 <hr class="half-width"><p>A function may be defined as:</p>
-<pre><code>function my_mapping(value) result(a)
-
-  real, intent(in) :: value
-  real             :: a
-
-  a = ...
-
-end function my_mapping</code></pre>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="kw">function</span> my_mapping(value) <span class="kw">result</span>(a)</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="dt">real</span>, <span class="dt">intent(in)</span> <span class="dt">::</span> value</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  <span class="dt">real</span>             <span class="dt">::</span> a</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>  a <span class="kw">=</span> ...</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="kw">end function</span> my_mapping</span></code></pre>
+</div>
 <p>Formally,</p>
-<pre><code>[prefix] function function-name (dummy-arg-list) [suffix]
-  [ specification-part ]
-  [ executable-part ]
-end [ function [function-name] ]</code></pre>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="kw">[</span>prefix<span class="kw">]</span> <span class="kw">function</span> <span class="kw">function-</span>name (dummy<span class="kw">-</span>arg<span class="kw">-</span>list) <span class="kw">[</span>suffix<span class="kw">]</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  <span class="kw">[</span> specification<span class="kw">-</span>part <span class="kw">]</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="kw">[</span> executable<span class="kw">-</span>part <span class="kw">]</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="kw">end</span> <span class="kw">[</span> <span class="kw">function</span> <span class="kw">[function-</span>name<span class="kw">]</span> <span class="kw">]</span></span></code></pre>
+</div>
 <p>As ever, there is some elasticity in the exact form of the
 declarations you may see. In particular, older versions did not have the
 <code>result()</code> suffix, and the <em>function-name</em> was used as
-the variable to which the return value was assigned. E.g.,</p>
-<pre><code>real function length(area)
-  real area
-  length = sqrt(area)
-end function length</code></pre>
+the variable to which the return value was assigned. <em>E.g.</em>,</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="dt">real</span> <span class="kw">function</span> length(area)</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  <span class="dt">real</span> area</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  length <span class="kw">=</span> <span class="bu">sqrt</span>(area)</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="kw">end function</span> length</span></code></pre>
+</div>
 <p>The modern form should be preferred; the <code>result()</code> part
 allows the two names to be decoupled.</p>
 <div class="section level3">
@@ -747,7 +779,7 @@ allows the two names to be decoupled.</p>
 <code>pure</code> procedures<a class="anchor" aria-label="anchor" href="#pure-procedures"></a></h3>
 <p>Procedures which have no side effects may be declared with the
 <code>pure</code> prefix; this may provide useful information to the
-compiler in some circumstances. E.g.,</p>
+compiler in some circumstances. <em>E.g.</em>,</p>
 <pre><code>pure function special_function(x) result(y)
   real, intent(in) :: x
   ! ...
@@ -764,11 +796,15 @@ variables with <code>save</code> attribute);</li>
 <h3 id="recursive-procedures">
 <code>recursive</code> procedures<a class="anchor" aria-label="anchor" href="#recursive-procedures"></a></h3>
 <p>If recursion is required, a procedure must be declared with the
-<code>recursive</code> prefix. E.g.,</p>
-<pre><code>recursive function fibonacci(n) result(nf)
-  ! ... implementation...
-  nf = fibonacci(n-1) + fibonacci(n-2)
-end function fibonacci</code></pre>
+<code>recursive</code> prefix. <em>E.g.</em>,</p>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="kw">recursive</span> <span class="kw">function</span> fibonacci(n) <span class="kw">result</span>(nf)</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>  <span class="co">! ... implementation...</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>  nf <span class="kw">=</span> fibonacci(n<span class="kw">-</span><span class="dv">1</span>) <span class="kw">+</span> fibonacci(n<span class="kw">-</span><span class="dv">2</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="kw">end function</span> fibonacci</span></code></pre>
+</div>
 <p>Such a declaration must be included for both types of recursion:
 direct (a procedure calling itself) and indirect (a procedure calling
 another which in turn calls the first).</p>
@@ -776,10 +812,14 @@ another which in turn calls the first).</p>
 </section><section><h2 class="section-heading" id="subroutines">Subroutines<a class="anchor" aria-label="anchor" href="#subroutines"></a></h2>
 <hr class="half-width"><p>Subroutines follow the same rules as functions, except that there is
 no <code>result()</code> suffix specification:</p>
-<pre><code>[prefix] subroutine subroutine-name (dummy-arg-list)
-  [ specification-part ]
-  [ executable-part ]
-end [ subroutine [subroutine-name] ]</code></pre>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="kw">[</span>prefix<span class="kw">]</span> <span class="kw">subroutine</span> <span class="kw">subroutine-</span>name (dummy<span class="kw">-</span>arg<span class="kw">-</span>list)</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>  <span class="kw">[</span> specification<span class="kw">-</span>part <span class="kw">]</span></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>  <span class="kw">[</span> executable<span class="kw">-</span>part <span class="kw">]</span></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="kw">end</span> <span class="kw">[</span> <span class="kw">subroutine</span> <span class="kw">[subroutine-</span>name<span class="kw">]</span> <span class="kw">]</span></span></code></pre>
+</div>
 <div class="section level3">
 <h3 id="return-statement">
 <code>return</code> statement<a class="anchor" aria-label="anchor" href="#return-statement"></a></h3>
@@ -913,7 +953,7 @@ module file.</li>
   "url": "https://welucas2.github.io/2026-02-18-MO-Fortran-intro/09-functions-subroutines.html",
   "identifier": "https://welucas2.github.io/2026-02-18-MO-Fortran-intro/09-functions-subroutines.html",
   "dateCreated": "2025-05-05",
-  "dateModified": "2026-02-06",
+  "dateModified": "2026-02-13",
   "datePublished": "2026-02-13"
 }
 

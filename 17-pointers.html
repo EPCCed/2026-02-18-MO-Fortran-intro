@@ -554,7 +554,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Pointers and targets</h1>
-        <p>Last updated on 2026-02-06 |
+        <p>Last updated on 2026-02-13 |
 
         <a href="https://github.com/welucas2/2026-02-18-MO-Fortran-intro/edit/main/episodes/17-pointers.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -596,8 +596,12 @@ if its size needs to be changed.</li>
 </div>
 <section><h2 class="section-heading" id="pointer-attribute">Pointer attribute<a class="anchor" aria-label="anchor" href="#pointer-attribute"></a></h2>
 <hr class="half-width"><p>A pointer may be declared by adding the <code>pointer</code>
-attribute to the relevant data type, e.g.,</p>
-<pre><code>integer, pointer :: p =&gt; null()</code></pre>
+attribute to the relevant data type, <em>e.g.</em>,</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="dt">integer</span>, <span class="dt">pointer</span> <span class="dt">::</span> p <span class="kw">=</span><span class="op">&gt;</span> null()</span></code></pre>
+</div>
 <p>In this case we declare a pointer to integer <code>p</code>, which is
 initialised to the special value <code>null()</code>. The pointer is
 said to be <em>unassociated</em>. This is a different state to
@@ -608,33 +612,49 @@ said to be <em>unassociated</em>. This is a different state to
 <p>It is important to be able to check that a given pointer is not
 <code>null()</code>. This is done with the <code>associated()</code>
 intrinsic; schematically,</p>
-<pre><code>   integer, pointer :: p =&gt; null()
-   ...
-   if (associated(p)) ... do something</code></pre>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>   <span class="dt">integer</span>, <span class="dt">pointer</span> <span class="dt">::</span> p <span class="kw">=</span><span class="op">&gt;</span> null()</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>   ...</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>   <span class="kw">if</span> (<span class="fu">associated</span>(p)) ... <span class="kw">do</span> something</span></code></pre>
+</div>
 <p>If a pointer is not initialised as pointing to a target variable, it
 should be initialised with <code>null()</code> to avoid undefined
 behaviour when testing with <code>associated()</code>. Pointers may
 otherwise be used in expressions and assignments in the usual way.</p>
 <p>If one wishes to have a pointer to an array, the rank of the pointer
 should be the same as the target:</p>
-<pre><code>  real, dimension(:),   pointer :: p1
-  real, dimension(:,:), pointer :: p2</code></pre>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>  <span class="dt">real</span>, <span class="dt">dimension(:)</span>,   <span class="dt">pointer</span> <span class="dt">::</span> p1</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>  <span class="dt">real</span>, <span class="dt">dimension(:,:)</span>, <span class="dt">pointer</span> <span class="dt">::</span> p2</span></code></pre>
+</div>
 <p>and so on.</p>
 </section><section><h2 class="section-heading" id="targets">Targets<a class="anchor" aria-label="anchor" href="#targets"></a></h2>
 <hr class="half-width"><p>A pointer may be associated with another variable of the appropriate
 type (which is not itself a pointer) by using the target attribute:</p>
-<pre><code>  integer, target  :: datum
-  integer, pointer :: p
-
-  p =&gt; datum</code></pre>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">target</span>  <span class="dt">::</span> datum</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">pointer</span> <span class="dt">::</span> p</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  p <span class="kw">=</span><span class="op">&gt;</span> datum</span></code></pre>
+</div>
 <p>The pointer is now said to be associated with the target. We can now
 perform operations on <code>datum</code> vicariously through
 <code>p</code>. E.g., a standard assignment would be</p>
-<pre><code>  integer, target  :: datum = 1
-  integer, pointer :: p
-
-  p =&gt; datum     ! pointer assignment
-  p = 2          ! normal assignment</code></pre>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">target</span>  <span class="dt">::</span> datum <span class="kw">=</span> <span class="dv">1</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">pointer</span> <span class="dt">::</span> p</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  p <span class="kw">=</span><span class="op">&gt;</span> datum     <span class="co">! pointer assignment</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>  p <span class="kw">=</span> <span class="dv">2</span>          <span class="co">! normal assignment</span></span></code></pre>
+</div>
 <p>leaves us with <code>datum = 2</code>. There is no dereferencing in
 the C fashion; the data is moved as the result of the normal
 assignment.</p>
@@ -646,7 +666,11 @@ with a pointer. This somewhat in the same spirit as the C
 <code>associated()</code> intrinsic, which allows the programmer to
 inquire whether a pointer is associated with a specific target,
 e.g.,</p>
-<pre><code>   associated(p, target = datum)   ! .true. if p =&gt; datum</code></pre>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>   <span class="fu">associated</span>(p, <span class="dt">target</span> <span class="kw">=</span> datum)   <span class="co">! .true. if p =&gt; datum</span></span></code></pre>
+</div>
 <div class="section level3">
 <h3 id="exercise-2-minutes">Exercise (2 minutes)<a class="anchor" aria-label="anchor" href="#exercise-2-minutes"></a></h3>
 <div id="associating-a-pointer" class="callout challenge">
@@ -677,10 +701,18 @@ assignment.</p>
 <code>datum</code> as the latter doesn’t have the <code>target</code>
 attribute; the compilation should fail with an error. If you add the
 attribute, it should compile and run:</p>
-<pre class="source"><code>  integer, target  :: datum = 1</code></pre>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">target</span>  <span class="dt">::</span> datum <span class="kw">=</span> <span class="dv">1</span></span></code></pre>
+</div>
 <p>Check the <code>associated()</code> status of <code>p</code> along
 these lines:</p>
-<pre class="source"><code>  print *, "p associated?", associated(p)</code></pre>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>  <span class="fu">print</span> <span class="kw">*</span>, <span class="st">"p associated?"</span>, <span class="fu">associated</span>(p)</span></code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -691,11 +723,15 @@ these lines:</p>
 <p>One common use of pointers is to provide a temporary alias to another
 variable (where no copying takes place). As a convenience, one can use
 the <code>associate</code> construct, e.g.:</p>
-<pre><code>  real :: improbably_or_tediously_long_variable_name
-  ...
-  associate(p =&gt; improbably_or_tediously_long_variable_name)
-     ! ... lots of operations involving p ...
-  end associate</code></pre>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>  <span class="dt">real</span> <span class="dt">::</span> improbably_or_tediously_long_variable_name</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>  ...</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  associate(p <span class="kw">=</span><span class="op">&gt;</span> improbably_or_tediously_long_variable_name)</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="bu">     !</span> ... lots of operations involving p ...</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>  <span class="kw">end</span> associate</span></code></pre>
+</div>
 <p>Note that there is no requirement here to have the
 <code>target</code> attribute in the original declaration (and there’s
 no explicit declaration of <code>p</code>). Any update to <code>p</code>
@@ -728,7 +764,11 @@ either a variable or an expression.</p>
 <div class="accordion-body">
 <p>You should see that the association is made to a strided section of
 the array <code>r1</code>:</p>
-<pre class="source"><code>associate(p =&gt; r1(2::2))</code></pre>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>associate(p <span class="kw">=</span><span class="op">&gt;</span> r1(<span class="dv">2</span><span class="dt">::</span><span class="dv">2</span>))</span></code></pre>
+</div>
 <p>Within the <code>associate</code> block <code>p</code> acts to point
 to the second, fourth and sixth elements of <code>r1</code>.</p>
 </div>
@@ -739,28 +779,36 @@ to the second, fourth and sixth elements of <code>r1</code>.</p>
 </section><section><h2 class="section-heading" id="pointers-to-establish-storage">Pointers to establish storage<a class="anchor" aria-label="anchor" href="#pointers-to-establish-storage"></a></h2>
 <hr class="half-width"><p>One common use of pointers is for linked data structures. For
 example, an entry in a linked list might be represented by the type</p>
-<pre><code>  type :: my_node
-    integer                 :: datum
-    type (my_node), pointer :: next
-  end type my_node</code></pre>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>  <span class="dt">type</span> <span class="dt">::</span> my_node</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>    <span class="dt">integer</span>                 <span class="dt">::</span> datum</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>    <span class="dt">type (my_node)</span>, <span class="dt">pointer</span> <span class="dt">::</span> next</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>  <span class="dt">end type</span> my_node</span></code></pre>
+</div>
 <p>This sort of dynamic data structure requires that we establish or
 destroy storage as entries are added to the list, or removed from the
 list.</p>
-<pre><code>  subroutine my_list_add_node(head, datum)
-
-    ! Insert new datum at head of list
-
-    type (my_node), pointer, intent(inout) :: head
-    integer,                 intent(in)    :: datum
-
-    type (my_node), pointer :: pnode
-
-    allocate(pnode)       ! assume no error
-    pnode%datum = datum
-    pnode%next =&gt; head
-    head =&gt; pnode
-
-  end subroutine my_list_add_node</code></pre>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>  <span class="kw">subroutine</span> my_list_add_node(head, datum)</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>    <span class="co">! Insert new datum at head of list</span></span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>    <span class="dt">type (my_node)</span>, <span class="dt">pointer</span>, <span class="dt">intent(inout)</span> <span class="dt">::</span> head</span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>    <span class="dt">integer</span>,                 <span class="dt">intent(in)</span>    <span class="dt">::</span> datum</span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a>    <span class="dt">type (my_node)</span>, <span class="dt">pointer</span> <span class="dt">::</span> pnode</span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a>    <span class="kw">allocate</span>(pnode)       <span class="co">! assume no error</span></span>
+<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a>    pnode<span class="op">%</span>datum <span class="kw">=</span> datum</span>
+<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a>    pnode<span class="op">%</span>next <span class="kw">=</span><span class="op">&gt;</span> head</span>
+<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a>    head <span class="kw">=</span><span class="op">&gt;</span> pnode</span>
+<span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" tabindex="-1"></a>  <span class="kw">end subroutine</span> my_list_add_node</span></code></pre>
+</div>
 <p>In the subroutine, we can see the pointer <code>pnode</code> is
 allocated. This dynamically creates a <code>my_node</code> variable to
 contain the new datum. At the end of the procedure, the
@@ -783,17 +831,25 @@ construct is recommended.</p>
 <hr class="half-width"><p>If one needs to increase (or decrease) the size of an existing
 allocatable array, the <code>move_alloc()</code> intrinsic is useful.
 E.g., if we have an integer rank one array</p>
-<pre><code>  integer, dimension(:), allocatable :: iorig</code></pre>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">dimension(:)</span>, <span class="dt">allocatable</span> <span class="dt">::</span> iorig</span></code></pre>
+</div>
 <p>and establish storage of a given size, and some relevant
 initialisations, we may then wish to increase the size of it.</p>
-<pre><code>  integer :: nold
-  integer, dimension(:), allocatable :: itmp
-
-  nold = size(iorig)
-  allocate(itmp(2*nold))           ! double size; assume no error
-  itmp(1:nold) = iorig(1:nold)     ! copy existing contents explicitly
-  call move_alloc(itmp, iorig)
-  ! itmp deallocated, iorig now refers to the memory that had been itmp</code></pre>
+<div class="codewrapper sourceCode" id="cb14">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>  <span class="dt">integer</span> <span class="dt">::</span> nold</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">dimension(:)</span>, <span class="dt">allocatable</span> <span class="dt">::</span> itmp</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>  nold <span class="kw">=</span> <span class="fu">size</span>(iorig)</span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>  <span class="kw">allocate</span>(itmp(<span class="dv">2</span><span class="kw">*</span>nold))           <span class="co">! double size; assume no error</span></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>  itmp(<span class="dv">1</span>:nold) <span class="kw">=</span> iorig(<span class="dv">1</span>:nold)     <span class="co">! copy existing contents explicitly</span></span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>  <span class="kw">call</span> move_alloc(itmp, iorig)</span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a>  <span class="co">! itmp deallocated, iorig now refers to the memory that had been itmp</span></span></code></pre>
+</div>
 <p>This minimises the number of copies involved in re-assigning the
 original storage.</p>
 <div id="move_alloc-efficiency" class="callout challenge">
@@ -822,16 +878,20 @@ an existing allocatable array?</p>
 make two copies rather than one. Analogously to the above example, we
 would have to perform the following to double the storage in
 <code>iorig</code>:</p>
-<pre class="source"><code>  integer :: nold
-  integer, dimension(:), allocatable :: itmp
-
-  nold = size(iorig)
-  allocate(itmp(nold))             ! allocate temporary storage for original data
-  itmp(:) = iorig(:)               ! first copy from original storage into the temporary
-  deallocate(iorig)                ! deallocate the original array
-  allocate(iorig(2*ndold))         ! and then reallocate at twice the size
-  iorig(1:nold) = itmp(:)          ! second copy from the temporary into the new storage
-  deallocate(itmp)                 ! deallocate the temporary</code></pre>
+<div class="codewrapper sourceCode" id="cb15">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>  <span class="dt">integer</span> <span class="dt">::</span> nold</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">dimension(:)</span>, <span class="dt">allocatable</span> <span class="dt">::</span> itmp</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>  nold <span class="kw">=</span> <span class="fu">size</span>(iorig)</span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>  <span class="kw">allocate</span>(itmp(nold))             <span class="co">! allocate temporary storage for original data</span></span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>  itmp(:) <span class="kw">=</span> iorig(:)               <span class="co">! first copy from original storage into the temporary</span></span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a>  <span class="kw">deallocate</span>(iorig)                <span class="co">! deallocate the original array</span></span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a>  <span class="kw">allocate</span>(iorig(<span class="dv">2</span><span class="kw">*</span>ndold))         <span class="co">! and then reallocate at twice the size</span></span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a>  iorig(<span class="dv">1</span>:nold) <span class="kw">=</span> itmp(:)          <span class="co">! second copy from the temporary into the new storage</span></span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a>  <span class="kw">deallocate</span>(itmp)                 <span class="co">! deallocate the temporary</span></span></code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -840,17 +900,25 @@ would have to perform the following to double the storage in
 <h3 id="arrays-of-pointers">Arrays of pointers<a class="anchor" aria-label="anchor" href="#arrays-of-pointers"></a></h3>
 <p>A small trick is required to arrange an array of pointers. Recall
 that</p>
-<pre><code>  real, dimension(:), pointer :: a</code></pre>
+<div class="codewrapper sourceCode" id="cb16">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>  <span class="dt">real</span>, <span class="dt">dimension(:)</span>, <span class="dt">pointer</span> <span class="dt">::</span> a</span></code></pre>
+</div>
 <p>is a pointer to a rank one array, and <em>not</em> a rank one array
 of pointers. If one did want an array of such objects, it can be
 achieved by wrapping it in a type:</p>
-<pre><code>  type :: pointer_rr1
-    real, dimension(:), pointer :: p =&gt; null()
-  end type pointer_rr1
-
-  type (pointer_rr1), dimension(10) :: a
-
-  a(1)%p =&gt; null()</code></pre>
+<div class="codewrapper sourceCode" id="cb17">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>  <span class="dt">type</span> <span class="dt">::</span> pointer_rr1</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>    <span class="dt">real</span>, <span class="dt">dimension(:)</span>, <span class="dt">pointer</span> <span class="dt">::</span> p <span class="kw">=</span><span class="op">&gt;</span> null()</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>  <span class="dt">end type</span> pointer_rr1</span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>  <span class="dt">type (pointer_rr1)</span>, <span class="dt">dimension(10)</span> <span class="dt">::</span> a</span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a>  a(<span class="dv">1</span>)<span class="op">%</span>p <span class="kw">=</span><span class="op">&gt;</span> null()</span></code></pre>
+</div>
 <p>So <code>a</code> is a rank one array of the new type, each element
 having the component <code>p</code> which is a pointer to a real rank
 one type.</p>
@@ -935,7 +1003,7 @@ allocation from one allocatable variable to another.</li>
   "url": "https://welucas2.github.io/2026-02-18-MO-Fortran-intro/17-pointers.html",
   "identifier": "https://welucas2.github.io/2026-02-18-MO-Fortran-intro/17-pointers.html",
   "dateCreated": "2025-05-05",
-  "dateModified": "2026-02-06",
+  "dateModified": "2026-02-13",
   "datePublished": "2026-02-13"
 }
 

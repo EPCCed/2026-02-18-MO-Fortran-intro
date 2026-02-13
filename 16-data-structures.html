@@ -553,7 +553,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Structures: derived types</h1>
-        <p>Last updated on 2026-02-06 |
+        <p>Last updated on 2026-02-13 |
 
         <a href="https://github.com/welucas2/2026-02-18-MO-Fortran-intro/edit/main/episodes/16-data-structures.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -599,29 +599,45 @@ create structured types combining multiple types together in some way of
 our choosing. We call these <em>derived types</em>.</p>
 </section><section><h2 class="section-heading" id="type-definitions">Type definitions<a class="anchor" aria-label="anchor" href="#type-definitions"></a></h2>
 <hr class="half-width"><p>A derived type with two <em>components</em> would be declared,
-e.g.,</p>
-<pre><code>  type :: my_type
-    integer                         :: nmax
-    real, dimension(:), allocatable :: data
-  end type my_type</code></pre>
+<em>e.g.</em>,</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>  <span class="dt">type</span> <span class="dt">::</span> my_type</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>    <span class="dt">integer</span>                         <span class="dt">::</span> nmax</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>    <span class="dt">real</span>, <span class="dt">dimension(:)</span>, <span class="dt">allocatable</span> <span class="dt">::</span> data</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>  <span class="dt">end type</span> my_type</span></code></pre>
+</div>
 <p>Components may be intrinsic data types (all declared in the usual
 way), or derived types.</p>
 <p>A variable of this type is declared</p>
-<pre><code>  type (my_type) :: var</code></pre>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>  <span class="dt">type (my_type)</span> <span class="dt">::</span> var</span></code></pre>
+</div>
 <p>and individual components are referenced with the component selector
-<code>%</code>, e.g.,</p>
-<pre><code>  var%nmax = 10
-  ...
-  print *, "Values are ", var%data(1:3)</code></pre>
+<code>%</code>, <em>e.g.</em>,</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>  var<span class="op">%</span>nmax <span class="kw">=</span> <span class="dv">10</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>  ...</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  <span class="fu">print</span> <span class="kw">*</span>, <span class="st">"Values are "</span>, var<span class="op">%</span>data(<span class="dv">1</span>:<span class="dv">3</span>)</span></code></pre>
+</div>
 <p>The component selector is the same as we have seen earlier for the
 complex intrinsic type – recall that the real and imaginary components
 of a complex variable <code>z</code> are accessed with <code>z%re</code>
 and <code>z%im</code> respectively.</p>
 <p>An array of types is defined in the usual way, and the component
-selector is applied to individual elements, e.g.,</p>
-<pre><code>  type (my_type), dimension(10) :: var
-  ...
-  var(1)%nmax = 100</code></pre>
+selector is applied to individual elements, <em>e.g.</em>,</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>  <span class="dt">type (my_type)</span>, <span class="dt">dimension(10)</span> <span class="dt">::</span> var</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  ...</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  var(<span class="dv">1</span>)<span class="op">%</span>nmax <span class="kw">=</span> <span class="dv">100</span></span></code></pre>
+</div>
 <p>Dummy arguments to procedures are declared in the same way as for
 intrinsic types with the appropriate attribute list, including
 intent.</p>
@@ -635,23 +651,35 @@ a module.</p>
 <div class="section level3">
 <h3 id="scope-of-components">Scope of components<a class="anchor" aria-label="anchor" href="#scope-of-components"></a></h3>
 <p>Formally, we have</p>
-<pre><code>  type [ [, attribute-list] :: ] type-name
-    [private]
-    component-part
-  [ contains
-    procedure-part ]
-  end type [ type-name ]</code></pre>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>  <span class="dt">type</span> <span class="kw">[</span> <span class="kw">[</span>, attribute<span class="kw">-</span>list<span class="kw">]</span> <span class="dt">::</span> <span class="kw">]</span> <span class="dt">type</span><span class="kw">-</span>name</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>    <span class="kw">[</span><span class="dt">private</span><span class="kw">]</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>    component<span class="kw">-</span>part</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="kw">[</span> <span class="kw">contains</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>    <span class="kw">procedure-</span>part <span class="kw">]</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>  <span class="dt">end type</span> <span class="kw">[</span> <span class="dt">type</span><span class="kw">-</span>name <span class="kw">]</span></span></code></pre>
+</div>
 <p>The default situation is for both the type and its components to be
 public. This may be made explicit by</p>
-<pre><code>  type, public :: my_type
-    ...
-  end type my_type</code></pre>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>  <span class="dt">type</span>, <span class="dt">public</span> <span class="dt">::</span> my_type</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>    ...</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="dt">end type</span> my_type</span></code></pre>
+</div>
 <p>If one wants a public type with private components (an opaque type),
 use</p>
-<pre><code>  type, public :: my_opaque_type
-    private
-    ...
-  end type my_opaque_type</code></pre>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>  <span class="dt">type</span>, <span class="dt">public</span> <span class="dt">::</span> my_opaque_type</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>    <span class="dt">private</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>    ...</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>  <span class="dt">end type</span> my_opaque_type</span></code></pre>
+</div>
 <p>Externally, other program units will be able to reference this opaque
 type, but will not be allowed to access the components (a compiler
 error).</p>
@@ -661,17 +689,21 @@ then it can be declared <code>private</code> in the attribute list.</p>
 <div class="section level3">
 <h3 id="type-constructors">Type constructors<a class="anchor" aria-label="anchor" href="#type-constructors"></a></h3>
 <p>For types with public components, it is possible to use a structure
-constructor to provide initialisation, e.g.,:</p>
-<pre><code>  type, public :: my_type
-     integer :: ia
-     real    :: b
-     complex :: z
-  end type my_type
-
-  ...
-  type (my_type) :: a
-
-  a = my_type(3, 2.0, (0.0, 1.0))</code></pre>
+constructor to provide initialisation, <em>e.g.</em>,:</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>  <span class="dt">type</span>, <span class="dt">public</span> <span class="dt">::</span> my_type</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="bu">     i</span>nteger <span class="dt">::</span> ia</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="bu">     r</span>eal    <span class="dt">::</span> b</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="bu">     c</span>omplex <span class="dt">::</span> z</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>  <span class="dt">end type</span> my_type</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>  ...</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>  <span class="dt">type (my_type)</span> <span class="dt">::</span> a</span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>  a <span class="kw">=</span> my_type(<span class="dv">3</span>, <span class="fl">2.0</span>, (<span class="fl">0.0</span>, <span class="fl">1.0</span>))</span></code></pre>
+</div>
 <p>Values or expressions can be used, but must appear in the order
 specified in the definition of the components. An allocatable or pointer
 (next episode) component must appear as <code>null()</code> in a
@@ -681,17 +713,25 @@ constructor expression list.</p>
 <h3 id="default-initialisation">Default initialisation<a class="anchor" aria-label="anchor" href="#default-initialisation"></a></h3>
 <p>A type may be defined with default initial values. One notable
 exception is that allocatable components do not have an initialisation.
-E.g.:</p>
-<pre><code>  type :: my_type
-    integer                            :: nmax = 10
-    real                               :: a0 = 1.0
-    integer, dimension(:), allocatable :: ndata
-  end type</code></pre>
+<em>E.g.</em>:</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>  <span class="dt">type</span> <span class="dt">::</span> my_type</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>    <span class="dt">integer</span>                            <span class="dt">::</span> nmax <span class="kw">=</span> <span class="dv">10</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>    <span class="dt">real</span>                               <span class="dt">::</span> a0 <span class="kw">=</span> <span class="fl">1.0</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>    <span class="dt">integer</span>, <span class="dt">dimension(:)</span>, <span class="dt">allocatable</span> <span class="dt">::</span> ndata</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>  <span class="dt">end type</span></span></code></pre>
+</div>
 <p>A default initialisation can be applied by using an empty
 constructor::</p>
-<pre><code>  type (my_type) :: a
-
-  a = my_type()</code></pre>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>  <span class="dt">type (my_type)</span> <span class="dt">::</span> a</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>  a <span class="kw">=</span> my_type()</span></code></pre>
+</div>
 <p>For an allocatable component, the result is a component with a not
 allocated status.</p>
 <p>Warning: some compilers can’t manage an empty constructor for
@@ -735,7 +775,7 @@ initialisation?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Running the code as provided gives the following output:</p>
 <div class="codewrapper">
@@ -749,7 +789,11 @@ initialisation?</p>
  Step  6,  1230752996</code></pre>
 </div>
 <p>Changing to use the suggested bad RNG values means doing</p>
-<pre class="source"><code>type (my_rng) :: rng = my_rng(1, 1, 0, 2147483647)</code></pre>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="dt">type (my_rng)</span> <span class="dt">::</span> rng <span class="kw">=</span> my_rng(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2147483647</span>)</span></code></pre>
+</div>
 <p>and this produces the following output (note Cray Fortran being
 helpful with the first line)</p>
 <div class="codewrapper">
@@ -763,13 +807,17 @@ helpful with the first line)</p>
  Step  6,  1</code></pre>
 </div>
 <p>Making the RNG type’s components private means doing:</p>
-<pre class="source"><code>  type, public :: my_rng
-    private
-    integer (int64) :: a = 45991
-    integer (int32) :: s = 1
-    integer (int64) :: c = 0
-    integer (int64) :: m = 2147483647
-  end type my_rng</code></pre>
+<div class="codewrapper sourceCode" id="cb14">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>  <span class="dt">type</span>, <span class="dt">public</span> <span class="dt">::</span> my_rng</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>    <span class="dt">private</span></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>    <span class="dt">integer (int64)</span> <span class="dt">::</span> a <span class="kw">=</span> <span class="dv">45991</span></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>    <span class="dt">integer (int32)</span> <span class="dt">::</span> s <span class="kw">=</span> <span class="dv">1</span></span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>    <span class="dt">integer (int64)</span> <span class="dt">::</span> c <span class="kw">=</span> <span class="dv">0</span></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>    <span class="dt">integer (int64)</span> <span class="dt">::</span> m <span class="kw">=</span> <span class="dv">2147483647</span></span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>  <span class="dt">end type</span> my_rng</span></code></pre>
+</div>
 <p>Trying to compile the program while setting the <code>a</code> etc.
 values will cause a compiler error; those components are no longer
 public, and the compiler knows it shouldn’t touch them. If we wanted to
@@ -784,10 +832,14 @@ another module procedure to do so.</p>
 <hr class="half-width"><p>List-directed output for derived types can be used to provide a
 default output in which each component appears in order,
 schematically:</p>
-<pre><code>  type (my_type) :: a
-  ...
-  write (*, fmt = *) a
-  write (*, fmt = *) a%component1, a%component2, ...</code></pre>
+<div class="codewrapper sourceCode" id="cb15">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>  <span class="dt">type (my_type)</span> <span class="dt">::</span> a</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>  ...</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>  <span class="fu">write (*</span>, <span class="fu">fmt</span> <span class="kw">=</span> <span class="fu">*)</span> a</span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>  <span class="fu">write (*</span>, <span class="fu">fmt</span> <span class="kw">=</span> <span class="fu">*)</span> a<span class="op">%</span>component1, a<span class="op">%</span>component2, ...</span></code></pre>
+</div>
 <p>or one can apply a specific format to correspond to the known type
 components.</p>
 <div class="section level3">
@@ -796,39 +848,55 @@ components.</p>
 default behaviour of the formatting when a derived type appears in an
 io-list.</p>
 <p>A special <code>dt</code> editor descriptor exists, of the form:</p>
-<pre><code><span>  <span class="va">dt</span><span class="op">[</span><span class="va">iodesc</span><span class="op">-</span><span class="va">string</span><span class="op">]</span><span class="op">[</span><span class="op">(</span><span class="va">v</span><span class="op">-</span><span class="va">list</span><span class="op">)</span><span class="op">]</span></span></code></pre>
+<div class="codewrapper sourceCode" id="cb16">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>  dt<span class="kw">[</span>iodesc<span class="kw">-</span>string<span class="kw">][</span>(v<span class="kw">-</span>list)<span class="kw">]</span></span></code></pre>
+</div>
 <p>For example we may have</p>
-<pre><code>  dt" my-type: "(2,14)</code></pre>
+<div class="codewrapper sourceCode" id="cb17">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>  dt<span class="st">" my-type: "</span>(<span class="dv">2</span>,<span class="dv">14</span>)</span></code></pre>
+</div>
 <p>The <em>iodesc-string</em> and <em>v-list</em> will re-appear as
 arguments to a special function which must be provided by the
 programmer. Information on this function is provided as part of the
 <em>procedure-part</em> of the type definition:</p>
-<pre><code>type, public :: my_type
-  integer :: n
-  complex :: z
-contains
-  procedure :: my_type_write_formatted
-  generic   :: write(formatted) =&gt; my_type_write_formatted
-end type my_type</code></pre>
+<div class="codewrapper sourceCode" id="cb18">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="dt">type</span>, <span class="dt">public</span> <span class="dt">::</span> my_type</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>  <span class="dt">integer</span> <span class="dt">::</span> n</span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>  <span class="dt">complex</span> <span class="dt">::</span> z</span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a><span class="co">contains</span></span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a>  <span class="kw">procedure</span> <span class="dt">::</span> my_type_write_formatted</span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a>  generic   <span class="dt">::</span> <span class="fu">write(formatted)</span> <span class="kw">=</span><span class="op">&gt;</span> my_type_write_formatted</span>
+<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a><span class="dt">end type</span> my_type</span></code></pre>
+</div>
 <p>The following module subroutine should then be provided:</p>
-<pre><code>  subroutine my_type_write_formatted(self, unit, iotype, vlist, iostat, iomsg)
-
-    class (my_type),     intent(in)    :: self
-    integer,             intent(in)    :: unit
-    character (len = *), intent(in)    :: iotype       ! "DT my-type: "
-    integer,             intent(in)    :: vlist(:)     ! (2,14)
-    integer,             intent(out)   :: iostat
-    character (len = *), intent(inout) :: iomsg
-
-    ! ... process arguments to give required output to unit number ...
-    ! iotype is "LISTDIRECTED" for list directed io
-    ! iotype is "DTdesc-string" for dt edit descriptor
-    ! ...
-    ! ... write (unit = unit, fmt = ...)  self%n, self%z
-
-    ! iostat and iomsg should be set if there is an error
-
-  end subroutine my_type_write_formatted</code></pre>
+<div class="codewrapper sourceCode" id="cb19">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>  <span class="kw">subroutine</span> my_type_write_formatted(self, unit, iotype, vlist, iostat, <span class="co">iomsg)</span></span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>    class (my_type),     <span class="dt">intent(in)</span>    <span class="dt">::</span> self</span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>    <span class="dt">integer</span>,             <span class="dt">intent(in)</span>    <span class="dt">::</span> unit</span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a>    <span class="dt">character (len = *)</span>, <span class="dt">intent(in)</span>    <span class="dt">::</span> iotype       <span class="co">! "DT my-type: "</span></span>
+<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a>    <span class="dt">integer</span>,             <span class="dt">intent(in)</span>    <span class="dt">::</span> vlist(:)     <span class="co">! (2,14)</span></span>
+<span id="cb19-7"><a href="#cb19-7" tabindex="-1"></a>    <span class="dt">integer</span>,             <span class="dt">intent(out)</span>   <span class="dt">::</span> iostat</span>
+<span id="cb19-8"><a href="#cb19-8" tabindex="-1"></a>    <span class="dt">character (len = *)</span>, <span class="dt">intent(inout)</span> <span class="dt">::</span> iomsg</span>
+<span id="cb19-9"><a href="#cb19-9" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" tabindex="-1"></a>    <span class="co">! ... process arguments to give required output to unit number ...</span></span>
+<span id="cb19-11"><a href="#cb19-11" tabindex="-1"></a>    <span class="co">! iotype is "LISTDIRECTED" for list directed io</span></span>
+<span id="cb19-12"><a href="#cb19-12" tabindex="-1"></a>    <span class="co">! iotype is "DTdesc-string" for dt edit descriptor</span></span>
+<span id="cb19-13"><a href="#cb19-13" tabindex="-1"></a>    <span class="co">! ...</span></span>
+<span id="cb19-14"><a href="#cb19-14" tabindex="-1"></a>    <span class="co">! ... write (unit = unit, fmt = ...)  self%n, self%z</span></span>
+<span id="cb19-15"><a href="#cb19-15" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="#cb19-16" tabindex="-1"></a>    <span class="co">! iostat and iomsg should be set if there is an error</span></span>
+<span id="cb19-17"><a href="#cb19-17" tabindex="-1"></a></span>
+<span id="cb19-18"><a href="#cb19-18" tabindex="-1"></a>  <span class="kw">end subroutine</span> my_type_write_formatted</span></code></pre>
+</div>
 </div>
 <div class="section level3">
 <h3 id="exercise-15-minutes">Exercise (15 minutes)<a class="anchor" aria-label="anchor" href="#exercise-15-minutes"></a></h3>
@@ -864,16 +932,20 @@ point.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Your new tri-diagonal matrix type should look something like
 this:</p>
-<pre class="source"><code>  type, public :: tri_matrix
-    integer :: nmax
-    real (mykind), dimension(:), allocatable :: a     ! lower (2:nmax)
-    real (mykind), dimension(:), allocatable :: b     ! diag (1:nmax)
-    real (mykind), dimension(:), allocatable :: c     ! upper (1:nmax-1)
-  end type tri_matrix</code></pre>
+<div class="codewrapper sourceCode" id="cb20">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>  <span class="dt">type</span>, <span class="dt">public</span> <span class="dt">::</span> tri_matrix</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>    <span class="dt">integer</span> <span class="dt">::</span> nmax</span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>    <span class="dt">real (mykind)</span>, <span class="dt">dimension(:)</span>, <span class="dt">allocatable</span> <span class="dt">::</span> a     <span class="co">! lower (2:nmax)</span></span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a>    <span class="dt">real (mykind)</span>, <span class="dt">dimension(:)</span>, <span class="dt">allocatable</span> <span class="dt">::</span> b     <span class="co">! diag (1:nmax)</span></span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a>    <span class="dt">real (mykind)</span>, <span class="dt">dimension(:)</span>, <span class="dt">allocatable</span> <span class="dt">::</span> c     <span class="co">! upper (1:nmax-1)</span></span>
+<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a>  <span class="dt">end type</span> tri_matrix</span></code></pre>
+</div>
 <p>Implementations of the solution are available in <a href="files/exercises/16-data-structures/solutions-1/solution_program.f90">solution_program.f90</a>
 and <a href="files/exercises/16-data-structures/solutions-1/solution_module.f90">solution_module.f90</a>.</p>
 </div>
@@ -893,11 +965,15 @@ and <a href="files/exercises/16-data-structures/solutions-1/solution_module.f90"
 <div class="callout-content">
 <p>Try implementing the generic <code>write(formatted)</code> function
 for the following type:</p>
-<pre><code>  type, public :: my_date
-    integer :: day = 1        ! day 1-31
-    integer :: month = 1      ! month 1-12
-    integer :: year = 1900    ! year
-  end type my_date</code></pre>
+<div class="codewrapper sourceCode" id="cb21">
+<h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>  <span class="dt">type</span>, <span class="dt">public</span> <span class="dt">::</span> my_date</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>    <span class="dt">integer</span> <span class="dt">::</span> day <span class="kw">=</span> <span class="dv">1</span>        <span class="co">! day 1-31</span></span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a>    <span class="dt">integer</span> <span class="dt">::</span> month <span class="kw">=</span> <span class="dv">1</span>      <span class="co">! month 1-12</span></span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a>    <span class="dt">integer</span> <span class="dt">::</span> year <span class="kw">=</span> <span class="dv">1900</span>    <span class="co">! year</span></span>
+<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a>  <span class="dt">end type</span> my_date</span></code></pre>
+</div>
 <p>The format we would like is <code>dd/mm/yyyy</code> e.g,
 <code>01/12/1999</code> for 1st December 1999 for list directed I/O.
 Then try the <code>dt</code> edit descriptor to allow some more
@@ -910,7 +986,7 @@ flexibility.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>A suggested implementation of the solution is available in <a href="files/exercises/16-data-structures/solutions-2/date_program.f90">date_program.f90</a>
 and <a href="files/exercises/16-data-structures/solutions-2/date_module.f90">date_module.f90</a>.</p>
@@ -998,7 +1074,7 @@ this introductory course will only touch on this feature.</li>
   "url": "https://welucas2.github.io/2026-02-18-MO-Fortran-intro/16-data-structures.html",
   "identifier": "https://welucas2.github.io/2026-02-18-MO-Fortran-intro/16-data-structures.html",
   "dateCreated": "2025-05-05",
-  "dateModified": "2026-02-06",
+  "dateModified": "2026-02-13",
   "datePublished": "2026-02-13"
 }
 

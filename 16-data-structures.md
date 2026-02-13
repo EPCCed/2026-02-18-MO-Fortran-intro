@@ -29,9 +29,9 @@ together in some way of our choosing. We call these *derived types*.
 
 ## Type definitions
 
-A derived type with two *components* would be declared, e.g.,
+A derived type with two *components* would be declared, *e.g.*,
 
-```
+```fortran
   type :: my_type
     integer                         :: nmax
     real, dimension(:), allocatable :: data
@@ -43,13 +43,13 @@ derived types.
 
 A variable of this type is declared
 
-```
+```fortran
   type (my_type) :: var
 ```
 
-and individual components are referenced with the component selector `%`, e.g.,
+and individual components are referenced with the component selector `%`, *e.g.*,
 
-```
+```fortran
   var%nmax = 10
   ...
   print *, "Values are ", var%data(1:3)
@@ -60,9 +60,9 @@ intrinsic type -- recall that the real and imaginary components of a complex
 variable `z` are accessed with `z%re` and `z%im` respectively.
 
 An array of types is defined in the usual way, and the component selector is
-applied to individual elements, e.g.,
+applied to individual elements, *e.g.*,
 
-```
+```fortran
   type (my_type), dimension(10) :: var
   ...
   var(1)%nmax = 100
@@ -82,7 +82,7 @@ Some derived type features *require* that the definition be in a module.
 
 Formally, we have
 
-```
+```fortran
   type [ [, attribute-list] :: ] type-name
     [private]
     component-part
@@ -94,7 +94,7 @@ Formally, we have
 The default situation is for both the type and its components to be public. This
 may be made explicit by
 
-```
+```fortran
   type, public :: my_type
     ...
   end type my_type
@@ -102,7 +102,7 @@ may be made explicit by
 
 If one wants a public type with private components (an opaque type), use
 
-```
+```fortran
   type, public :: my_opaque_type
     private
     ...
@@ -118,9 +118,9 @@ be declared `private` in the attribute list.
 ### Type constructors
 
 For types with public components, it is possible to use a structure constructor
-to provide initialisation, e.g.,:
+to provide initialisation, *e.g.*,:
 
-```
+```fortran
   type, public :: my_type
      integer :: ia
      real    :: b
@@ -140,9 +140,9 @@ must appear as `null()` in a constructor expression list.
 ### Default initialisation
 
 A type may be defined with default initial values. One notable exception is that
-allocatable components do not have an initialisation. E.g.:
+allocatable components do not have an initialisation. *E.g.*:
 
-```
+```fortran
   type :: my_type
     integer                            :: nmax = 10
     real                               :: a0 = 1.0
@@ -152,7 +152,7 @@ allocatable components do not have an initialisation. E.g.:
 
 A default initialisation can be applied by using an empty constructor::
 
-```
+```fortran
   type (my_type) :: a
 
   a = my_type()
@@ -208,7 +208,7 @@ Running the code as provided gives the following output:
 
 Changing to use the suggested bad RNG values means doing
 
-```source
+```fortran
 type (my_rng) :: rng = my_rng(1, 1, 0, 2147483647)
 ```
 
@@ -225,7 +225,7 @@ and this produces the following output (note Cray Fortran being helpful with the
 
 Making the RNG type's components private means doing:
 
-```source
+```fortran
   type, public :: my_rng
     private
     integer (int64) :: a = 45991
@@ -249,7 +249,7 @@ to do so.
 List-directed output for derived types can be used to provide a default output
 in which each component appears in order, schematically:
 
-```
+```fortran
   type (my_type) :: a
   ...
   write (*, fmt = *) a
@@ -265,13 +265,13 @@ behaviour of the formatting when a derived type appears in an io-list.
 
 A special `dt` editor descriptor exists, of the form:
 
-```
+```fortran
   dt[iodesc-string][(v-list)]
 ```
 
 For example we may have
 
-```
+```fortran
   dt" my-type: "(2,14)
 ```
 
@@ -279,7 +279,7 @@ The *iodesc-string* and *v-list* will re-appear as arguments to a special
 function which must be provided by the programmer. Information on this function
 is provided as part of the *procedure-part* of the type definition:
 
-```
+```fortran
 type, public :: my_type
   integer :: n
   complex :: z
@@ -291,7 +291,7 @@ end type my_type
 
 The following module subroutine should then be provided:
 
-```
+```fortran
   subroutine my_type_write_formatted(self, unit, iotype, vlist, iostat, iomsg)
 
     class (my_type),     intent(in)    :: self
@@ -338,11 +338,9 @@ you can use your own version that you have been developing to this point.
 
 :::::::::::::::  solution
 
-## Solution
-
 Your new tri-diagonal matrix type should look something like this:
 
-```source
+```fortran
   type, public :: tri_matrix
     integer :: nmax
     real (mykind), dimension(:), allocatable :: a     ! lower (2:nmax)
@@ -369,7 +367,7 @@ and
 Try implementing the generic `write(formatted)` function for the following
 type:
 
-```
+```fortran
   type, public :: my_date
     integer :: day = 1        ! day 1-31
     integer :: month = 1      ! month 1-12
@@ -382,8 +380,6 @@ for list directed I/O. Then try the `dt` edit descriptor to allow some more
 flexibility.
 
 :::::::::::::::  solution
-
-## Solution
 
 A suggested implementation of the solution is available in
 [date\_program.f90](files/exercises/16-data-structures/solutions-2/date_program.f90)

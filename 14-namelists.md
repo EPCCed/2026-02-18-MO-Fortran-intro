@@ -29,14 +29,14 @@ grouping of variables for reading and writing.
 The namelist associates a name with a list of variables. The namelist is
 declared using a `namelist` construct which takes the form
 
-```
+```fortran
   namelist /namelist-group-name/ variable-name-list
 ```
 
 where the `namelist-group-name` is surrounded by forward slashes `/` and the
 `variable-name-list` is a comma separated list of variables, e.g.:
 
-```
+```fortran
   integer :: a, b, c
   namelist /ints/ a, b, c
 ```
@@ -47,7 +47,7 @@ A namelist file is plain text and may contain one or more namelists. Each of
 these is begun by `&namelist-group-name` and terminated by `/`. Variable-value
 assignments occur in the body of the `namelist`, e.g. the file may contain
 
-```
+```fortran
 &ints
 a = 1
 b = 2
@@ -58,7 +58,7 @@ c = 3
 The ordering of variables in the namelist does not matter, so the previous
 example could also have been written as
 
-```
+```fortran
 &ints
 c = 3
 a = 1
@@ -72,7 +72,7 @@ A common usecase for namelists is to specify parameters for a program at
 runtime. For example a simulation code might read its configuration from a
 namelist called `run` as follows:
 
-```
+```fortran
 &run
 name = "TGV" ! Case name
 nsteps = 100 ! Number of timesteps
@@ -87,7 +87,7 @@ To read the namelist from a file, the `namelist-group-name` is passed as the
 argument to `read()`, so in order to read this `run` namelist we might do the
 following:
 
-```
+```fortran
   integer :: myunit
   character(len=:) :: name
   integer :: nsteps
@@ -123,8 +123,6 @@ namelist?
 
 :::::::::::::::  solution
 
-## Solution
-
 If the value in the namelist is not of the same type as the program's variable, you will
 receive an error stating that it is mismatched.
 
@@ -141,7 +139,7 @@ As stated earlier, we can have multiple namelists within a single file.
 Continuing with our simulation example we might additionally want to specify
 some numerical schemes for the simulation, e.g. adding the `schemes` namelist:
 
-```
+```fortran
 &run
 name = "TGV" ! Case name
 nsteps = 100 ! Number of timesteps
@@ -179,8 +177,6 @@ numerical `schemes` regardless of the order in which they appear.
 
 :::::::::::::::  solution
 
-## Solution
-
 Add some `character` variables to store the items from the `schemes` namelist,
 declare the namelist itself with those variables, then, after reading the `run`
 namelist, read `schemes`. To make sure it can read the two schemes in any order,
@@ -200,7 +196,7 @@ Writing a namelist works similarly to reading one. With an open file, or other
 output device, passing the namelist as the argument to `write()` will write the
 namelist to the file.
 
-```
+```fortran
   integer :: myunit
   integer :: a, b, c
   namelist /ints/ a, b, c
@@ -216,7 +212,7 @@ namelist to the file.
 
 will output the following to the new file `output.nml`:
 
-```
+```fortran
 &INTS
  A=1          ,
  B=2          ,
@@ -237,8 +233,6 @@ be read by the previous example program.
 confirm that this works with your new program when writing in any order.
 
 :::::::::::::::  solution
-
-## Solution
 
 A solution writing the `run` namelist can be found in
 [namelist-write.f90](files/exercises/14-namelists/solutions/namelist-write.f90).

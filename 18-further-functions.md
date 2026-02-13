@@ -35,9 +35,9 @@ information about the interface.
 ## An external function
 
 Consider a program unit (which may or may not be a separate file) which
-contains a function declaration outside a module scope. E.g.,
+contains a function declaration outside a module scope. *E.g.*,
 
-```
+```fortran
   function my_mapping(i) result(imap)
     integer, intent(in) :: i
     integer             :: imap
@@ -51,9 +51,9 @@ about how the function is meant to be called.
 
 It is possible to provide the compiler with some limited information
 about the return value of the function with the `external` attribute
-(also available as a statement). E.g.,
+(also available as a statement). *E.g.*,
 
-```
+```fortran
   program example
 
     implicit none
@@ -65,7 +65,7 @@ However, we have still not given the compiler full information about
 the interface. The interface is said to remain *implicit*. To make
 it explicit, the `interface` construct is available:
 
-```
+```fortran
   program example
 
     implicit none
@@ -100,9 +100,9 @@ an accompanying program
 [example1.f90](files/exercises/18-further-functions/example1.f90) calls the
 function therein.
 
-Try to compile the two files, e.g.:
+Try to compile the two files, *e.g.*:
 
-```
+```fortran
 $ ftn external.f90 example1.f90
 ```
 
@@ -110,7 +110,7 @@ What happens?
 
 Try adding the appropriate `external` declaration
 
-```
+```fortran
   integer, external :: array_size
 ```
 
@@ -123,8 +123,6 @@ Finally, remove the `external` declaration and try to introduce the
 correct `interface` block. What happens now?
 
 :::::::::::::::  solution
-
-## Solution
 
 Without either the `external` declaration of the function or an interface,
 the compilation will simply fail. `gfortran` produces the following:
@@ -150,7 +148,7 @@ The function call returns an incorrect value of 0 where the
 Removing the external declaration and adding an interface matching the function
 in `external.f90` as follows will help (and you may have already spotted the issue):
 
-```source
+```fortran
   interface
     function array_size(a) result(isize)
       real, dimension(:), intent(in) :: a
@@ -191,9 +189,9 @@ a user-defined function needs to be evaluated for a series of
 different arguments which cannot be prescribed in advance.
 
 This can be done if an interface block is provided which describes to the
-calling procedure the function that is the dummy argument. E.g.,
+calling procedure the function that is the dummy argument. *E.g.*,
 
-```
+```fortran
   subroutine my_integral(a, b, afunc, result)
     real, intent(in) :: a
     real, intent(in) :: b
@@ -220,7 +218,7 @@ However, it is not possible in Fortran to define two procedures of the same
 name, but different arguments (at least in the same scope). We need different
 names; suppose we have two module sub-programs, schematically:
 
-```
+```fortran
    subroutine my_specific_int(ia)
      integer, intent(inout) :: ia
      ... integer implementation ...
@@ -235,7 +233,7 @@ names; suppose we have two module sub-programs, schematically:
 A mechanism exists to allow the compiler to identify the correct routine
 based on the actual argument when used with a *generic name*. This is:
 
-```
+```fortran
   interface my_generic_name
     module procedure my_specific_int
     module procedure my_specific_real
@@ -266,8 +264,6 @@ correctly.
 
 :::::::::::::::  solution
 
-## Solution
-
 We need to add an interface to the module specification for `write_pbm`
 which allows use of both the `write_logical_pbm` and `write_integer_pbm`
 subroutines. You should be able to follow the description above to do so.
@@ -278,7 +274,7 @@ hidden from the main program.
 Putting this together, the following should allow you to compile and run
 the program with no errors:
 
-```source
+```fortran
   public :: write_pbm
   interface write_pbm
     module procedure write_logical_pbm
@@ -298,7 +294,7 @@ use is entirely via `write_pbm`.
 For simple derived types it may be meaningful to define relational
 and arithmetic operators. For example, if we had a date type such as
 
-```
+```fortran
   type :: my_date
     integer :: day
     integer :: month
@@ -311,7 +307,7 @@ not really be meaningful to add one date to another).
 
 One can write a function to do this:
 
-```
+```fortran
   function my_dates_equal(date1, date2) result(equal)
     type (my_date), intent(in) :: date1
     type (my_date), intent(in) :: date2
@@ -323,7 +319,7 @@ One can write a function to do this:
 As a syntactic convenience, it might be useful to use `==` in a logical
 expression using dates. This can be arranged via
 
-```
+```fortran
   interface operator(==)
     module procedure my_dates_equal
   end interface
@@ -346,7 +342,7 @@ applied to an array actual argument element by element.
 
 Such a procedure should be declared:
 
-```
+```fortran
   elemental function my_function(a) result(b)
     integer, intent(in) :: a
     integer             :: b
@@ -356,7 +352,7 @@ Such a procedure should be declared:
 
 An invocation should be, e.g.:
 
-```
+```fortran
    iresult(1:4) = my_function(ival(1:4))
 ```
 
@@ -376,14 +372,12 @@ Refactor this part of the code to use an elemental function.
 
 :::::::::::::::  solution
 
-## Solution
-
 The function `logical_to_pbm()` is currently `pure` and takes in
 a scalar logical `lvar` to return the scalar integer `ivar`. The function
 is currently `pure`. Everything is already in place to convert the function to
 `elemental`:
 
-```source
+```fortran
   elemental function logical_to_pbm(lvar) result (ivar)
 
     ! Utility to return 0 or 1 for .false. and .true.
@@ -402,7 +396,7 @@ version. Further down in that function you will see the old nested loop to
 move through the `map` array and from it use `logical_to_pbm()` to fill the
 `imap` array:
 
-```source
+```fortran
     do j = 1, size(map, dim = 2)
        do i = 1, size(map, dim = 1)
           imap(i,j) = logical_to_pbm(map(i,j))
@@ -413,7 +407,7 @@ move through the `map` array and from it use `logical_to_pbm()` to fill the
 With the new `elemental` version of `logical_to_pbm()`, we can replace this
 entire structure with the single line:
 
-```source
+```fortran
 imap(:,:) = logical_to_pbm(map(:,:))
 ```
 
@@ -425,7 +419,7 @@ imap(:,:) = logical_to_pbm(map(:,:))
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Exercise name
+## Integrating a function
 
 Write a module/program to perform a very simple numerical integration
 of a simple one-dimensional function *f(x)*. We can use a
@@ -461,8 +455,6 @@ and `b = pi/2` (the answer should be 1/2). Check your answer gets better
 for value of `n = 10, 100, 1000`.
 
 :::::::::::::::  solution
-
-## Solution
 
 A sample solution is provided in [integral\_program.f90](files/exercises/18-further-functions/solutions/integral_program.f90) and
 [integral\_module.f90](files/exercises/18-further-functions/solutions/integral_module.f90).

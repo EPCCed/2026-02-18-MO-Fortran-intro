@@ -33,7 +33,7 @@ can be retrieved.
 
 The number of command line arguments is returned by the function
 
-```
+```fortran
 command_argument_count()
 ```
 
@@ -42,7 +42,7 @@ or the number of arguments *not including* the executable name itself.
 
 The entire command line can be retrieved as a string via
 
-```
+```fortran
   call get_command(command = cmd, length = len, status = stat)
 ```
 
@@ -54,7 +54,7 @@ All the arguments are optional.
 Individual command line arguments based on their position can be retrieved
 using the subroutine
 
-```
+```fortran
   subroutine get_command_argument(position, value, length, status)
     integer,                       intent(in)  :: position
     character (len = *), optional, intent(out) :: value
@@ -71,7 +71,7 @@ the length of the command, and `istat` returns 0 on success, -ve if the
 
 A similar routine exists for inquiry about environment variables:
 
-```
+```fortran
 subroutine get_environment_variable(name, value, length, status, trim_name)
   character (len = *),           intent(in)  :: name
   character (len = *), optional, intent(out) :: value
@@ -90,7 +90,7 @@ but is too long to fit in the string provided.
 It is sometimes useful to pass control of execution back to the operating
 system so that some other command can be used.
 
-```
+```fortran
 subroutine execute_command_line(command, wait, iexit, icmd, cmdmsg)
 
   character (len = *),           intent(in)    :: command
@@ -114,9 +114,9 @@ use system commands with extreme caution, or not at all.
 
 ### Time and date from `date_and_time()`
 
-Use, e.g.,
+Use, *e.g.*,
 
-```
+```fortran
   character (len = 8)   :: date        ! "yyyymmdd"
   character (len = 10)  :: time        ! "hhmmss.sss"
   character (len = 5)   :: zone        ! "shhmm"
@@ -143,7 +143,7 @@ of code, the `cpu_time()` function can be used. This returns a
 `real` positive value which is some system-dependent time in seconds.
 Subtracting two consecutive values will give an elapsed time:
 
-```
+```fortran
    real :: t0, t1
 
    call cpu_time(t0)

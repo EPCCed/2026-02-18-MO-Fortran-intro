@@ -6,12 +6,14 @@ exercises: 0
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- 
+- Learn about some other Fortran features which may be of interest.
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- 
+- What have we not covered that I should be aware of?
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Not covered in this course
@@ -47,9 +49,9 @@ The processing of Fortran is not standardised in the same way as the
 C-preprocessor is part of the C standard.
 
 However, it is very common to see preprocessor directives for
-conditional compilation, and other preprocessor features. E.g.,
+conditional compilation, and other preprocessor features. *E.g.*,
 
-```
+```fortran
 #ifdef HAVE_SOME_FEATURE
   ...
 #endif
@@ -85,7 +87,7 @@ MPI makes use of a number of data types, macro definitions, and
 library subroutines. A modern program might introduce the information
 required via
 
-```
+```fortran
   use mpi_f08
 ```
 
@@ -93,7 +95,7 @@ which uses derived types for data types (which are often opaque).
 
 Earlier versions might use
 
-```
+```fortran
   use mpi
 ```
 
@@ -101,7 +103,7 @@ where the opaque types are integer handles.
 
 Older codes may even use
 
-```
+```fortran
 #include 'mpif.h'
 ```
 
@@ -112,7 +114,7 @@ to make the necessary handles and macros available.
 MPI is at base a C interface which accommodates Fortran. The C routines
 often have prototypes of the form:
 
-```
+```fortran
   int MPI_Send(const void * buf, int ount, MPI_Datatype dt, int dest, int tag,
                MPI_Comm comm);
 ```
@@ -137,7 +139,7 @@ arguments.
 OpenMP is a standard way to introduce thread-level parallelism
 (typically at the level of loops). A program should
 
-```
+```fortran
   use omp_lib
 ```
 
@@ -148,7 +150,7 @@ via a compiler option, usually `-fopenmp`.
 
 In Fortran, the directives are introduced by the *sentinels*:
 
-```
+```fortran
   !$omp ...
   ...
   !$omp end ...
@@ -194,7 +196,12 @@ of useful material.
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- 
+- You may come across Fortran following an older standard; some will be understandable on sight, but you may need to consult a reference.
+- MPI and OpenMP allow you to write Fortran code that will execute in parallel.
+- NVIDIA supports CUDA in Fortran for execution on GPUs.
+- Writing tests is an important step in safe code development.
+- Several books and the Fortran Wiki are invaluable resources.
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 

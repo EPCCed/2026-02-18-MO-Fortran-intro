@@ -51,7 +51,7 @@ For example, passwords in the style of both `LA10!£lsty` and `horsebatterystapl
 As well as password access, users are required to add the public part of an SSH key pair to access ARCHER2. The public part of the key pair is associated with your account using the SAFE web interface.
 See the ARCHER2 User and Best Practice Guide for information on how to create SSH key pairs and associate them with your account:
 
-- [Connecting to ARCHER2][archer2-connecting].
+- [Connecting to ARCHER2](https://docs.archer2.ac.uk/user-guide/connecting/).
 
 ## TOTP/MFA
 
@@ -77,7 +77,7 @@ For details of how to log into an ARCHER2 account, see <https://docs.archer2.ac.
 
 Check out the git repository to your laptop or ARCHER2 account.
 
-```
+```bash
 $ git clone https://github.com/EPCCed/2025-05-19-MO-Fortran-intro.git
 $ cd 2025-05-19-MO-Fortran-intro
 ```
@@ -86,7 +86,7 @@ Within the repository, the code we will use is located in the `exercises`
 directory. The default Fortran compiler on ARCHER2 is the Cray Fortran compiler
 invoked using `ftn`. For example,
 
-```
+```bash
 $ cd exercises/01-hello-world
 $ ftn example1.f90
 ```
@@ -104,7 +104,7 @@ discussed as part of the course.
 ## Course structure and method
 
 Rather than having separate lectures and practical sessions, this course is
-taught following [The Carpentries methodology][c-site], where we all work
+taught following [The Carpentries methodology](https://carpentries.org/), where we all work
 together through material learning key skills and information throughout the
 course. Typically, this follows the method of the instructor demonstrating and
 then the attendees doing along with the instructor. There are some larger

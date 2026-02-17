@@ -78,16 +78,16 @@ For details of how to log into an ARCHER2 account, see <https://docs.archer2.ac.
 Check out the git repository to your laptop or ARCHER2 account.
 
 ```bash
-$ git clone https://github.com/EPCCed/2025-05-19-MO-Fortran-intro.git
-$ cd 2025-05-19-MO-Fortran-intro
+$ git clone https://github.com/EPCCed/2026-02-18-MO-Fortran-intro.git
+$ cd 2026-02-18-MO-Fortran-intro
 ```
 
-Within the repository, the code we will use is located in the `exercises`
+Within the repository, the code we will use is located in the `episodes/files/exercises`
 directory. The default Fortran compiler on ARCHER2 is the Cray Fortran compiler
 invoked using `ftn`. For example,
 
 ```bash
-$ cd exercises/01-hello-world
+$ cd episodes/files/exercises/01-hello-world
 $ ftn example1.f90
 ```
 

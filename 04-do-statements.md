@@ -167,7 +167,7 @@ end value of 1 can't be reached, and 0 would go too far, so it finishes at 2.
 
 ## Calculating pi with loops
 
-We return the exercises discussed in the earlier [episode on
+We return to the exercises discussed in the earlier [episode on
 variables](02-variables.md). You can use
 your own solutions, or the new template here.
 

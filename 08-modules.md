@@ -135,7 +135,7 @@ different compiler. This can be can cause compile time errors if you try to
 use a `.mod` from one compiler with another; perhaps the most common scenario
 for this is when testing builds with different compilers without first
 cleaning up the `.mod` files. Sometimes compilers also use different naming
-schemes for the `.mod` files can also change. This behaviour can usually be
+schemes for the `.mod`, such as capitalising them. This particular behaviour can usually be
 changed with compiler flags.
 
 

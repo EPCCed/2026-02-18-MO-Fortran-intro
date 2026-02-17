@@ -31,12 +31,15 @@ tomorrow for you to work on your solutions.
 ## Solve a tri-diagonal system (30 minutes)
 
 This exercise will solve a tri-diagonal system of equations. A linear system of
-equations can be represented by the problem `Ax = b` where `A` is a known
-matrix, `b` is a known vector, and `x` is an unknown vector we wish to solve for.
-`A` is tri-diagonal, meaning that it is 0 everywhere except for a stripe of non-zeroes
-three-elements wide moving down the diagonal.
+equations can be represented by the problem 
 
-This means that we can represent an `n`\-by-`n` tri-diagonal matrix using three
+$Ax = b$
+
+where $A$ is a known matrix, $b$ is a known vector, and $x$ is an unknown vector we wish to solve for.
+$A$ is tri-diagonal, meaning that it is 0 everywhere except for a stripe of non-zeroes
+three elements wide moving down the diagonal -- except the very top and bottom, where it is two elements wide.
+
+This means that we can represent an $n$-by-$n$ tri-diagonal matrix using three
 rank-1 arrays, one of size `n` representing the diagonal and two of size `n-1`
 representing the upper and lower diagonals. Through two operations across the
 arrays, the first moving forwards and the second backwards, as described

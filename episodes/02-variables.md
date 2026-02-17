@@ -301,6 +301,8 @@ radians) of the argument.
 
 ### Exercise (2 minutes)
 
+:::::::::::::::::::::::::::::::::::::::  challenge
+
 Consider further the accompanying [example3.f90](files/exercises/02-variables/example3.f90), where we have introduced
 another intrinsic function `storage_size()` (roughly equivalent to C's
 `sizeof()` although it returns a size in bits rather than bytes).
@@ -312,6 +314,8 @@ declaring, e.g.:
   integer (4) :: i32
   integer (8) :: i64
 ```
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Exercise (2 minutes)
 
@@ -424,7 +428,8 @@ then a result will be returned with a real part of `0` and an imaginary part
 of `1`.
 
 If you call `sqrt()` on a real number `-1` then the compiler will exit with
-an error and a message explaining why this is not valid.
+an error and a message explaining why this is not valid. If `sqrt()` is called
+on a variable with the value `-1` it will return `NaN`.
 
 :::::::::::::::::::::::::
 

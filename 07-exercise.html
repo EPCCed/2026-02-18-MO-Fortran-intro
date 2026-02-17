@@ -551,7 +551,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Mini exercise: a choice of two</h1>
-        <p>Last updated on 2026-02-13 |
+        <p>Last updated on 2026-02-17 |
 
         <a href="https://github.com/welucas2/2026-02-18-MO-Fortran-intro/edit/main/episodes/07-exercise.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -602,18 +602,18 @@ afternoon and tomorrow for you to work on your solutions.</p>
 <h3 class="callout-title">Solve a tri-diagonal system (30 minutes)</h3>
 <div class="callout-content">
 <p>This exercise will solve a tri-diagonal system of equations. A linear
-system of equations can be represented by the problem
-<code>Ax = b</code> where <code>A</code> is a known matrix,
-<code>b</code> is a known vector, and <code>x</code> is an unknown
-vector we wish to solve for. <code>A</code> is tri-diagonal, meaning
-that it is 0 everywhere except for a stripe of non-zeroes three-elements
-wide moving down the diagonal.</p>
-<p>This means that we can represent an <code>n</code>-by-<code>n</code>
-tri-diagonal matrix using three rank-1 arrays, one of size
-<code>n</code> representing the diagonal and two of size
-<code>n-1</code> representing the upper and lower diagonals. Through two
-operations across the arrays, the first moving forwards and the second
-backwards, as described at <a href="https://en.wikipedia.org/wiki/Tridiagonal_matrix_algorithm" class="external-link">Wikipedia</a>,
+system of equations can be represented by the problem</p>
+<p><span class="math inline">\(Ax = b\)</span></p>
+<p>where <span class="math inline">\(A\)</span> is a known matrix, <span class="math inline">\(b\)</span> is a known vector, and <span class="math inline">\(x\)</span> is an unknown vector we wish to solve
+for. <span class="math inline">\(A\)</span> is tri-diagonal, meaning
+that it is 0 everywhere except for a stripe of non-zeroes three elements
+wide moving down the diagonal – except the very top and bottom, where it
+is two elements wide.</p>
+<p>This means that we can represent an <span class="math inline">\(n\)</span>-by-<span class="math inline">\(n\)</span> tri-diagonal matrix using three rank-1
+arrays, one of size <code>n</code> representing the diagonal and two of
+size <code>n-1</code> representing the upper and lower diagonals.
+Through two operations across the arrays, the first moving forwards and
+the second backwards, as described at <a href="https://en.wikipedia.org/wiki/Tridiagonal_matrix_algorithm" class="external-link">Wikipedia</a>,
 the solution <code>x</code> can be determined.</p>
 <p>The accompanying template <a href="files/exercises/07-exercise/tri-diagonal.f90">tri-diagonal.f90</a>
 has some further instructions, and some suggestions on how to test the
@@ -626,7 +626,7 @@ result.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>A solution to the problem appears as a <a href="files/exercises/10-dummy-array-arguments/exercise.f90">template</a>
 to the exercise in the <a href="10-dummy-array-arguments.html">later
@@ -732,7 +732,7 @@ board and the first update:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Two reference answers are given in the <code>solutions</code>
 directory. The <a href="files/exercises/07-exercise/solutions/life-step2.f90">first</a>
@@ -814,7 +814,7 @@ solve some real problems.</li>
   "url": "https://welucas2.github.io/2026-02-18-MO-Fortran-intro/07-exercise.html",
   "identifier": "https://welucas2.github.io/2026-02-18-MO-Fortran-intro/07-exercise.html",
   "dateCreated": "2025-05-05",
-  "dateModified": "2026-02-13",
+  "dateModified": "2026-02-17",
   "datePublished": "2026-02-17"
 }
 

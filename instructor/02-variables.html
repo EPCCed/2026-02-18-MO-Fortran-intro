@@ -551,7 +551,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Variables</h1>
-        <p>Last updated on 2026-02-06 |
+        <p>Last updated on 2026-02-17 |
 
         <a href="https://github.com/welucas2/2026-02-18-MO-Fortran-intro/edit/main/episodes/02-variables.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -938,6 +938,14 @@ tangent (as a value in radians) of the argument.</p>
 </div>
 <div class="section level3">
 <h3 id="exercise-2-minutes">Exercise (2 minutes)<a class="anchor" aria-label="anchor" href="#exercise-2-minutes"></a></h3>
+<div id="discussion1" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<span class="callout-header">Discussion</span>
+<div class="callout-inner">
+<h3 class="callout-title">Challenge</h3>
+<div class="callout-content">
 <p>Consider further the accompanying <a href="../files/exercises/02-variables/example3.f90">example3.f90</a>, where
 we have introduced another intrinsic function
 <code>storage_size()</code> (roughly equivalent to C’s
@@ -950,6 +958,9 @@ a program declaring, e.g.:</p>
 </h3>
 <pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>  <span class="dt">integer (4)</span> <span class="dt">::</span> i32</span>
 <span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>  <span class="dt">integer (8)</span> <span class="dt">::</span> i64</span></code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="section level3">
@@ -1084,7 +1095,8 @@ be returned with a real part of <code>0</code> and an imaginary part of
 <code>1</code>.</p>
 <p>If you call <code>sqrt()</code> on a real number <code>-1</code> then
 the compiler will exit with an error and a message explaining why this
-is not valid.</p>
+is not valid. If <code>sqrt()</code> is called on a variable with the
+value <code>-1</code> it will return <code>NaN</code>.</p>
 </div>
 </div>
 </div>
@@ -1240,7 +1252,7 @@ associated with the name constant.</li>
   "url": "https://welucas2.github.io/2026-02-18-MO-Fortran-intro/instructor/02-variables.html",
   "identifier": "https://welucas2.github.io/2026-02-18-MO-Fortran-intro/instructor/02-variables.html",
   "dateCreated": "2025-05-05",
-  "dateModified": "2026-02-06",
+  "dateModified": "2026-02-17",
   "datePublished": "2026-02-17"
 }
 

@@ -558,7 +558,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Connecting to ARCHER2 and transferring data</h1>
-        <p>Last updated on 2026-02-06 |
+        <p>Last updated on 2026-02-17 |
 
         <a href="https://github.com/welucas2/2026-02-18-MO-Fortran-intro/edit/main/episodes/00-connecting.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -627,7 +627,9 @@ of an SSH key pair to access ARCHER2. The public part of the key pair is
 associated with your account using the SAFE web interface. See the
 ARCHER2 User and Best Practice Guide for information on how to create
 SSH key pairs and associate them with your account:</p>
-<ul><li>[Connecting to ARCHER2][archer2-connecting].</li>
+<ul><li>
+<a href="https://docs.archer2.ac.uk/user-guide/connecting/" class="external-link">Connecting to
+ARCHER2</a>.</li>
 </ul></section><section><h2 class="section-heading" id="totpmfa">TOTP/MFA<a class="anchor" aria-label="anchor" href="#totpmfa"></a></h2>
 <hr class="half-width"><p>ARCHER2 accounts are now required to use timed one-time passwords
 (TOTP), as part of a multi-factor authorisation (MFA) system.
@@ -650,14 +652,22 @@ ARCHER2 User and Best Practice Guide:</p>
 </ul></section><section><h2 class="section-heading" id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a></h2>
 <hr class="half-width"><p>For details of how to log into an ARCHER2 account, see <a href="https://docs.archer2.ac.uk/quick-start/quickstart-users/" class="external-link uri">https://docs.archer2.ac.uk/quick-start/quickstart-users/</a></p>
 <p>Check out the git repository to your laptop or ARCHER2 account.</p>
-<pre><code>$ git clone https://github.com/EPCCed/2025-05-19-MO-Fortran-intro.git
-$ cd 2025-05-19-MO-Fortran-intro</code></pre>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">$</span> git clone https://github.com/EPCCed/2025-05-19-MO-Fortran-intro.git</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">$</span> cd 2025-05-19-MO-Fortran-intro</span></code></pre>
+</div>
 <p>Within the repository, the code we will use is located in the
 <code>exercises</code> directory. The default Fortran compiler on
 ARCHER2 is the Cray Fortran compiler invoked using <code>ftn</code>. For
 example,</p>
-<pre><code>$ cd exercises/01-hello-world
-$ ftn example1.f90</code></pre>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">$</span> cd exercises/01-hello-world</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="ex">$</span> ftn example1.f90</span></code></pre>
+</div>
 <p>should generate an executable with the default name
 <code>a.out</code>. If you are working on another machine, you should
 invoke the correct compiler e.g. <code>gfortran</code>.</p>
@@ -670,12 +680,12 @@ also appear in <code>solutions</code> subdirectories.</p>
 be discussed as part of the course.</p>
 </section><section><h2 class="section-heading" id="course-structure-and-method">Course structure and method<a class="anchor" aria-label="anchor" href="#course-structure-and-method"></a></h2>
 <hr class="half-width"><p>Rather than having separate lectures and practical sessions, this
-course is taught following [The Carpentries methodology][c-site], where
-we all work together through material learning key skills and
-information throughout the course. Typically, this follows the method of
-the instructor demonstrating and then the attendees doing along with the
-instructor. There are some larger exercises we will start working on at
-the end of day one.</p>
+course is taught following <a href="https://carpentries.org/" class="external-link">The
+Carpentries methodology</a>, where we all work together through material
+learning key skills and information throughout the course. Typically,
+this follows the method of the instructor demonstrating and then the
+attendees doing along with the instructor. There are some larger
+exercises we will start working on at the end of day one.</p>
 <p>There are many helpers available to assist you and to answer any
 questions you may have as we work through the material together. You
 should also feel free to ask questions of the instructor whenever you
@@ -793,7 +803,7 @@ in</li>
   "url": "https://welucas2.github.io/2026-02-18-MO-Fortran-intro/00-connecting.html",
   "identifier": "https://welucas2.github.io/2026-02-18-MO-Fortran-intro/00-connecting.html",
   "dateCreated": "2025-05-05",
-  "dateModified": "2026-02-06",
+  "dateModified": "2026-02-17",
   "datePublished": "2026-02-17"
 }
 

@@ -108,7 +108,7 @@ available?
 
 ### Automatic arrays
 
-One is allowed to bring into existence \`automatic' arrays on the stack.
+One is allowed to bring into existence 'automatic' arrays on the stack.
 These are usually related to temporary workspace, e.g.,
 
 ```fortran

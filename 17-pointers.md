@@ -67,7 +67,9 @@ is not itself a pointer) by using the target attribute:
 
 ```fortran
   integer, target  :: datum
-  integer, pointer :: p
+  integer, pointer :: p => null()
+
+  ...
 
   p => datum
 ```
@@ -78,7 +80,9 @@ be
 
 ```fortran
   integer, target  :: datum = 1
-  integer, pointer :: p
+  integer, pointer :: p => null()
+
+  ...
 
   p => datum     ! pointer assignment
   p = 2          ! normal assignment

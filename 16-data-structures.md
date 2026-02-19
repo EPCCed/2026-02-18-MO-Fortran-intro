@@ -118,7 +118,7 @@ be declared `private` in the attribute list.
 ### Type constructors
 
 For types with public components, it is possible to use a structure constructor
-to provide initialisation, *e.g.*,:
+to provide initialisation, *e.g.*:
 
 ```fortran
   type, public :: my_type
@@ -150,7 +150,7 @@ allocatable components do not have an initialisation. *E.g.*:
   end type
 ```
 
-A default initialisation can be applied by using an empty constructor::
+A default initialisation can be applied by using an empty constructor:
 
 ```fortran
   type (my_type) :: a
@@ -237,7 +237,7 @@ Making the RNG type's components private means doing:
 
 Trying to compile the program while setting the `a` etc. values will cause a compiler error;
 those components are no longer public, and the compiler knows it shouldn't touch them. If we
-wanted to change those values while `my_rng` opaque, we'd need to write another module procedure
+wanted to change those values while `my_rng` is opaque, we'd need to write another module procedure
 to do so.
 
 :::::::::::::::::::::::::

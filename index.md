@@ -7,8 +7,8 @@ language: English
 latlng: ~
 humandate: 19 to 21 May 2025
 humantime: ~
-startdate: '2025-05-19'
-enddate: '2025-05-21'
+startdate: '2026-02-18'
+enddate: '2026-02-20'
 instructor:
 - Paul Bartholomew
 - William Lucas

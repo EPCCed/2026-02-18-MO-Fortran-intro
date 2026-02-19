@@ -147,12 +147,6 @@ be able to pass the new value back out (hence `out`).
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-Attempt to compile the accompanying
-[module1.f90](files/exercises/09-functions-subroutines/module1.f90) and associated
-main program [program1.f90](files/exercises/09-functions-subroutines/program1.f90).
-Check the error message emitted, and sort out the intent of the dummy arguments
-in [module1.f90](files/exercises/09-functions-subroutines/module1.f90).
-
 ## Functions
 
 A function may be defined as:

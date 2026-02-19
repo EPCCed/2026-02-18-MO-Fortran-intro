@@ -553,7 +553,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Structures: derived types</h1>
-        <p>Last updated on 2026-02-13 |
+        <p>Last updated on 2026-02-19 |
 
         <a href="https://github.com/welucas2/2026-02-18-MO-Fortran-intro/edit/main/episodes/16-data-structures.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -691,7 +691,7 @@ then it can be declared <code>private</code> in the attribute list.</p>
 <div class="section level3">
 <h3 id="type-constructors">Type constructors<a class="anchor" aria-label="anchor" href="#type-constructors"></a></h3>
 <p>For types with public components, it is possible to use a structure
-constructor to provide initialisation, <em>e.g.</em>,:</p>
+constructor to provide initialisation, <em>e.g.</em>:</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -726,7 +726,7 @@ exception is that allocatable components do not have an initialisation.
 <span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>  <span class="dt">end type</span></span></code></pre>
 </div>
 <p>A default initialisation can be applied by using an empty
-constructor::</p>
+constructor:</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -823,8 +823,8 @@ helpful with the first line)</p>
 <p>Trying to compile the program while setting the <code>a</code> etc.
 values will cause a compiler error; those components are no longer
 public, and the compiler knows it shouldn’t touch them. If we wanted to
-change those values while <code>my_rng</code> opaque, we’d need to write
-another module procedure to do so.</p>
+change those values while <code>my_rng</code> is opaque, we’d need to
+write another module procedure to do so.</p>
 </div>
 </div>
 </div>
@@ -1076,7 +1076,7 @@ this introductory course will only touch on this feature.</li>
   "url": "https://welucas2.github.io/2026-02-18-MO-Fortran-intro/instructor/16-data-structures.html",
   "identifier": "https://welucas2.github.io/2026-02-18-MO-Fortran-intro/instructor/16-data-structures.html",
   "dateCreated": "2025-05-05",
-  "dateModified": "2026-02-13",
+  "dateModified": "2026-02-19",
   "datePublished": "2026-02-19"
 }
 

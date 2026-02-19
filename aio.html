@@ -1457,7 +1457,7 @@ trap the problem.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The issue is that the variable we declare is initialise is
 <code>ll</code>, but the variable we print is <code>l1</code>. Look
@@ -1694,7 +1694,7 @@ Check the compiler error emitted and remove the offending line.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>The problem is that <code>nmax</code> is created with the
 <code>parameter</code> attribute and given a value of 32, but that later
@@ -1801,7 +1801,7 @@ square root of a negative value stored as a real variable?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>If you call <code>sqrt()</code> on a complex variable
 <code>z%re = -1.0</code> and <code>z%im = 0.0</code> then a result will
@@ -1843,7 +1843,7 @@ printing the values of pi.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <p>A solution to this problem appears as the template for the <a href="files/exercises/04-do-statements/exercise1.f90">first exercise</a>
 in the <a href="04-do-statements.html">episode on loops</a>.</p>
@@ -1878,7 +1878,7 @@ variables, then perform the necessary arithmetic to calculate
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <p>A solution to this problem appears as the template for the <a href="files/exercises/04-do-statements/exercise2.f90">second
 exercise</a> in the <a href="04-do-statements.html">episode on
@@ -2532,7 +2532,7 @@ a final value after exit from the loop.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The following output is produced:</p>
 <div class="codewrapper">
@@ -2597,7 +2597,7 @@ tolerance of the true answer?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Sample code implementing loops with this problem is used as a
 template to the <a href="files/exercises/05-arrays/exercise1.f90">exercise</a> in the <a href="05-arrays.html">episode on arrays</a>.</p>
@@ -2639,7 +2639,7 @@ reverse order in this case? Can you think why this happens?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>Answer to the expert question: floating point numbers of a given
 format (such as <code>real64</code>) all have the same <em>relative
@@ -3117,7 +3117,7 @@ check the compilation errors and improve the program.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The first assignment given above is ambiguous. Is <code>d</code> a
 scalar variable, or an entire array? The second assignment is clearly on
@@ -3302,7 +3302,7 @@ you reasonably introduce?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>A sample solution is provided in <a href="files/exercises/06-array-expressions/solutions/solution.f90">solution.f90</a>.</p>
 </div>
@@ -3761,7 +3761,7 @@ the module file via, e.g.,</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Compiling the program alone produces (with the Cray compiler) the
 following error:</p>
@@ -3890,7 +3890,7 @@ the whole module, including sub-programs.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Making the module <code>private</code> hides the <code>mykind</code>
 parameter it provide from the program. On compilation,
@@ -3989,7 +3989,7 @@ computed. Check you can use the new function from a main program.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>An example solution is provided in <a href="files/exercises/08-modules/solutions/solution_program.f90">solution_program.f90</a>
 and <a href="files/exercises/08-modules/solutions/solution_module.f90">solution_module.f90</a>.</p>
@@ -4036,7 +4036,7 @@ and <a href="files/exercises/08-modules/solutions/solution_module.f90">solution_
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <p>This is a circular dependency: <code>a</code> depends on
 <code>b</code> depends on <code>a</code>. There is no solvable
@@ -4228,7 +4228,7 @@ arguments in <a href="files/exercises/09-functions-subroutines/module1.f90">modu
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p><code>assign_x()</code> should use <code>intent(out)</code> for
 <code>x</code> as it doesn’t matter what it was previously; we want to
@@ -4387,7 +4387,7 @@ number, and test it in the main code. See, for example the page at <a href="http
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Solutions are available in <a href="files/exercises/09-functions-subroutines/solutions/solution_program1.f90">solution_program1.f90</a>
 and <a href="files/exercises/09-functions-subroutines/solutions/solution_module1.f90">solution_module1.f90</a>.</p>
@@ -5219,7 +5219,7 @@ result? What’s the solution?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Using gfortran produces the following output:</p>
 <div class="codewrapper">
@@ -5350,7 +5350,7 @@ ensure the leading zeros are visible. You may wish to try this out.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Using the wrong type variable with a format specifier should still
 allow the code to compile, but you will receive a runtime error when it
@@ -6163,7 +6163,7 @@ afternoon’s session</a> .</p>
 </div>
 </div></section><section id="aio-16-data-structures"><p>Content from <a href="16-data-structures.html">Structures: derived types</a></p>
 <hr>
-<p>Last updated on 2026-02-13 |
+<p>Last updated on 2026-02-19 |
 
         <a href="https://github.com/welucas2/2026-02-18-MO-Fortran-intro/edit/main/episodes/16-data-structures.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -6304,7 +6304,7 @@ then it can be declared <code>private</code> in the attribute list.</p>
 <h3 id="type-constructors">Type constructors<a class="anchor" aria-label="anchor" href="#type-constructors"></a>
 </h3>
 <p>For types with public components, it is possible to use a structure
-constructor to provide initialisation, <em>e.g.</em>,:</p>
+constructor to provide initialisation, <em>e.g.</em>:</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -6340,7 +6340,7 @@ exception is that allocatable components do not have an initialisation.
 <span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>  <span class="dt">end type</span></span></code></pre>
 </div>
 <p>A default initialisation can be applied by using an empty
-constructor::</p>
+constructor:</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -6438,8 +6438,8 @@ helpful with the first line)</p>
 <p>Trying to compile the program while setting the <code>a</code> etc.
 values will cause a compiler error; those components are no longer
 public, and the compiler knows it shouldn’t touch them. If we wanted to
-change those values while <code>my_rng</code> opaque, we’d need to write
-another module procedure to do so.</p>
+change those values while <code>my_rng</code> is opaque, we’d need to
+write another module procedure to do so.</p>
 </div>
 </div>
 </div>
@@ -6640,7 +6640,7 @@ this introductory course will only touch on this feature.</li>
 </div>
 </section></section><section id="aio-17-pointers"><p>Content from <a href="17-pointers.html">Pointers and targets</a></p>
 <hr>
-<p>Last updated on 2026-02-13 |
+<p>Last updated on 2026-02-19 |
 
         <a href="https://github.com/welucas2/2026-02-18-MO-Fortran-intro/edit/main/episodes/17-pointers.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -6727,9 +6727,11 @@ type (which is not itself a pointer) by using the target attribute:</p>
 <h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">target</span>  <span class="dt">::</span> datum</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">pointer</span> <span class="dt">::</span> p</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">pointer</span> <span class="dt">::</span> p <span class="kw">=</span><span class="op">&gt;</span> null()</span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  p <span class="kw">=</span><span class="op">&gt;</span> datum</span></code></pre>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  ...</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>  p <span class="kw">=</span><span class="op">&gt;</span> datum</span></code></pre>
 </div>
 <p>The pointer is now said to be associated with the target. We can now
 perform operations on <code>datum</code> vicariously through
@@ -6738,10 +6740,12 @@ perform operations on <code>datum</code> vicariously through
 <h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">target</span>  <span class="dt">::</span> datum <span class="kw">=</span> <span class="dv">1</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">pointer</span> <span class="dt">::</span> p</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">pointer</span> <span class="dt">::</span> p <span class="kw">=</span><span class="op">&gt;</span> null()</span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  p <span class="kw">=</span><span class="op">&gt;</span> datum     <span class="co">! pointer assignment</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>  p <span class="kw">=</span> <span class="dv">2</span>          <span class="co">! normal assignment</span></span></code></pre>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  ...</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>  p <span class="kw">=</span><span class="op">&gt;</span> datum     <span class="co">! pointer assignment</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>  p <span class="kw">=</span> <span class="dv">2</span>          <span class="co">! normal assignment</span></span></code></pre>
 </div>
 <p>leaves us with <code>datum = 2</code>. There is no dereferencing in
 the C fashion; the data is moved as the result of the normal
@@ -7197,7 +7201,7 @@ now?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Without either the <code>external</code> declaration of the function
 or an interface, the compilation will simply fail. <code>gfortran</code>
@@ -7353,7 +7357,7 @@ to be compiled correctly.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>We need to add an interface to the module specification for
 <code>write_pbm</code> which allows use of both the
@@ -7474,7 +7478,7 @@ elemental function.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>The function <code>logical_to_pbm()</code> is currently
 <code>pure</code> and takes in a scalar logical <code>lvar</code> to
@@ -7564,7 +7568,7 @@ be 1/2). Check your answer gets better for value of
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <p>A sample solution is provided in <a href="files/exercises/18-further-functions/solutions/integral_program.f90">integral_program.f90</a>
 and <a href="files/exercises/18-further-functions/solutions/integral_module.f90">integral_module.f90</a>.</p>
@@ -8134,7 +8138,7 @@ right-hand side <span class="math inline">\(b\)</span>.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>You can check a suggested solution with <a href="files/exercises/21-conjugate-gradient/solutions-1/cg_test.f90">cg_test.f90</a>
 and <a href="files/exercises/21-conjugate-gradient/solutions-1/cgradient.f90">cgradient_solution.f90</a>.</p>
@@ -8208,7 +8212,7 @@ correctly.</p></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>A suggested solution in provided in <a href="files/exercises/21-conjugate-gradient/solutions-2/mm_test.f90">mmtest.f90</a>
 and <a href="files/exercises/21-conjugate-gradient/solutions-2/mmarket.f90">mmarket.f90</a>.</p>

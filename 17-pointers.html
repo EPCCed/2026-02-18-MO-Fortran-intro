@@ -554,7 +554,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Pointers and targets</h1>
-        <p>Last updated on 2026-02-13 |
+        <p>Last updated on 2026-02-19 |
 
         <a href="https://github.com/welucas2/2026-02-18-MO-Fortran-intro/edit/main/episodes/17-pointers.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -639,9 +639,11 @@ type (which is not itself a pointer) by using the target attribute:</p>
 <h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">target</span>  <span class="dt">::</span> datum</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">pointer</span> <span class="dt">::</span> p</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">pointer</span> <span class="dt">::</span> p <span class="kw">=</span><span class="op">&gt;</span> null()</span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  p <span class="kw">=</span><span class="op">&gt;</span> datum</span></code></pre>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  ...</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>  p <span class="kw">=</span><span class="op">&gt;</span> datum</span></code></pre>
 </div>
 <p>The pointer is now said to be associated with the target. We can now
 perform operations on <code>datum</code> vicariously through
@@ -650,10 +652,12 @@ perform operations on <code>datum</code> vicariously through
 <h3 class="code-label">FORTRAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode fortran" tabindex="0"><code class="sourceCode fortranfixed"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">target</span>  <span class="dt">::</span> datum <span class="kw">=</span> <span class="dv">1</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">pointer</span> <span class="dt">::</span> p</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  <span class="dt">integer</span>, <span class="dt">pointer</span> <span class="dt">::</span> p <span class="kw">=</span><span class="op">&gt;</span> null()</span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  p <span class="kw">=</span><span class="op">&gt;</span> datum     <span class="co">! pointer assignment</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>  p <span class="kw">=</span> <span class="dv">2</span>          <span class="co">! normal assignment</span></span></code></pre>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  ...</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>  p <span class="kw">=</span><span class="op">&gt;</span> datum     <span class="co">! pointer assignment</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>  p <span class="kw">=</span> <span class="dv">2</span>          <span class="co">! normal assignment</span></span></code></pre>
 </div>
 <p>leaves us with <code>datum = 2</code>. There is no dereferencing in
 the C fashion; the data is moved as the result of the normal
@@ -1003,7 +1007,7 @@ allocation from one allocatable variable to another.</li>
   "url": "https://welucas2.github.io/2026-02-18-MO-Fortran-intro/17-pointers.html",
   "identifier": "https://welucas2.github.io/2026-02-18-MO-Fortran-intro/17-pointers.html",
   "dateCreated": "2025-05-05",
-  "dateModified": "2026-02-13",
+  "dateModified": "2026-02-19",
   "datePublished": "2026-02-19"
 }
 
